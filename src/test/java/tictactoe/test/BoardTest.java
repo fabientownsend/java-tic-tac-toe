@@ -1,128 +1,112 @@
 package tictactoe.test;
 
 import tictactoe.Board;
+import tictactoe.Marks;
 
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-
 public class BoardTest {
     private Board board;
-    private char[][] expectedBoard;
 
     @Before
     public void initialize() {
         board = new Board();
-        expectedBoard = new char[3][3];
     }
 
     @Test
-    public void isEmpty() throws Exception {
-        assertEquals(true, board.isEmpty());
+    public void isEmptyBoard() throws Exception {
+        setBoardState("---------");
+        assertTrue(board.isEmpty());
     }
 
     @Test
-    public void isNotEmptyWhenPartyStarted() throws Exception {
-        stringToDoubleArray("-----X---");
-        assertEquals(false, board.isEmpty());
+    public void isNotEmptyBoard() throws Exception {
+        setBoardState("-----X---");
+        assertFalse(board.isEmpty());
     }
 
     @Test
-    public void getEmptyBoard() throws Exception {
-        char[][] emptyBoard = new char[3][3];
+    public void crossPlayerWinRowOne() throws Exception {
+        setBoardState("XXX------");
 
-        assertEquals(emptyBoard, board.getContent());
+        assertTrue(board.win(Marks.CROSS));
     }
 
     @Test
-    public void setPositionMiddleBoard() throws Exception {
-        stringToDoubleArray("-----X---");
-        expectedBoard[1][2] = 'X';
+    public void crossPlayerWinRowTwo() throws Exception {
+        setBoardState("---XXX---");
 
-        assertEquals(expectedBoard, board.getContent());
+        assertTrue(board.win(Marks.CROSS));
     }
 
     @Test
-    public void isAWinningBoard() throws Exception {
-        stringToDoubleArray("XXX------");
+    public void crossPlayerWinRowThree() throws Exception {
+        setBoardState("------XXX");
 
-        assertTrue(board.win('X'));
+        assertTrue(board.win(Marks.CROSS));
     }
 
     @Test
-    public void isWinningBoardRow2() throws Exception {
-        stringToDoubleArray("---XXX---");
+    public void crossPlayerWinColumnOne() throws Exception {
+        setBoardState("X--X--X--");
 
-        assertTrue(board.win('X'));
+        assertTrue(board.win(Marks.CROSS));
     }
 
     @Test
-    public void isWinningBoardRow3() throws Exception {
-        stringToDoubleArray("------XXX");
+    public void crossPlayerWinColumnTwo() throws Exception {
+        setBoardState("-X--X--X-");
 
-        assertTrue(board.win('X'));
+        assertTrue(board.win(Marks.CROSS));
     }
 
     @Test
-    public void isWinningBoardColumn() throws Exception {
-        stringToDoubleArray("X--X--X--");
+    public void crossPlayerWinColumnThree() throws Exception {
+        setBoardState("--X--X--X");
 
-        assertTrue(board.win('X'));
+        assertTrue(board.win(Marks.CROSS));
     }
 
     @Test
-    public void isWinningBoardColumn2() throws Exception {
-        stringToDoubleArray("-X--X--X-");
+    public void noPlayerWin() throws Exception {
+        setBoardState("XOX------");
 
-        assertTrue(board.win('X'));
+        assertFalse(board.win(Marks.CROSS));
     }
 
     @Test
-    public void isWinningBoardColumn3() throws Exception {
-        stringToDoubleArray("--X--X--X");
-
-        assertTrue(board.win('X'));
-    }
-
-    @Test
-    public void isNotAWinningBoard() throws Exception {
-        stringToDoubleArray("XOX------");
-
-        assertFalse(board.win('X'));
-    }
-
-    @Test
-    public void isNotATie() throws Exception {
-        stringToDoubleArray("XOX------");
+    public void isNotATieWHenBoardNotFull() throws Exception {
+        setBoardState("XOX------");
 
         assertFalse(board.tie());
     }
 
     @Test
-    public void winDiagonal() throws Exception {
-        stringToDoubleArray("X---X---X");
+    public void crossPlayerWinDiagonnalOne() throws Exception {
+        setBoardState("X---X---X");
 
-        assertTrue(board.win('X'));
+        assertTrue(board.win(Marks.CROSS));
     }
 
     @Test
-    public void winDiagonalBackward() throws Exception {
-        stringToDoubleArray("--X-X-X--");
+    public void crossPlayerWinDiagonnalTwo() throws Exception {
+        setBoardState("--X-X-X--");
 
-        assertTrue(board.win('X'));
+        assertTrue(board.win(Marks.CROSS));
     }
 
     @Test
-    public void isATie() throws Exception {
-        stringToDoubleArray("XOXXOXOXO");
+    public void itIsATie() throws Exception {
+        setBoardState("XOXXOXOXO");
 
         assertTrue(board.tie());
     }
 
-    private void stringToDoubleArray(String stringBoard) {
+    private void setBoardState(String stringBoard) {
         for (int i = 0; i < stringBoard.length(); i ++) {
-            if (stringBoard.charAt(i) == 'X' || stringBoard.charAt(i) == 'O') {
+            if (stringBoard.charAt(i) == Marks.CROSS || stringBoard.charAt(i) == Marks.ROUND) {
                 board.putMark(stringBoard.charAt(i), i);
             }
         }

@@ -4,8 +4,6 @@ public class Board {
     private boolean isEmpty;
     private char[][] board;
     private final int SIZE = 3;
-    private final char CROSS = 'X';
-    private final char ROUND = 'O';
 
     public Board() {
         this.isEmpty = true;
@@ -34,13 +32,13 @@ public class Board {
     }
 
     public boolean tie() {
-        return isFull() && !win(CROSS) && !win(ROUND);
+        return isFull() && !win(Marks.CROSS) && !win(Marks.ROUND);
     }
 
     private boolean isFull() {
         for(int i = 0; i < SIZE; i++){
             for(int y = 0; y < SIZE; y++) {
-                if (board[i][y] != CROSS && board[i][y] != ROUND) {
+                if (board[i][y] != Marks.CROSS && board[i][y] != Marks.ROUND) {
                     return false;
                 }
             }
