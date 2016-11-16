@@ -1,6 +1,6 @@
 package tictactoe;
 
-public class Board {
+public class Board implements IBoard {
     private boolean isEmpty;
     private char[][] board;
     private final int SIZE = 3;
