@@ -1,0 +1,15 @@
+apply plugin: 'java'
+
+jar {
+  manifest {
+    attributes 'Main-Class': 'tictactoe/Main'
+  }
+}
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  testCompile 'junit:junit:4.11'
+}
