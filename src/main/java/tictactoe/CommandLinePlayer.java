@@ -9,7 +9,7 @@ public class CommandLinePlayer implements Player {
         this.io = io;
         this.mark = mark;
     }
-    public int nextMove() {
+    public final int nextMove() {
         try {
             String playerMove = io.read();
             return Integer.parseInt(playerMove);
