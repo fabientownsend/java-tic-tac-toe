@@ -5,8 +5,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 public class IO implements IOGame {
-    BufferedReader input;
-    PrintWriter output;
+    private BufferedReader input;
+    private PrintWriter output;
+    private final String ERROR = "Error";
 
     public IO(BufferedReader input, PrintWriter output) {
         this.input = input;
@@ -21,8 +22,7 @@ public class IO implements IOGame {
         try {
             return input.readLine();
         } catch (IOException e) {
-            // log
-            return "";
+            return ERROR;
         }
     }
 }

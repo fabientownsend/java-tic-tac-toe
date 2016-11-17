@@ -3,6 +3,7 @@ package tictactoe;
 public class CommandLinePlayer implements Player {
     private IOGame io;
     private final char mark;
+    private final String MUST_BE_INTEGER = "It must be an integer";
 
     public CommandLinePlayer(IOGame io, char mark) {
         this.io = io;
@@ -13,7 +14,7 @@ public class CommandLinePlayer implements Player {
             String playerMove = io.read();
             return Integer.parseInt(playerMove);
         } catch (NumberFormatException e) {
-            io.write("It must be an integer");
+            io.write(MUST_BE_INTEGER);
             return nextMove();
         }
     }

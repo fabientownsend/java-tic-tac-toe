@@ -9,9 +9,8 @@ public class Main {
         BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
         PrintWriter output = new PrintWriter(System.out, true);
         IOGame io = new IO(input, output);
+        GamePlay game = new GamePlay(io, new Board());
 
-        GamePlay gp = new GamePlay(io);
-        gp.play();
-        System.out.println("The party is over");
+        game.play();
     }
 }

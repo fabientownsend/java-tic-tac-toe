@@ -1,17 +1,14 @@
 package tictactoe;
 
 public class Board implements IBoard {
-    private boolean isEmpty;
     private char[][] board;
     private final int SIZE = 3;
 
     public Board() {
-        this.isEmpty = true;
         this.board = new char[SIZE][SIZE];
     }
 
     public void putMark(char mark, int position) {
-        isEmpty = false;
         board[getRow(position)][getColumn(position)] = mark;
     }
 
@@ -23,10 +20,6 @@ public class Board implements IBoard {
         return position % SIZE;
     }
 
-    public boolean isEmpty() {
-        return isEmpty;
-    }
-
     public final char[][] getContent() {
         return  board;
     }
@@ -36,13 +29,14 @@ public class Board implements IBoard {
     }
 
     private boolean isFull() {
-        for(int i = 0; i < SIZE; i++){
-            for(int y = 0; y < SIZE; y++) {
-                if (board[i][y] != Marks.CROSS && board[i][y] != Marks.ROUND) {
+        for(int row = 0; row < SIZE; row++){
+            for(int column = 0; column < SIZE; column++) {
+                if (board[row][column] != Marks.CROSS && board[row][column] != Marks.ROUND) {
                     return false;
                 }
             }
         }
+
         return true;
     }
 
@@ -60,7 +54,27 @@ public class Board implements IBoard {
         return false;
     }
 
-     private boolean winningDiagonal(char mark) {
+    private boolean winningRow(int rowIndex, char mark) {
+        for(int i = 0; i < SIZE; i++) {
+            if (board[rowIndex][i] != mark) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private boolean winningColumn(int columnIndex, char mark) {
+        for(int i = 0; i < SIZE; i++) {
+            if (board[i][columnIndex] != mark) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private boolean winningDiagonal(char mark) {
         for (int i = 0; i < SIZE; i++) {
             if (board[i][i] != mark) {
                 return false;
@@ -73,26 +87,6 @@ public class Board implements IBoard {
     private boolean winningDiagonalBackward(char mark) {
         for (int i = 0; i < SIZE; i++) {
             if (board[i][SIZE - i - 1] != mark) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    private boolean winningRow(int index, char mark) {
-        for(int i = 0; i < SIZE; i++) {
-            if (board[index][i] != mark) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    private boolean winningColumn(int index, char mark) {
-        for(int i = 0; i < SIZE; i++) {
-            if (board[i][index] != mark) {
                 return false;
             }
         }

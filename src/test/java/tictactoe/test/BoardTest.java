@@ -16,18 +16,6 @@ public class BoardTest {
     }
 
     @Test
-    public void isEmptyBoard() throws Exception {
-        setBoardState("---------");
-        assertTrue(board.isEmpty());
-    }
-
-    @Test
-    public void isNotEmptyBoard() throws Exception {
-        setBoardState("-----X---");
-        assertFalse(board.isEmpty());
-    }
-
-    @Test
     public void crossPlayerWinRowOne() throws Exception {
         setBoardState("XXX------");
 

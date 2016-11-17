@@ -7,9 +7,13 @@ public class GamePlay {
     private Player playerOne;
     private Player playerTwo;
     private Player currentPlayer;
-    private static String TURN = " turn\n";
-    private static String TIE = "it's a tie\n";
-    private static String WON = " won the party\n";
+    private final String TURN = " turn\n";
+    private final String TIE = "it's a tie\n";
+    private final String WON = " won the party\n";
+    private final String BETWEEN = "Move should be between ";
+    private final String AND = " and ";
+    private final int MIN_BOARD = 0;
+    private final int MAX_BOARD = 0;
 
     public GamePlay(IOGame io, IBoard board) {
         this.board = board;
@@ -33,16 +37,14 @@ public class GamePlay {
     }
 
     private void currentPlayerMove() {
-        int move = getMoveBetween(0, 8);
-
-        board.putMark(currentPlayer.getMark(), move);
+        board.putMark(currentPlayer.getMark(), getMoveBetween(MIN_BOARD, MAX_BOARD));
     }
 
     private int getMoveBetween(int min, int max) {
         int move = currentPlayer.nextMove();
 
         if (move < min || move > max) {
-            io.write("Move should be between " + min + " and " + max);
+            io.write(BETWEEN + min + AND + max);
             return getMoveBetween(min, max);
         }
 
