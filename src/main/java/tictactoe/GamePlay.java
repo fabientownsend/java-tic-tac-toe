@@ -22,7 +22,7 @@ public class GamePlay {
 
     public void play() {
         displayCurrentParty();
-        board.putMark(currentPlayer.getMark(), currentPlayer.nextMove());
+        currentPlayerMove();
 
         if (isGameOver()) {
             displayResult();
@@ -30,6 +30,23 @@ public class GamePlay {
             switchPlayer();
             play();
         }
+    }
+
+    private void currentPlayerMove() {
+        int move = getMoveBetween(0, 8);
+
+        board.putMark(currentPlayer.getMark(), move);
+    }
+
+    private int getMoveBetween(int min, int max) {
+        int move = currentPlayer.nextMove();
+
+        if (move < min || move > max) {
+            io.write("Move should be between " + min + " and " + max);
+            return getMoveBetween(min, max);
+        }
+
+        return move;
     }
 
     private void displayCurrentParty() {
