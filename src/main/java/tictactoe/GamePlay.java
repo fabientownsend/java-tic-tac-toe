@@ -4,31 +4,35 @@ public class GamePlay {
     Player playerOne;
     Player playerTwo;
     Player currentPlayer;
-    Board board;
-    BoardConvertor boardConvertor;
+    IBoard board;
+    BoardConverter boardConverter;
     IOGame io;
 
-    public GamePlay(IOGame io) {
-        this.board = new Board();
+    public GamePlay(IOGame io, IBoard board) {
+        this.board = board;
         this.io = io;
-        this.boardConvertor = new BoardConvertor();
+        this.boardConverter = new BoardConverter();
         this.currentPlayer = playerOne;
         createPlayers();
     }
 
     public void play() {
         switchPlayer();
-        String strBoard = boardConvertor.toString(board.getContent());
+        io.write(currentPlayer.getMark() + " turn");
+        String strBoard = boardConverter.toString(board.getContent());
         io.write(strBoard);
         board.putMark(currentPlayer.getMark(), currentPlayer.nextMove());
 
-        if (!board.tie() && !board.win(currentPlayer.getMark())) {
+        if (board.tie()) {
+            io.write("it's a tie");
+        } else if (board.win(currentPlayer.getMark())) {
+            io.write(currentPlayer.getMark() + " won the party");
+        } else {
             play();
         }
 
-        strBoard = boardConvertor.toString(board.getContent());
+        strBoard = boardConverter.toString(board.getContent());
         io.write(strBoard);
-        io.write("ended\n");
     }
 
     private void switchPlayer() {
