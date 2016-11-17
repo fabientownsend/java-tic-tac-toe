@@ -1,38 +1,59 @@
 package tictactoe;
 
 public class GamePlay {
-    Player playerOne;
-    Player playerTwo;
-    Player currentPlayer;
-    IBoard board;
-    BoardConverter boardConverter;
-    IOGame io;
+    private BoardConverter boardConverter;
+    private IBoard board;
+    private IOGame io;
+    private Player playerOne;
+    private Player playerTwo;
+    private Player currentPlayer;
+    private static String TURN = " turn\n";
+    private static String TIE = "it's a tie\n";
+    private static String WON = " won the party\n";
 
     public GamePlay(IOGame io, IBoard board) {
         this.board = board;
-        this.io = io;
         this.boardConverter = new BoardConverter();
-        this.currentPlayer = playerOne;
-        createPlayers();
+        this.io = io;
+        this.playerOne = new CommandLinePlayer(io, Marks.CROSS);
+        this.playerTwo = new CommandLinePlayer(io, Marks.ROUND);
+        this.currentPlayer = this.playerOne;
     }
 
     public void play() {
-        switchPlayer();
-        io.write(currentPlayer.getMark() + " turn");
-        String strBoard = boardConverter.toString(board.getContent());
-        io.write(strBoard);
+        displayCurrentParty();
         board.putMark(currentPlayer.getMark(), currentPlayer.nextMove());
 
-        if (board.tie()) {
-            io.write("it's a tie");
-        } else if (board.win(currentPlayer.getMark())) {
-            io.write(currentPlayer.getMark() + " won the party");
+        if (isGameOver()) {
+            displayResult();
         } else {
+            switchPlayer();
             play();
         }
+    }
 
-        strBoard = boardConverter.toString(board.getContent());
-        io.write(strBoard);
+    private void displayCurrentParty() {
+        String currentBoard = boardConverter.toString(board.getContent());
+        String currentPlayerTurn = currentPlayer.getMark() + TURN;
+        io.write(currentBoard + currentPlayerTurn);
+    }
+
+    private boolean isGameOver() {
+        return board.tie() || board.win(currentPlayer.getMark());
+    }
+
+    private void displayResult() {
+        String result = getResultMessage();
+        String currentBoard = boardConverter.toString(board.getContent());
+        io.write(result + currentBoard);
+    }
+
+    private String getResultMessage() {
+        if (board.tie()) {
+            return TIE;
+        } else {
+            return currentPlayer.getMark() + WON;
+        }
     }
 
     private void switchPlayer() {
@@ -41,10 +62,5 @@ public class GamePlay {
         } else {
             currentPlayer = playerOne;
         }
-    }
-
-    private void createPlayers() {
-        this.playerOne = new CommandLinePlayer(io, Marks.CROSS);
-        this.playerTwo = new CommandLinePlayer(io, Marks.ROUND);
     }
 }
