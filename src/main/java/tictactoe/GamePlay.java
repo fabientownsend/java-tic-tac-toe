@@ -3,15 +3,19 @@ package tictactoe;
 public class GamePlay {
     private BoardConverter boardConverter;
     private IBoard board;
-    private IOGame io;
+    private IO io;
     private Player playerOne;
     private Player playerTwo;
     private Player currentPlayer;
-    private static String TURN = " turn\n";
-    private static String TIE = "it's a tie\n";
-    private static String WON = " won the party\n";
+    private final String TURN = " turn\n";
+    private final String TIE = "it's a tie\n";
+    private final String WON = " won the party\n";
+    private final String BETWEEN = "Move should be between ";
+    private final String AND = " and ";
+    private final int MIN_BOARD = 0;
+    private final int MAX_BOARD = 8;
 
-    public GamePlay(IOGame io, IBoard board) {
+    public GamePlay(IO io, IBoard board) {
         this.board = board;
         this.boardConverter = new BoardConverter();
         this.io = io;
@@ -22,7 +26,7 @@ public class GamePlay {
 
     public void play() {
         displayCurrentParty();
-        board.putMark(currentPlayer.getMark(), currentPlayer.nextMove());
+        currentPlayerMove();
 
         if (isGameOver()) {
             displayResult();
@@ -30,6 +34,21 @@ public class GamePlay {
             switchPlayer();
             play();
         }
+    }
+
+    private void currentPlayerMove() {
+        board.putMark(currentPlayer.getMark(), getMoveBetween(MIN_BOARD, MAX_BOARD));
+    }
+
+    private int getMoveBetween(int min, int max) {
+        int move = currentPlayer.nextMove();
+
+        if (move < min || move > max) {
+            io.write(BETWEEN + min + AND + max);
+            return getMoveBetween(min, max);
+        }
+
+        return move;
     }
 
     private void displayCurrentParty() {

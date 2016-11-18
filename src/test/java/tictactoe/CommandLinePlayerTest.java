@@ -1,10 +1,7 @@
-package tictactoe.test;
+package tictactoe;
 
 import org.junit.*;
 import static org.junit.Assert.*;
-
-import tictactoe.CommandLinePlayer;
-import tictactoe.Marks;
 
 import java.io.BufferedReader;
 import java.io.PrintWriter;

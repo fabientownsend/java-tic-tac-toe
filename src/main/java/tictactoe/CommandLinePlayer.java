@@ -1,19 +1,20 @@
 package tictactoe;
 
 public class CommandLinePlayer implements Player {
-    private IOGame io;
+    private IO io;
     private final char mark;
+    private final String MUST_BE_INTEGER = "It must be an integer";
 
-    public CommandLinePlayer(IOGame io, char mark) {
+    public CommandLinePlayer(IO io, char mark) {
         this.io = io;
         this.mark = mark;
     }
-    public int nextMove() {
+    public final int nextMove() {
         try {
             String playerMove = io.read();
             return Integer.parseInt(playerMove);
         } catch (NumberFormatException e) {
-            io.write("It must be an integer");
+            io.write(MUST_BE_INTEGER);
             return nextMove();
         }
     }

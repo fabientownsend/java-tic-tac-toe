@@ -1,4 +1,4 @@
-package tictactoe.test;
+package tictactoe;
 
 import tictactoe.IBoard;
 

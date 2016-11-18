@@ -1,9 +1,7 @@
-package tictactoe.test;
+package tictactoe;
 
 import org.junit.Before;
 import org.junit.Test;
-import tictactoe.GamePlay;
-import tictactoe.IOGame;
 
 import java.io.*;
 
@@ -11,7 +9,7 @@ import static org.junit.Assert.*;
 
 public class GamePlayTest {
     private StringWriter out;
-    private IOGame fakeIO;
+    private IO fakeCommandLine;
     private FakeBoard fakeBoard;
     private  GamePlay game;
 
@@ -19,7 +17,7 @@ public class GamePlayTest {
     public void initialize() {
         initialisationFakeIO("4\n0\n3\n1\n5\nn");
         this.fakeBoard = new FakeBoard();
-        this.game = new GamePlay(fakeIO, fakeBoard);
+        this.game = new GamePlay(fakeCommandLine, fakeBoard);
     }
 
     @Test
@@ -58,6 +56,6 @@ public class GamePlayTest {
         out = new StringWriter();
         PrintWriter output = new PrintWriter(out, true);
 
-        fakeIO = new FakeIO(input, output);
+        fakeCommandLine = new FakeIO(input, output);
     }
 }

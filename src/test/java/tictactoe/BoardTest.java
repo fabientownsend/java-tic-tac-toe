@@ -1,7 +1,4 @@
-package tictactoe.test;
-
-import tictactoe.Board;
-import tictactoe.Marks;
+package tictactoe;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -13,18 +10,6 @@ public class BoardTest {
     @Before
     public void initialize() {
         board = new Board();
-    }
-
-    @Test
-    public void isEmptyBoard() throws Exception {
-        setBoardState("---------");
-        assertTrue(board.isEmpty());
-    }
-
-    @Test
-    public void isNotEmptyBoard() throws Exception {
-        setBoardState("-----X---");
-        assertFalse(board.isEmpty());
     }
 
     @Test
