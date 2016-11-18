@@ -1,3 +1,8 @@
+plugins {
+  id "com.github.kt3k.coveralls" version "2.6.3"
+  id "jacoco"
+}
+
 apply plugin: 'java'
 
 jar {
@@ -12,4 +17,14 @@ repositories {
 
 dependencies {
   testCompile 'junit:junit:4.11'
+}
+
+jacocoTestReport {
+  reports {
+    xml.enabled true
+  }
+}
+
+task wrapper(type: Wrapper) {
+      gradleVersion = '3.2'
 }
