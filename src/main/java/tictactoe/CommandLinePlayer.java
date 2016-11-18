@@ -1,11 +1,11 @@
 package tictactoe;
 
 public class CommandLinePlayer implements Player {
-    private IOGame io;
+    private IO io;
     private final char mark;
     private final String MUST_BE_INTEGER = "It must be an integer";
 
-    public CommandLinePlayer(IOGame io, char mark) {
+    public CommandLinePlayer(IO io, char mark) {
         this.io = io;
         this.mark = mark;
     }

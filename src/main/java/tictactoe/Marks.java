@@ -1,6 +1,8 @@
 package tictactoe;
 
-public enum Marks {
-    CROSS,
-    ROUND,
+public final class Marks {
+    public static final char CROSS = 'X';
+    public static final char ROUND = 'O';
+
+    private Marks() {}
 }

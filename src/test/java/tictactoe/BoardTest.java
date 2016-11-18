@@ -16,49 +16,49 @@ public class BoardTest {
     public void crossPlayerWinRowOne() throws Exception {
         setBoardState("XXX------");
 
-        assertTrue(board.win(MarksPrev.CROSS));
+        assertTrue(board.win(Marks.CROSS));
     }
 
     @Test
     public void crossPlayerWinRowTwo() throws Exception {
         setBoardState("---XXX---");
 
-        assertTrue(board.win(MarksPrev.CROSS));
+        assertTrue(board.win(Marks.CROSS));
     }
 
     @Test
     public void crossPlayerWinRowThree() throws Exception {
         setBoardState("------XXX");
 
-        assertTrue(board.win(MarksPrev.CROSS));
+        assertTrue(board.win(Marks.CROSS));
     }
 
     @Test
     public void crossPlayerWinColumnOne() throws Exception {
         setBoardState("X--X--X--");
 
-        assertTrue(board.win(MarksPrev.CROSS));
+        assertTrue(board.win(Marks.CROSS));
     }
 
     @Test
     public void crossPlayerWinColumnTwo() throws Exception {
         setBoardState("-X--X--X-");
 
-        assertTrue(board.win(MarksPrev.CROSS));
+        assertTrue(board.win(Marks.CROSS));
     }
 
     @Test
     public void crossPlayerWinColumnThree() throws Exception {
         setBoardState("--X--X--X");
 
-        assertTrue(board.win(MarksPrev.CROSS));
+        assertTrue(board.win(Marks.CROSS));
     }
 
     @Test
     public void noPlayerWin() throws Exception {
         setBoardState("XOX------");
 
-        assertFalse(board.win(MarksPrev.CROSS));
+        assertFalse(board.win(Marks.CROSS));
     }
 
     @Test
@@ -72,14 +72,14 @@ public class BoardTest {
     public void crossPlayerWinDiagonnalOne() throws Exception {
         setBoardState("X---X---X");
 
-        assertTrue(board.win(MarksPrev.CROSS));
+        assertTrue(board.win(Marks.CROSS));
     }
 
     @Test
     public void crossPlayerWinDiagonnalTwo() throws Exception {
         setBoardState("--X-X-X--");
 
-        assertTrue(board.win(MarksPrev.CROSS));
+        assertTrue(board.win(Marks.CROSS));
     }
 
     @Test
@@ -91,7 +91,7 @@ public class BoardTest {
 
     private void setBoardState(String stringBoard) {
         for (int i = 0; i < stringBoard.length(); i ++) {
-            if (stringBoard.charAt(i) == MarksPrev.CROSS || stringBoard.charAt(i) == MarksPrev.ROUND) {
+            if (stringBoard.charAt(i) == Marks.CROSS || stringBoard.charAt(i) == Marks.ROUND) {
                 board.putMark(stringBoard.charAt(i), i);
             }
         }

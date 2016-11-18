@@ -1,6 +1,6 @@
 package tictactoe;
 
-public interface IOGame {
+public interface IO {
     void write(String input);
     String read();
 }

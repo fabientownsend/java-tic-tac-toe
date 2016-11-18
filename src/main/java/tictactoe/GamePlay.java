@@ -3,7 +3,7 @@ package tictactoe;
 public class GamePlay {
     private BoardConverter boardConverter;
     private IBoard board;
-    private IOGame io;
+    private IO io;
     private Player playerOne;
     private Player playerTwo;
     private Player currentPlayer;
@@ -13,9 +13,9 @@ public class GamePlay {
     private final String BETWEEN = "Move should be between ";
     private final String AND = " and ";
     private final int MIN_BOARD = 0;
-    private final int MAX_BOARD = 0;
+    private final int MAX_BOARD = 8;
 
-    public GamePlay(IOGame io, IBoard board) {
+    public GamePlay(IO io, IBoard board) {
         this.board = board;
         this.boardConverter = new BoardConverter();
         this.io = io;
