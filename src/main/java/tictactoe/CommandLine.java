@@ -1,29 +1,28 @@
-package tictactoe.test;
-
-import tictactoe.IOGame;
+package tictactoe;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-class FakeIO implements IOGame {
+public class IO implements IOGame {
     private BufferedReader input;
     private PrintWriter output;
+    private final String ERROR = "Error";
 
-    public FakeIO(BufferedReader input, PrintWriter output) {
+    public IO(BufferedReader input, PrintWriter output) {
         this.input = input;
         this.output = output;
+    }
+
+    public void write(String input) {
+        output.printf(input);
     }
 
     public String read() {
         try {
             return input.readLine();
         } catch (IOException e) {
-            return "";
+            return ERROR;
         }
-    }
-
-    public void write(String input) {
-        output.printf(input);
     }
 }

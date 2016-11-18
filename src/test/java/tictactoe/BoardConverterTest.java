@@ -1,8 +1,6 @@
-package tictactoe.test;
+package tictactoe;
 
 import org.junit.Test;
-import tictactoe.BoardConverter;
-import tictactoe.Marks;
 
 import static org.junit.Assert.*;
 

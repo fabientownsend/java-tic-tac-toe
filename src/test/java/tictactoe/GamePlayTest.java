@@ -1,9 +1,7 @@
-package tictactoe.test;
+package tictactoe;
 
 import org.junit.Before;
 import org.junit.Test;
-import tictactoe.GamePlay;
-import tictactoe.IOGame;
 
 import java.io.*;
 
@@ -11,7 +9,7 @@ import static org.junit.Assert.*;
 
 public class GamePlayTest {
     private StringWriter out;
-    private IOGame fakeIO;
+    private IO fakeIO;
     private FakeBoard fakeBoard;
     private  GamePlay game;
 
@@ -53,28 +51,11 @@ public class GamePlayTest {
         assertTrue(out.toString().contains("it's a tie"));
     }
 
-    @Test
-    public void displayAMessageWhenMoveTooHight() throws Exception {
-        initialisationFakeIO("999\n4\n");
-
-        game.play();
-        assertTrue(out.toString().contains("Move should be between "));
-    }
-
-    @Test
-    public void displayAMessageWhenMoveTooLow() throws Exception {
-        initialisationFakeIO("-1\n4\n");
-
-        game.play();
-        assertTrue(out.toString().contains("Move should be between "));
-    }
-
     private void initialisationFakeIO(String text) {
         BufferedReader input = new BufferedReader(new StringReader(text));
         out = new StringWriter();
         PrintWriter output = new PrintWriter(out, true);
-        fakeIO = new FakeIO(input, output);
 
-        game = new GamePlay(fakeIO, fakeBoard);
+        fakeIO = new FakeIO(input, output);
     }
 }
