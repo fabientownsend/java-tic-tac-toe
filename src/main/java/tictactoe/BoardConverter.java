@@ -1,7 +1,7 @@
 package tictactoe;
 
 public class BoardConverter {
-    public String toString(char[][] board) {
+    public String toString(Marks[][] board) {
         StringBuilder str = new StringBuilder();
         int idSpot = 0;
 
@@ -20,7 +20,7 @@ public class BoardConverter {
         return str.toString();
     }
 
-    private String rightEdgeSpot(char[][] board, int y) {
+    private String rightEdgeSpot(Marks[][] board, int y) {
         if (isBoardEdge(board, y)) {
             return " \n";
         } else {
@@ -28,15 +28,17 @@ public class BoardConverter {
         }
     }
 
-    private char markToDisplay(char c, int idSpot) {
-        if (c == Marks.CROSS || c == Marks.ROUND) {
-            return c;
+    private char markToDisplay(Marks c, int idSpot) {
+        if (c == Marks.CROSS) {
+            return 'X';
+        } else if (c == Marks.ROUND) {
+            return 'O';
         } else {
             return Character.forDigit(idSpot, 10);
         }
     }
 
-    private boolean isBoardEdge(char[][] board, int i) {
+    private boolean isBoardEdge(Marks[][] board, int i) {
         return i == board.length - 1;
     }
 }

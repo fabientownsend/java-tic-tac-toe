@@ -91,8 +91,11 @@ public class BoardTest {
 
     private void setBoardState(String stringBoard) {
         for (int i = 0; i < stringBoard.length(); i ++) {
-            if (stringBoard.charAt(i) == Marks.CROSS || stringBoard.charAt(i) == Marks.ROUND) {
-                board.putMark(stringBoard.charAt(i), i);
+            if (stringBoard.charAt(i) == 'X') {
+                board.putMark(Marks.CROSS, i);
+            }
+            if (stringBoard.charAt(i) == 'O') {
+                board.putMark(Marks.ROUND, i);
             }
         }
     }

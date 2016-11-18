@@ -8,7 +8,7 @@ public class BoardConverterTest {
     @Test
     public void stringiphyAnArrayToString() throws Exception {
         BoardConverter boardConverter = new BoardConverter();
-        char[][] board = new char[3][3];
+        Marks[][] board = new Marks[3][3];
         String boardString = " 0 | 1 | 2 \n"
                            + "-----------\n"
                            + " 3 | 4 | 5 \n"
@@ -21,7 +21,7 @@ public class BoardConverterTest {
     @Test
     public void boardStringWithAMark() throws Exception {
         BoardConverter cli = new BoardConverter();
-        char[][] board = new char[3][3];
+        Marks[][] board = new Marks[3][3];
         board[1][1] = Marks.CROSS;
 
         String boardString = " 0 | 1 | 2 \n"

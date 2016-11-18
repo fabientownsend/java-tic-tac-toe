@@ -1,14 +1,14 @@
 package tictactoe;
 
 public class Board implements IBoard {
-    private char[][] board;
+    private Marks[][] board;
     private final int SIZE = 3;
 
     public Board() {
-        this.board = new char[SIZE][SIZE];
+        this.board = new Marks[SIZE][SIZE];
     }
 
-    public void putMark(char mark, int position) {
+    public void putMark(Marks mark, int position) {
         board[getRow(position)][getColumn(position)] = mark;
     }
 
@@ -20,7 +20,7 @@ public class Board implements IBoard {
         return position % SIZE;
     }
 
-    public final char[][] getContent() {
+    public final Marks[][] getContent() {
         return  board;
     }
 
@@ -40,7 +40,7 @@ public class Board implements IBoard {
         return true;
     }
 
-    public boolean win(char mark) {
+    public boolean win(Marks mark) {
         for (int i = 0; i < SIZE; i++) {
             if (winningRow(i, mark) || winningColumn(i, mark)) {
                 return true;
@@ -54,7 +54,7 @@ public class Board implements IBoard {
         return false;
     }
 
-    private boolean winningRow(int rowIndex, char mark) {
+    private boolean winningRow(int rowIndex, Marks mark) {
         for(int i = 0; i < SIZE; i++) {
             if (board[rowIndex][i] != mark) {
                 return false;
@@ -64,7 +64,7 @@ public class Board implements IBoard {
         return true;
     }
 
-    private boolean winningColumn(int columnIndex, char mark) {
+    private boolean winningColumn(int columnIndex, Marks mark) {
         for(int i = 0; i < SIZE; i++) {
             if (board[i][columnIndex] != mark) {
                 return false;
@@ -74,7 +74,7 @@ public class Board implements IBoard {
         return true;
     }
 
-    private boolean winningDiagonal(char mark) {
+    private boolean winningDiagonal(Marks mark) {
         for (int i = 0; i < SIZE; i++) {
             if (board[i][i] != mark) {
                 return false;
@@ -84,7 +84,7 @@ public class Board implements IBoard {
         return true;
     }
 
-    private boolean winningDiagonalBackward(char mark) {
+    private boolean winningDiagonalBackward(Marks mark) {
         for (int i = 0; i < SIZE; i++) {
             if (board[i][SIZE - i - 1] != mark) {
                 return false;

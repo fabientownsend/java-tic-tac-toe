@@ -71,7 +71,15 @@ public class GamePlay {
         if (board.tie()) {
             return TIE;
         } else {
-            return currentPlayer.getMark() + WON;
+            return convertMarkToString() + WON;
+        }
+    }
+
+    private String convertMarkToString() {
+        if (currentPlayer.getMark() == Marks.CROSS) {
+            return "X";
+        } else {
+            return "O";
         }
     }
 

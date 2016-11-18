@@ -23,7 +23,7 @@ public class GamePlayTest {
     @Test
     public void displayThePlayerTurn() throws Exception {
         game.play();
-        assertTrue(out.toString().contains("X turn"));
+        assertTrue(out.toString().contains("CROSS turn"));
     }
 
     @Test
@@ -31,7 +31,7 @@ public class GamePlayTest {
         fakeBoard.setTie(false);
         fakeBoard.setWin(false);
         game.play();
-        assertTrue(out.toString().contains("O turn"));
+        assertTrue(out.toString().contains("ROUND turn"));
         assertTrue(out.toString().contains("O won the party"));
     }
 
