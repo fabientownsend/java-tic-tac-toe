@@ -20,10 +20,12 @@ public class ComputerPlayer implements Player {
     public int bestMove() {
         int bestMove = -100;
         int bestValue = -100;
+        int alpha = -100;
+        int beta = 100;
 
         for (Integer position : board.freePosition()) {
             board.putMark(this.mark, position);
-            int result = minimax(board, this.mark);
+            int result = minimax(board, this.mark, alpha, beta);
             board.removeMark(position);
             if (result > bestValue) {
                 bestValue = result;
@@ -33,7 +35,7 @@ public class ComputerPlayer implements Player {
         return bestMove;
     }
 
-    private int minimax(Board board, Marks currentMark) {
+    private int minimax(Board board, Marks currentMark, int alpha, int beta) {
         if (board.win(this.mark)) {
             return 1;
         } else if (board.win(oppositePlayer(this.mark))) {
@@ -45,18 +47,26 @@ public class ComputerPlayer implements Player {
                 int min_value = 100;
                 for (Integer i : board.freePosition()) {
                     board.putMark(oppositePlayer(currentMark), i);
-                    int value = minimax(board, oppositePlayer(currentMark));
+                    int value = minimax(board, oppositePlayer(currentMark), alpha, beta);
                     board.removeMark(i);
                     min_value = Math.min(value, min_value);
+                    beta = Math.max(beta, min_value);
+                    if (beta <= alpha) {
+                        break;
+                    }
                 }
                 return min_value;
             } else {
                 int max_value = -100;
                 for (Integer i : board.freePosition()) {
                     board.putMark(oppositePlayer(currentMark), i);
-                    int value = minimax(board, oppositePlayer(currentMark));
+                    int value = minimax(board, oppositePlayer(currentMark), alpha, beta);
                     board.removeMark(i);
                     max_value = Math.max(value, max_value);
+                    alpha = Math.max(alpha, max_value);
+                    if (beta <= alpha) {
+                        break;
+                    }
                 }
                 return max_value;
             }
