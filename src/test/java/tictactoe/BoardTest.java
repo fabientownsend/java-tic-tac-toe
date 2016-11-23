@@ -2,6 +2,10 @@ package tictactoe;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 
 public class BoardTest {
@@ -87,6 +91,30 @@ public class BoardTest {
         setBoardState("XOXXOXOXO");
 
         assertTrue(board.tie());
+    }
+
+    @Test
+    public void getFreePosition() throws Exception {
+        setBoardState("XOXOXO---");
+        ArrayList<Integer> arr = new ArrayList<Integer>();
+        arr.add(6);
+        arr.add(7);
+        arr.add(8);
+        assertEquals(board.freePosition(), arr);
+    }
+
+    @Test
+    public void removeOneElement() throws Exception {
+        setBoardState("XOXOXO---");
+        ArrayList<Integer> arr = new ArrayList<Integer>();
+        arr.add(6);
+        arr.add(7);
+        arr.add(8);
+        assertEquals(board.freePosition(), arr);
+
+        board.removeMark(1);
+        arr.add(0, 1);
+        assertEquals(board.freePosition(), arr);
     }
 
     private void setBoardState(String stringBoard) {
