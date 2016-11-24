@@ -1,16 +1,14 @@
 package tictactoe;
 
-import tictactoe.IBoard;
-
 class FakeBoard implements IBoard {
     private boolean tie = true;
     private boolean win = true;
 
-    public void putMark(char mark, int position) {}
+    public void putMark(Marks mark, int position) {}
     public boolean tie() {
         return tie;
     }
-    public boolean win(char mark) {
+    public boolean win(Marks mark) {
         if (!win) {
             win = true;
             return false;
@@ -18,8 +16,8 @@ class FakeBoard implements IBoard {
 
         return win;
     }
-    public char[][] getContent() {
-        return new char[3][3];
+    public Marks[][] getContent() {
+        return new Marks[3][3];
     }
 
     public void setTie(boolean status) {

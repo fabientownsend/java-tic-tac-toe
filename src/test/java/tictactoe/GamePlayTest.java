@@ -21,9 +21,20 @@ public class GamePlayTest {
     }
 
     @Test
+    public void computerVsComputer() throws Exception {
+        initialisationFakeIO("4\n0\n3\n1\n5\nn");
+        Board board = new Board();
+        Player player_1 = new ComputerPlayer(Marks.CROSS, board);
+        Player player_2 = new ComputerPlayer(Marks.ROUND, board);
+        this.game = new GamePlay(fakeCommandLine, board, player_1, player_2);
+        game.play();
+        assertTrue(out.toString().contains("tie"));
+    }
+
+    @Test
     public void displayThePlayerTurn() throws Exception {
         game.play();
-        assertTrue(out.toString().contains("X turn"));
+        assertTrue(out.toString().contains("CROSS turn"));
     }
 
     @Test
@@ -31,7 +42,7 @@ public class GamePlayTest {
         fakeBoard.setTie(false);
         fakeBoard.setWin(false);
         game.play();
-        assertTrue(out.toString().contains("O turn"));
+        assertTrue(out.toString().contains("ROUND turn"));
         assertTrue(out.toString().contains("O won the party"));
     }
 

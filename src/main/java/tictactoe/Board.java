@@ -1,15 +1,21 @@
 package tictactoe;
 
+import java.util.ArrayList;
+
 public class Board implements IBoard {
-    private char[][] board;
+    private Marks[][] board;
     private final int SIZE = 3;
 
     public Board() {
-        this.board = new char[SIZE][SIZE];
+        this.board = new Marks[SIZE][SIZE];
     }
 
-    public void putMark(char mark, int position) {
+    public void putMark(Marks mark, int position) {
         board[getRow(position)][getColumn(position)] = mark;
+    }
+
+    public void removeMark(int position) {
+        board[getRow(position)][getColumn(position)] = null;
     }
 
     private int getRow(int position) {
@@ -20,7 +26,7 @@ public class Board implements IBoard {
         return position % SIZE;
     }
 
-    public final char[][] getContent() {
+    public final Marks[][] getContent() {
         return  board;
     }
 
@@ -28,10 +34,24 @@ public class Board implements IBoard {
         return isFull() && !win(Marks.CROSS) && !win(Marks.ROUND);
     }
 
-    private boolean isFull() {
+    public final ArrayList<Integer> freePosition() {
+        ArrayList<Integer> positions = new ArrayList<Integer>();
+
         for(int row = 0; row < SIZE; row++){
             for(int column = 0; column < SIZE; column++) {
                 if (board[row][column] != Marks.CROSS && board[row][column] != Marks.ROUND) {
+                    positions.add(row * 3 + column);
+                }
+            }
+        }
+
+        return positions;
+    }
+
+    private boolean isFull() {
+        for (Marks[] columns : board) {
+            for (Marks mark : columns) {
+                if (mark != Marks.CROSS && mark != Marks.ROUND) {
                     return false;
                 }
             }
@@ -40,21 +60,35 @@ public class Board implements IBoard {
         return true;
     }
 
-    public boolean win(char mark) {
-        for (int i = 0; i < SIZE; i++) {
-            if (winningRow(i, mark) || winningColumn(i, mark)) {
+    public boolean win(Marks mark) {
+        return winningDiagonals(mark) || winningRows(mark) || winningColumns(mark);
+    }
+
+    private boolean winningDiagonals(Marks mark) {
+        return winningDiagonal(mark) || winningDiagonalBackward(mark);
+    }
+
+    private boolean winningColumns(Marks mark) {
+        for (int i = 0; i < SIZE; i ++) {
+            if (winningColumn(i, mark)) {
                 return true;
             }
-        }
-
-        if (winningDiagonal(mark) || winningDiagonalBackward(mark)) {
-            return true;
         }
 
         return false;
     }
 
-    private boolean winningRow(int rowIndex, char mark) {
+    private boolean winningRows(Marks mark) {
+        for (int i = 0; i < SIZE; i++) {
+            if (winningRow(i, mark)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private boolean winningRow(int rowIndex, Marks mark) {
         for(int i = 0; i < SIZE; i++) {
             if (board[rowIndex][i] != mark) {
                 return false;
@@ -64,7 +98,7 @@ public class Board implements IBoard {
         return true;
     }
 
-    private boolean winningColumn(int columnIndex, char mark) {
+    private boolean winningColumn(int columnIndex, Marks mark) {
         for(int i = 0; i < SIZE; i++) {
             if (board[i][columnIndex] != mark) {
                 return false;
@@ -74,7 +108,7 @@ public class Board implements IBoard {
         return true;
     }
 
-    private boolean winningDiagonal(char mark) {
+    private boolean winningDiagonal(Marks mark) {
         for (int i = 0; i < SIZE; i++) {
             if (board[i][i] != mark) {
                 return false;
@@ -84,7 +118,7 @@ public class Board implements IBoard {
         return true;
     }
 
-    private boolean winningDiagonalBackward(char mark) {
+    private boolean winningDiagonalBackward(Marks mark) {
         for (int i = 0; i < SIZE; i++) {
             if (board[i][SIZE - i - 1] != mark) {
                 return false;

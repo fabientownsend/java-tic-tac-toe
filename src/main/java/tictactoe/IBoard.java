@@ -1,8 +1,8 @@
 package tictactoe;
 
 public interface IBoard {
-    void putMark(char mark, int position);
+    void putMark(Marks mark, int position);
     boolean tie();
-    boolean win(char mark);
-    char[][] getContent();
+    boolean win(Marks mark);
+    Marks[][] getContent();
 }

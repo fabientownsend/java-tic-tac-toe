@@ -1,18 +1,21 @@
 package tictactoe;
 
 public class BoardConverter {
-    public String toString(char[][] board) {
+    private Marks[][] board;
+
+    public String toString(Marks[][] board) {
+        this.board = board;
         StringBuilder str = new StringBuilder();
+        int idLine = 0;
         int idSpot = 0;
 
-        for(int i = 0; i < board.length; i++) {
-            for (int y = 0; y < board.length; y++) {
-                str.append(" " + markToDisplay(board[i][y], idSpot));
-                str.append(rightEdgeSpot(board, y));
+        for (Marks[] columns : board) {
+            for (Marks mark : columns) {
+                str.append(createLine(idSpot, mark));
                 idSpot++;
             }
 
-            if (!isBoardEdge(board, i)) {
+            if (++idLine != board.length) {
                 str.append("-----------\n");
             }
         }
@@ -20,23 +23,29 @@ public class BoardConverter {
         return str.toString();
     }
 
-    private String rightEdgeSpot(char[][] board, int y) {
-        if (isBoardEdge(board, y)) {
+    private String createLine(int idSpot, Marks mark) {
+        return " " + markToDisplay(mark, idSpot) + rightEdgeSpot(idSpot);
+    }
+
+    private String rightEdgeSpot(int y) {
+        if (isBoardEdge(y)) {
             return " \n";
         } else {
             return " |";
         }
     }
 
-    private char markToDisplay(char c, int idSpot) {
-        if (c == Marks.CROSS || c == Marks.ROUND) {
-            return c;
+    private char markToDisplay(Marks mark, int idSpot) {
+        if (mark == Marks.CROSS) {
+            return 'X';
+        } else if (mark == Marks.ROUND) {
+            return 'O';
         } else {
             return Character.forDigit(idSpot, 10);
         }
     }
 
-    private boolean isBoardEdge(char[][] board, int i) {
-        return i == board.length - 1;
+    private boolean isBoardEdge(int i) {
+        return (i + 1) % board.length == 0;
     }
 }

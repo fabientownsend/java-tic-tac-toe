@@ -9,8 +9,12 @@ public class Main {
         BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
         PrintWriter output = new PrintWriter(System.out, true);
         IO io = new CommandLine(input, output);
-        GamePlay game = new GamePlay(io, new Board());
+        Board board = new Board();
 
+        Player playerOne = new CommandLinePlayer(io, Marks.CROSS);
+        Player playerTwo = new ComputerPlayer(Marks.ROUND, board);
+
+        GamePlay game = new GamePlay(io, board, playerOne, playerTwo);
         game.play();
     }
 }
