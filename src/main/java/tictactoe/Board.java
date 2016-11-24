@@ -29,9 +29,9 @@ public class Board implements IBoard {
     }
 
     private boolean isFull() {
-        for(int row = 0; row < SIZE; row++){
-            for(int column = 0; column < SIZE; column++) {
-                if (board[row][column] != Marks.CROSS && board[row][column] != Marks.ROUND) {
+        for (Marks[] columns : board) {
+            for (Marks mark : columns) {
+                if (mark != Marks.CROSS && mark != Marks.ROUND) {
                     return false;
                 }
             }
@@ -41,14 +41,28 @@ public class Board implements IBoard {
     }
 
     public boolean win(Marks mark) {
-        for (int i = 0; i < SIZE; i++) {
-            if (winningRow(i, mark) || winningColumn(i, mark)) {
+        return winningDiagonals(mark) || winningRows(mark) || winningColumns(mark);
+    }
+
+    private boolean winningDiagonals(Marks mark) {
+        return winningDiagonal(mark) || winningDiagonalBackward(mark);
+    }
+
+    private boolean winningColumns(Marks mark) {
+        for (int i = 0; i < SIZE; i ++) {
+            if (winningColumn(i, mark)) {
                 return true;
             }
         }
 
-        if (winningDiagonal(mark) || winningDiagonalBackward(mark)) {
-            return true;
+        return false;
+    }
+
+    private boolean winningRows(Marks mark) {
+        for (int i = 0; i < SIZE; i++) {
+            if (winningRow(i, mark)) {
+                return true;
+            }
         }
 
         return false;
