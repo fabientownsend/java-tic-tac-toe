@@ -24,6 +24,15 @@ public class GamePlay {
         this.currentPlayer = this.playerOne;
     }
 
+    public GamePlay(IO io, IBoard board, Player playerOne, Player playerTwo) {
+        this.board = board;
+        this.boardConverter = new BoardConverter();
+        this.io = io;
+        this.playerOne = playerOne;
+        this.playerTwo = playerTwo;
+        this.currentPlayer = this.playerOne;
+    }
+
     public void play() {
         displayCurrentParty();
         currentPlayerMove();

@@ -1,5 +1,7 @@
 package tictactoe;
 
+import java.util.ArrayList;
+
 public class Board implements IBoard {
     private Marks[][] board;
     private final int SIZE = 3;
@@ -10,6 +12,10 @@ public class Board implements IBoard {
 
     public void putMark(Marks mark, int position) {
         board[getRow(position)][getColumn(position)] = mark;
+    }
+
+    public void removeMark(int position) {
+        board[getRow(position)][getColumn(position)] = null;
     }
 
     private int getRow(int position) {
@@ -26,6 +32,20 @@ public class Board implements IBoard {
 
     public boolean tie() {
         return isFull() && !win(Marks.CROSS) && !win(Marks.ROUND);
+    }
+
+    public final ArrayList<Integer> freePosition() {
+        ArrayList<Integer> positions = new ArrayList<Integer>();
+
+        for(int row = 0; row < SIZE; row++){
+            for(int column = 0; column < SIZE; column++) {
+                if (board[row][column] != Marks.CROSS && board[row][column] != Marks.ROUND) {
+                    positions.add(row * 3 + column);
+                }
+            }
+        }
+
+        return positions;
     }
 
     private boolean isFull() {
