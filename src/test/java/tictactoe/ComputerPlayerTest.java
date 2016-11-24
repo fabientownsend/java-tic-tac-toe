@@ -18,31 +18,31 @@ public class ComputerPlayerTest {
     @Test
     public void blockOpponantRow() throws Exception {
         setBoardState("X--OO-X--");
-        assertEquals(computer.bestMove(), 5);
+        assertEquals(computer.nextMove(), 5);
     }
 
     @Test
     public void blockOpponantColumn() throws Exception {
         setBoardState("OX-O-X---");
-        assertEquals(computer.bestMove(), 6);
+        assertEquals(computer.nextMove(), 6);
     }
 
     @Test
     public void blockOpponantDiagonal() throws Exception {
         setBoardState("OX--OX---");
-        assertEquals(computer.bestMove(), 8);
+        assertEquals(computer.nextMove(), 8);
     }
 
     @Test
     public void winRow() throws Exception {
         setBoardState("X-X-O---O");
-        assertEquals(computer.bestMove(), 1);
+        assertEquals(computer.nextMove(), 1);
     }
 
     @Test
     public void winColumn() throws Exception {
         setBoardState("XO-XO--XO");
-        assertEquals(computer.bestMove(), 6);
+        assertEquals(computer.nextMove(), 6);
     }
 
     private void setBoardState(String stringBoard) {

@@ -24,12 +24,12 @@ public class GamePlay {
         this.currentPlayer = this.playerOne;
     }
 
-    public GamePlay(IO io, IBoard board, Player player_1, Player player_2) {
+    public GamePlay(IO io, IBoard board, Player playerOne, Player playerTwo) {
         this.board = board;
         this.boardConverter = new BoardConverter();
         this.io = io;
-        this.playerOne = player_1;
-        this.playerTwo = player_2;
+        this.playerOne = playerOne;
+        this.playerTwo = playerTwo;
         this.currentPlayer = this.playerOne;
     }
 
