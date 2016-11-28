@@ -20,7 +20,7 @@ public class BoardConverterTest {
 
     @Test
     public void boardStringWithAMark() throws Exception {
-        BoardConverter cli = new BoardConverter();
+        BoardConverter boardConverter = new BoardConverter();
         Marks[][] board = new Marks[3][3];
         board[1][1] = Marks.CROSS;
 
@@ -30,6 +30,6 @@ public class BoardConverterTest {
                            + "-----------\n"
                            + " 6 | 7 | 8 \n";
 
-        assertEquals(boardString, cli.toString(board));
+        assertEquals(boardString, boardConverter.toString(board));
     }
 }

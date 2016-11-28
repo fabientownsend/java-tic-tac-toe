@@ -34,13 +34,13 @@ public class ComputerPlayerTest {
     }
 
     @Test
-    public void winRow() throws Exception {
+    public void winRow() {
         setBoardState("X-X-O---O");
         assertEquals(computer.nextMove(), 1);
     }
 
     @Test
-    public void winColumn() throws Exception {
+    public void winColumn() {
         setBoardState("XO-XO--XO");
         assertEquals(computer.nextMove(), 6);
     }

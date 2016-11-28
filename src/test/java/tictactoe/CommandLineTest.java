@@ -21,29 +21,29 @@ public class CommandLineTest {
     }
 
     @Test
-    public void itWriteInTheCommandLine() throws Exception {
+    public void displayTheInput() throws Exception {
         cli.write("hello");
         assertEquals( "hello", out.toString());
     }
 
     @Test
-    public void itReadFromTheCommandLine() throws Exception {
+    public void readTheUserInput() throws Exception {
         assertEquals(cli.read(), "world");
     }
 
     @Test
-    public void itRaiseAnException() throws Exception {
-        BufferedReader input = new FakeBuffered();
+    public void handleIOException() throws Exception {
+        BufferedReader ioExceptionThrower = new IOExceptionThrower();
         out = new StringWriter();
         PrintWriter output = new PrintWriter(out, true);
-        cli = new CommandLine(input, output);
+        cli = new CommandLine(ioExceptionThrower, output);
 
         assertEquals(cli.read(), "Error");
     }
 }
 
-final class FakeBuffered extends BufferedReader {
-    public FakeBuffered() {
+final class IOExceptionThrower extends BufferedReader {
+    public IOExceptionThrower() {
         super(new StringReader(""));
     }
 
