@@ -72,4 +72,21 @@ public class BoardConverterTest {
         BoardConverter boardConverter = new BoardConverter();
         assertEquals(" 1 ", boardConverter.center("1", 3));
     }
+    @Test
+    public void expectEvenWidth2() {
+        BoardConverter boardConverter = new BoardConverter();
+        assertEquals("  1  ", boardConverter.center("1", 5));
+    }
+
+    @Test
+    public void expectEvenWidth3() {
+        BoardConverter boardConverter = new BoardConverter();
+        assertEquals("  11  ", boardConverter.center("11", 6));
+    }
+
+    @Test
+    public void expectEvenWidth4() {
+        BoardConverter boardConverter = new BoardConverter();
+        assertEquals("   11  ", boardConverter.center("11", 7));
+    }
 }

@@ -11,14 +11,12 @@ public class BoardConverter {
 
         for (Marks[] columns : board) {
             for (Marks mark : columns) {
-                str.append(createLine(idSpot, mark));
+                str.append(createSpot(idSpot, mark));
                 idSpot++;
             }
 
             if (++idLine != board.length) {
-                for (int i = 0; i < board.length * board.length + 1 * board.length - 1; i++) {
-                    str.append("-");
-                }
+                str.append(repeatElement(boardCharWidth(board), "-"));
                 str.append("\n");
             }
         }
@@ -26,11 +24,23 @@ public class BoardConverter {
         return str.toString();
     }
 
-    private String createLine(int idSpot, Marks mark) {
-        return markToDisplay(mark, idSpot) + rightEdgeSpot(idSpot);
+    private int boardCharWidth(Marks[][] board) {
+        Integer widthSpot = widthSpot(board);
+        int rightElements = board.length - 1;
+        return widthSpot * (board.length) + rightElements;
     }
 
-    private String rightEdgeSpot(int y) {
+    private int widthSpot(Marks[][] board) {
+        int value = String.valueOf(board.length * board.length - 1).length();
+        value += 2;
+        return value;
+    }
+
+    private String createSpot(int idSpot, Marks mark) {
+        return spot(mark, idSpot) + elementRightSpot(idSpot);
+    }
+
+    private String elementRightSpot(int y) {
         if (isBoardEdge(y)) {
             return "\n";
         } else {
@@ -38,33 +48,49 @@ public class BoardConverter {
         }
     }
 
-    private String markToDisplay(Marks mark, int idSpot) {
-        String result = "";
+    private String spot(Marks mark, int idSpot) {
+        Integer test = widthSpot(board);
+        int width = test;
         if (mark == Marks.CROSS) {
-            result += "X";
+            return center("X", width);
         } else if (mark == Marks.ROUND) {
-            result += "O";
+            return center("O", width);
         } else {
-            result += String.valueOf(idSpot);
-        }
-        return center(result, board.length);
-    }
-
-    public String center(String str, int width) {
-        int paddenWidth = (width - str.length()) / 2;
-        if (str.length() % 2 == 0 || width % 2 != 0) {
-            return padden(paddenWidth) + str + padden(paddenWidth);
-        } else {
-            return padden(paddenWidth) + " " + str + padden(paddenWidth);
+            return center(String.valueOf(idSpot), width);
         }
     }
 
-    private String padden(int width) {
-        StringBuilder padden = new StringBuilder();
+    private final String SPACE = " ";
+    public String center(String str, int totalWidth) {
+        int paddingWidth = calculatePaddingWidth(str, totalWidth);
+
+        if (totalWidthIsOdd(str, totalWidth)) {
+            return padding(paddingWidth) + str + padding(paddingWidth);
+        } else {
+            return padding(paddingWidth) + SPACE + str + padding(paddingWidth);
+        }
+    }
+
+    private int calculatePaddingWidth(String str, int width) {
+        return (width - str.length()) / 2;
+    }
+
+    private boolean totalWidthIsOdd(String str, int width) {
+        return (str.length() + width) % 2 == 0;
+    }
+
+    private String padding(int width) {
+        return repeatElement(width, SPACE);
+    }
+
+    private String repeatElement(int width, String str) {
+        StringBuilder spaces = new StringBuilder();
+
         for (int i = 0; i < width; i++) {
-            padden.append(" ");
+            spaces.append(str);
         }
-        return padden.toString();
+
+        return spaces.toString();
     }
 
     private boolean isBoardEdge(int i) {
