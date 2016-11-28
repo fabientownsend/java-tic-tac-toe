@@ -41,12 +41,14 @@ public class Board implements IBoard {
 
     public final ArrayList<Integer> freePosition() {
         ArrayList<Integer> positions = new ArrayList<Integer>();
+        int id = 0;
 
         for(int row = 0; row < size; row++){
             for(int column = 0; column < size; column++) {
                 if (board[row][column] != Marks.CROSS && board[row][column] != Marks.ROUND) {
-                    positions.add(row * 3 + column);
+                    positions.add(id);
                 }
+                id++;
             }
         }
 
