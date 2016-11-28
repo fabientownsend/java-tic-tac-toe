@@ -33,7 +33,7 @@ public class CommandLineTest {
 
     @Test
     public void itRaiseAnException() throws Exception {
-        BufferedReader input = new FakeBuffered(new StringReader("world"));
+        BufferedReader input = new FakeBuffered();
         out = new StringWriter();
         PrintWriter output = new PrintWriter(out, true);
         cli = new CommandLine(input, output);
@@ -43,8 +43,8 @@ public class CommandLineTest {
 }
 
 final class FakeBuffered extends BufferedReader {
-    FakeBuffered(final Reader reader) {
-        super(reader);
+    public FakeBuffered() {
+        super(new StringReader(""));
     }
 
     @Override
