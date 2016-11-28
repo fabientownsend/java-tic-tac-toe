@@ -4,10 +4,15 @@ import java.util.ArrayList;
 
 public class Board implements IBoard {
     private Marks[][] board;
-    private final int SIZE = 3;
+    private int size = 3;
 
     public Board() {
-        this.board = new Marks[SIZE][SIZE];
+        this.board = new Marks[size][size];
+    }
+
+    public Board(int newSize) {
+        this.board = new Marks[newSize][newSize];
+        size = newSize;
     }
 
     public void putMark(Marks mark, int position) {
@@ -19,11 +24,11 @@ public class Board implements IBoard {
     }
 
     private int getRow(int position) {
-        return position / SIZE;
+        return position / size;
     }
 
     private int getColumn(int position) {
-        return position % SIZE;
+        return position % size;
     }
 
     public final Marks[][] getContent() {
@@ -37,8 +42,8 @@ public class Board implements IBoard {
     public final ArrayList<Integer> freePosition() {
         ArrayList<Integer> positions = new ArrayList<Integer>();
 
-        for(int row = 0; row < SIZE; row++){
-            for(int column = 0; column < SIZE; column++) {
+        for(int row = 0; row < size; row++){
+            for(int column = 0; column < size; column++) {
                 if (board[row][column] != Marks.CROSS && board[row][column] != Marks.ROUND) {
                     positions.add(row * 3 + column);
                 }
@@ -69,7 +74,7 @@ public class Board implements IBoard {
     }
 
     private boolean winningColumns(Marks mark) {
-        for (int i = 0; i < SIZE; i ++) {
+        for (int i = 0; i < size; i ++) {
             if (winningColumn(i, mark)) {
                 return true;
             }
@@ -79,7 +84,7 @@ public class Board implements IBoard {
     }
 
     private boolean winningRows(Marks mark) {
-        for (int i = 0; i < SIZE; i++) {
+        for (int i = 0; i < size; i++) {
             if (winningRow(i, mark)) {
                 return true;
             }
@@ -89,7 +94,7 @@ public class Board implements IBoard {
     }
 
     private boolean winningRow(int rowIndex, Marks mark) {
-        for(int i = 0; i < SIZE; i++) {
+        for(int i = 0; i < size; i++) {
             if (board[rowIndex][i] != mark) {
                 return false;
             }
@@ -99,7 +104,7 @@ public class Board implements IBoard {
     }
 
     private boolean winningColumn(int columnIndex, Marks mark) {
-        for(int i = 0; i < SIZE; i++) {
+        for(int i = 0; i < size; i++) {
             if (board[i][columnIndex] != mark) {
                 return false;
             }
@@ -109,7 +114,7 @@ public class Board implements IBoard {
     }
 
     private boolean winningDiagonal(Marks mark) {
-        for (int i = 0; i < SIZE; i++) {
+        for (int i = 0; i < size; i++) {
             if (board[i][i] != mark) {
                 return false;
             }
@@ -119,8 +124,8 @@ public class Board implements IBoard {
     }
 
     private boolean winningDiagonalBackward(Marks mark) {
-        for (int i = 0; i < SIZE; i++) {
-            if (board[i][SIZE - i - 1] != mark) {
+        for (int i = 0; i < size; i++) {
+            if (board[i][size - i - 1] != mark) {
                 return false;
             }
         }
