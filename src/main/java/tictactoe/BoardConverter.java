@@ -2,6 +2,8 @@ package tictactoe;
 
 public class BoardConverter {
     private Marks[][] board;
+    private final String NEW_LINE = "\n";
+    private final String INTER_LINE = "-";
 
     public String toString(Marks[][] board) {
         this.board = board;
@@ -16,48 +18,49 @@ public class BoardConverter {
             }
 
             if (++idLine != board.length) {
-                str.append(repeatElement(boardCharWidth(board), "-"));
-                str.append("\n");
+                str.append(repeatElement(totalCharBoardWidth(board), INTER_LINE));
+                str.append(NEW_LINE);
             }
         }
 
         return str.toString();
     }
 
-    private int boardCharWidth(Marks[][] board) {
-        Integer widthSpot = widthSpot(board);
-        int rightElements = board.length - 1;
-        return widthSpot * (board.length) + rightElements;
-    }
-
-    private int widthSpot(Marks[][] board) {
-        int widthMaxIdSpot = String.valueOf(board.length * board.length - 1).length();
-        widthMaxIdSpot += 2;
-        return widthMaxIdSpot;
-    }
-
     private String createSpot(int idSpot, Marks mark) {
-        return spot(mark, idSpot) + elementRightSpot(idSpot);
+        String centeredMark = center(correctMark(mark, idSpot), spotWidth(board));
+        return centeredMark + elementRightSpot(idSpot);
     }
 
+    private final String CROSS = "X";
+    private final String ROUND = "O";
+    private String correctMark(Marks mark, int idSpot) {
+        if (mark == Marks.CROSS) {
+            return CROSS;
+        } else if (mark == Marks.ROUND) {
+            return ROUND;
+        } else {
+            return String.valueOf(idSpot);
+        }
+    }
+
+    private final String SPOT_BORDER = "|";
     private String elementRightSpot(int y) {
         if (isBoardEdge(y)) {
-            return "\n";
+            return NEW_LINE;
         } else {
-            return "|";
+            return SPOT_BORDER;
         }
     }
 
-    private String spot(Marks mark, int idSpot) {
-        Integer test = widthSpot(board);
-        int width = test;
-        if (mark == Marks.CROSS) {
-            return center("X", width);
-        } else if (mark == Marks.ROUND) {
-            return center("O", width);
-        } else {
-            return center(String.valueOf(idSpot), width);
-        }
+    private int spotWidth(Marks[][] board) {
+        int idMaxWidth = String.valueOf(board.length * board.length - 1).length();
+        idMaxWidth += 2;
+        return idMaxWidth;
+    }
+
+    private int totalCharBoardWidth(Marks[][] board) {
+        int rightElements = board.length - 1;
+        return spotWidth(board) * board.length + rightElements;
     }
 
     private final String SPACE = " ";
