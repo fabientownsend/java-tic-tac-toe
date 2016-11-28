@@ -31,9 +31,9 @@ public class BoardConverter {
     }
 
     private int widthSpot(Marks[][] board) {
-        int value = String.valueOf(board.length * board.length - 1).length();
-        value += 2;
-        return value;
+        int widthMaxIdSpot = String.valueOf(board.length * board.length - 1).length();
+        widthMaxIdSpot += 2;
+        return widthMaxIdSpot;
     }
 
     private String createSpot(int idSpot, Marks mark) {
@@ -61,7 +61,7 @@ public class BoardConverter {
     }
 
     private final String SPACE = " ";
-    public String center(String str, int totalWidth) {
+    private String center(String str, int totalWidth) {
         int paddingWidth = calculatePaddingWidth(str, totalWidth);
 
         if (totalWidthIsOdd(str, totalWidth)) {
