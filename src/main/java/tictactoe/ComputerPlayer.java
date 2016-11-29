@@ -26,7 +26,8 @@ public class ComputerPlayer implements Player {
         double duration;
 
         for (Integer position : board.freePosition()) {
-            int valueMove = evaluateMove(board, this.mark, alpha, beta, position, 10000, startTime);
+            double startMove = System.nanoTime();
+            int valueMove = evaluateMove(board, this.mark, alpha, beta, position, 9, startMove);
 
             if (valueMove > bestMoveEvaluated) {
                 bestMoveEvaluated = valueMove;
@@ -53,17 +54,14 @@ public class ComputerPlayer implements Player {
     }
 
     private int alphaBetaPruning(Board board, Marks currentMark, int alpha, int beta, int depth, double startTime) {
-        double duration = (System.nanoTime() - startTime) / 1000000000.0;
-        if (duration > 2) {
-            return -1;
-        }
-
         if (board.win(this.mark)) {
             return 1;
         } else if (board.win(oppositePlayer(this.mark))) {
             return -1;
         } else if (board.tie()) {
             return 0;
+        } else if ((System.nanoTime() - startTime) / 1000000000.0 > 0.01) {
+            return  -1;
         } else {
             return playAgain(board, currentMark, alpha, beta, depth, startTime);
         }
