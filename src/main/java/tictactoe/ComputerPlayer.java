@@ -63,7 +63,7 @@ public class ComputerPlayer implements Player {
         } else if ((System.nanoTime() - startTime) / 1000000000.0 > 0.01) {
             return  -1;
         } else {
-            return playAgain(board, currentMark, alpha, beta, depth, startTime);
+            return playAgain(board, currentMark, alpha, beta, --depth, startTime);
         }
     }
 
@@ -80,8 +80,8 @@ public class ComputerPlayer implements Player {
     }
 
     private int maximizingPlayer(Board board, Marks currentMark, int alpha, int beta, int depth, double startTime) {
-        if (--depth == 0) {
-            return -1;
+        if (depth == 0) {
+            return -2;
         }
         int maxValue = negativeInfinity;
 
@@ -90,6 +90,9 @@ public class ComputerPlayer implements Player {
             maxValue = Math.max(valuePosition, maxValue);
             alpha = Math.max(alpha, maxValue);
 
+            if (depth == 0) {
+                return maxValue;
+            }
             if (alpha >= beta) {
                 break;
             }
@@ -99,9 +102,6 @@ public class ComputerPlayer implements Player {
     }
 
     private int minimizingPlayer(Board board, Marks currentMark, int alpha, int beta, int depth, double startTime) {
-        if (--depth == 0) {
-            return -1;
-        }
         int minValue = positiveInfinity;
 
         for (Integer position : board.freePosition()) {
@@ -111,6 +111,9 @@ public class ComputerPlayer implements Player {
 
             if (alpha >= beta) {
                 break;
+            }
+            if (depth == 0) {
+                return minValue;
             }
         }
 
