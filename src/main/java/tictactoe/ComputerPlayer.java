@@ -92,7 +92,7 @@ public class ComputerPlayer implements Player {
             maxValue = Math.max(valuePosition, maxValue);
             alpha = Math.max(alpha, maxValue);
 
-            if (beta <= alpha) {
+            if (alpha >= beta) {
                 break;
             }
         }
@@ -109,9 +109,9 @@ public class ComputerPlayer implements Player {
         for (Integer position : board.freePosition()) {
             int valuePosition = evaluateMove(board, oppositePlayer(currentMark), alpha, beta, position, depth, startTime);
             minValue = Math.min(valuePosition, minValue);
-            beta = Math.max(beta, minValue);
+            beta = Math.min(beta, minValue);
 
-            if (beta <= alpha) {
+            if (alpha >= beta) {
                 break;
             }
         }
