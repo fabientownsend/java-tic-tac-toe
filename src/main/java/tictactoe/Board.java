@@ -7,12 +7,12 @@ public class Board implements IBoard {
     private int size = 3;
 
     public Board() {
-        this.board = new Marks[size][size];
+        this(3);
     }
 
-    public Board(int newSize) {
-        this.board = new Marks[newSize][newSize];
-        size = newSize;
+    public Board(int size) {
+        this.board = new Marks[size][size];
+        this.size = size;
     }
 
     public void putMark(Marks mark, int position) {

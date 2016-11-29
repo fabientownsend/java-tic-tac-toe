@@ -3,22 +3,22 @@ package tictactoe;
 public class BoardConverter {
     private Marks[][] board;
     private final String NEW_LINE = "\n";
-    private final String INTER_LINE = "-";
+    private final String LINE_SEPARATOR = "-";
 
     public String toString(Marks[][] board) {
         this.board = board;
         StringBuilder str = new StringBuilder();
-        int idLine = 0;
-        int idSpot = 0;
+        int rowCounter = 0;
+        int spotCounter = 0;
 
-        for (Marks[] columns : board) {
-            for (Marks mark : columns) {
-                str.append(createSpot(idSpot, mark));
-                idSpot++;
+        for (Marks[] rows : board) {
+            for (Marks mark : rows) {
+                str.append(createSpot(spotCounter, mark));
+                spotCounter++;
             }
 
-            if (++idLine != board.length) {
-                str.append(repeatElement(totalCharBoardWidth(board), INTER_LINE));
+            if (++rowCounter != board.length) {
+                str.append(repeatElement(widthOf(board), LINE_SEPARATOR));
                 str.append(NEW_LINE);
             }
         }
@@ -26,9 +26,9 @@ public class BoardConverter {
         return str.toString();
     }
 
-    private String createSpot(int idSpot, Marks mark) {
-        String centeredMark = center(correctMark(mark, idSpot), spotWidth(board));
-        return centeredMark + elementRightSpot(idSpot);
+    private String createSpot(int spotNumber, Marks mark) {
+        String centeredMark = center(correctMark(mark, spotNumber), widthOfSpots());
+        return centeredMark + elementRightSpot(spotNumber);
     }
 
     private final String CROSS = "X";
@@ -43,34 +43,34 @@ public class BoardConverter {
         }
     }
 
-    private final String SPOT_BORDER = "|";
+    private final String SPOT_SEPARATOR = "|";
     private String elementRightSpot(int y) {
         if (isBoardEdge(y)) {
             return NEW_LINE;
         } else {
-            return SPOT_BORDER;
+            return SPOT_SEPARATOR;
         }
     }
 
-    private int spotWidth(Marks[][] board) {
-        int idMaxWidth = String.valueOf(board.length * board.length - 1).length();
-        idMaxWidth += 2;
-        return idMaxWidth;
+    private int widthOfSpots() {
+        int widthHighestSpotId = String.valueOf(board.length * board.length - 1).length();
+        widthHighestSpotId += 2;
+        return widthHighestSpotId;
     }
 
-    private int totalCharBoardWidth(Marks[][] board) {
+    private int widthOf(Marks[][] board) {
         int rightElements = board.length - 1;
-        return spotWidth(board) * board.length + rightElements;
+        return widthOfSpots() * board.length + rightElements;
     }
 
     private final String SPACE = " ";
-    private String center(String str, int totalWidth) {
-        int paddingWidth = calculatePaddingWidth(str, totalWidth);
+    private String center(String centerContent, int totalWidth) {
+        int paddingWidth = calculatePaddingWidth(centerContent, totalWidth);
 
-        if (totalWidthIsOdd(str, totalWidth)) {
-            return padding(paddingWidth) + str + padding(paddingWidth);
+        if (totalWidthIsOdd(centerContent, totalWidth)) {
+            return padding(paddingWidth) + centerContent + padding(paddingWidth);
         } else {
-            return padding(paddingWidth) + SPACE + str + padding(paddingWidth);
+            return padding(paddingWidth) + SPACE + centerContent + padding(paddingWidth);
         }
     }
 
@@ -87,13 +87,13 @@ public class BoardConverter {
     }
 
     private String repeatElement(int width, String str) {
-        StringBuilder spaces = new StringBuilder();
+        StringBuilder elements = new StringBuilder();
 
         for (int i = 0; i < width; i++) {
-            spaces.append(str);
+            elements.append(str);
         }
 
-        return spaces.toString();
+        return elements.toString();
     }
 
     private boolean isBoardEdge(int i) {

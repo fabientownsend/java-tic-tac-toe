@@ -40,16 +40,16 @@ public class CommandLineTest {
 
         assertEquals(cli.read(), "Error");
     }
-}
 
-final class IOExceptionThrower extends BufferedReader {
-    public IOExceptionThrower() {
-        super(new StringReader(""));
-    }
+    final class IOExceptionThrower extends BufferedReader {
+        public IOExceptionThrower() {
+            super(new StringReader(""));
+        }
 
-    @Override
-    public String readLine() throws IOException {
-        throw new IOException();
+        @Override
+        public String readLine() throws IOException {
+            throw new IOException();
+        }
     }
 }
 
