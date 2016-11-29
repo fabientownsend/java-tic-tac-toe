@@ -1,5 +1,7 @@
 package tictactoe;
 
+import java.util.Random;
+
 public class ComputerPlayer implements Player {
     private final Marks mark;
     private Board board;
@@ -16,24 +18,46 @@ public class ComputerPlayer implements Player {
     }
 
     public final int nextMove() {
+        double startTime = System.nanoTime();
         int bestPosition = negativeInfinity;
         int bestMoveEvaluated = negativeInfinity;
         int alpha = negativeInfinity;
         int beta = positiveInfinity;
+        double duration;
 
         for (Integer position : board.freePosition()) {
-            int valueMove = evaluateMove(board, this.mark, alpha, beta, position, 6);
+            int valueMove = evaluateMove(board, this.mark, alpha, beta, position, 10000, startTime);
 
             if (valueMove > bestMoveEvaluated) {
                 bestMoveEvaluated = valueMove;
                 bestPosition = position;
             }
+
+            if (bestMoveEvaluated == 1) {
+                return position;
+            }
+
+            duration = (System.nanoTime() - startTime) / 1000000000.0;
+            if (duration > 2) {
+                Random ran = new Random();
+                int index = ran.nextInt(board.freePosition().size());
+                bestPosition = board.freePosition().get(index);
+                break;
+            }
         }
 
+        double endTime = System.nanoTime();
+        duration = (endTime - startTime) / 1000000000.0;
+        System.out.println("Duration: " + duration);
         return bestPosition;
     }
 
-    private int alphaBetaPruning(Board board, Marks currentMark, int alpha, int beta, int depth) {
+    private int alphaBetaPruning(Board board, Marks currentMark, int alpha, int beta, int depth, double startTime) {
+        double duration = (System.nanoTime() - startTime) / 1000000000.0;
+        if (duration > 2) {
+            return -1;
+        }
+
         if (board.win(this.mark)) {
             return 1;
         } else if (board.win(oppositePlayer(this.mark))) {
@@ -41,15 +65,15 @@ public class ComputerPlayer implements Player {
         } else if (board.tie()) {
             return 0;
         } else {
-            return playAgain(board, currentMark, alpha, beta, depth);
+            return playAgain(board, currentMark, alpha, beta, depth, startTime);
         }
     }
 
-    private int playAgain(Board board, Marks currentMark, int alpha, int beta, int depth) {
+    private int playAgain(Board board, Marks currentMark, int alpha, int beta, int depth, double startTime) {
         if (minimizingPlayerTurn(currentMark)) {
-            return minimizingPlayer(board, currentMark, alpha, beta, depth);
+            return minimizingPlayer(board, currentMark, alpha, beta, depth, startTime);
         } else {
-            return maximizingPlayer(board, currentMark, alpha, beta, depth);
+            return maximizingPlayer(board, currentMark, alpha, beta, depth, startTime);
         }
     }
 
@@ -57,14 +81,14 @@ public class ComputerPlayer implements Player {
         return currentMark == this.mark;
     }
 
-    private int maximizingPlayer(Board board, Marks currentMark, int alpha, int beta, int depth) {
+    private int maximizingPlayer(Board board, Marks currentMark, int alpha, int beta, int depth, double startTime) {
         if (--depth == 0) {
             return -1;
         }
         int maxValue = negativeInfinity;
 
         for (Integer position : board.freePosition()) {
-            int valuePosition = evaluateMove(board, oppositePlayer(currentMark), alpha, beta, position, depth);
+            int valuePosition = evaluateMove(board, oppositePlayer(currentMark), alpha, beta, position, depth, startTime);
             maxValue = Math.max(valuePosition, maxValue);
             alpha = Math.max(alpha, maxValue);
 
@@ -76,14 +100,14 @@ public class ComputerPlayer implements Player {
         return maxValue;
     }
 
-    private int minimizingPlayer(Board board, Marks currentMark, int alpha, int beta, int depth) {
+    private int minimizingPlayer(Board board, Marks currentMark, int alpha, int beta, int depth, double startTime) {
         if (--depth == 0) {
             return -1;
         }
         int minValue = positiveInfinity;
 
         for (Integer position : board.freePosition()) {
-            int valuePosition = evaluateMove(board, oppositePlayer(currentMark), alpha, beta, position, depth);
+            int valuePosition = evaluateMove(board, oppositePlayer(currentMark), alpha, beta, position, depth, startTime);
             minValue = Math.min(valuePosition, minValue);
             beta = Math.max(beta, minValue);
 
@@ -95,9 +119,9 @@ public class ComputerPlayer implements Player {
         return minValue;
     }
 
-    private int evaluateMove(Board board, Marks mark, int alpha, int beta, Integer position, int depth) {
+    private int evaluateMove(Board board, Marks mark, int alpha, int beta, Integer position, int depth, double startTime) {
         board.putMark(mark, position);
-        int valuePosition = alphaBetaPruning(board, mark, alpha, beta, depth);
+        int valuePosition = alphaBetaPruning(board, mark, alpha, beta, depth, startTime);
         board.removeMark(position);
 
         return valuePosition;
@@ -111,3 +135,4 @@ public class ComputerPlayer implements Player {
         }
     }
 }
+
