@@ -10,25 +10,25 @@ public class ComputerPlayerTest {
     private ComputerPlayer computer;
 
     @Before
-    public void initialize() throws Exception {
+    public void initialize() {
         board = new Board();
         computer = new ComputerPlayer(Marks.CROSS, board);
     }
 
     @Test
-    public void blockOpponantRow() throws Exception {
+    public void blockOpponantRow() {
         setBoardState("X--OO-X--");
         assertEquals(computer.nextMove(), 5);
     }
 
     @Test
-    public void blockOpponantColumn() throws Exception {
+    public void blockOpponantColumn() {
         setBoardState("OX-O-X---");
         assertEquals(computer.nextMove(), 6);
     }
 
     @Test
-    public void blockOpponantDiagonal() throws Exception {
+    public void blockOpponantDiagonal() {
         setBoardState("OX--OX---");
         assertEquals(computer.nextMove(), 8);
     }

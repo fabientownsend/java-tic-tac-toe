@@ -17,84 +17,84 @@ public class BoardTest {
     }
 
     @Test
-    public void crossPlayerWinRowOne() throws Exception {
+    public void crossPlayerWinRowOne() {
         setBoardState("XXX------");
 
         assertTrue(board.win(Marks.CROSS));
     }
 
     @Test
-    public void crossPlayerWinRowTwo() throws Exception {
+    public void crossPlayerWinRowTwo() {
         setBoardState("---XXX---");
 
         assertTrue(board.win(Marks.CROSS));
     }
 
     @Test
-    public void crossPlayerWinRowThree() throws Exception {
+    public void crossPlayerWinRowThree() {
         setBoardState("------XXX");
 
         assertTrue(board.win(Marks.CROSS));
     }
 
     @Test
-    public void crossPlayerWinColumnOne() throws Exception {
+    public void crossPlayerWinColumnOne() {
         setBoardState("X--X--X--");
 
         assertTrue(board.win(Marks.CROSS));
     }
 
     @Test
-    public void crossPlayerWinColumnTwo() throws Exception {
+    public void crossPlayerWinColumnTwo() {
         setBoardState("-X--X--X-");
 
         assertTrue(board.win(Marks.CROSS));
     }
 
     @Test
-    public void crossPlayerWinColumnThree() throws Exception {
+    public void crossPlayerWinColumnThree() {
         setBoardState("--X--X--X");
 
         assertTrue(board.win(Marks.CROSS));
     }
 
     @Test
-    public void noPlayerWin() throws Exception {
+    public void noPlayerWin() {
         setBoardState("XOX------");
 
         assertFalse(board.win(Marks.CROSS));
     }
 
     @Test
-    public void isNotATieWHenBoardNotFull() throws Exception {
+    public void isNotATieWHenBoardNotFull() {
         setBoardState("XOX------");
 
         assertFalse(board.tie());
     }
 
     @Test
-    public void crossPlayerWinDiagonnalOne() throws Exception {
+    public void crossPlayerWinDiagonnalOne() {
         setBoardState("X---X---X");
 
         assertTrue(board.win(Marks.CROSS));
     }
 
     @Test
-    public void crossPlayerWinDiagonnalTwo() throws Exception {
+    public void crossPlayerWinDiagonnalTwo() {
         setBoardState("--X-X-X--");
 
         assertTrue(board.win(Marks.CROSS));
     }
 
     @Test
-    public void itIsATie() throws Exception {
+    public void itIsATie() {
         setBoardState("XOXXOXOXO");
 
         assertTrue(board.tie());
     }
 
     @Test
-    public void getFreePosition() throws Exception {
+    public void getFreePosition() {
         setBoardState("XOXOXO---");
         ArrayList<Integer> arr = new ArrayList<Integer>();
         arr.add(6);
@@ -104,7 +104,7 @@ public class BoardTest {
     }
 
     @Test
-    public void removeOneElement() throws Exception {
+    public void removeOneElement() {
         setBoardState("XOXOXO---");
         ArrayList<Integer> arr = new ArrayList<Integer>();
         arr.add(6);
