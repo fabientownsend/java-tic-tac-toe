@@ -12,6 +12,7 @@ public class GamePlay {
     private final String WON = " won the party\n";
     private final String BETWEEN = "Move should be between ";
     private final String AND = " and ";
+    private final String POSITION_NOT_FREE = "The position isn't free";
     private final int MIN_BOARD = 0;
     private int positionMax = 8;
 
@@ -53,11 +54,11 @@ public class GamePlay {
     private int getMoveBetween(int min, int max) {
         int move = currentPlayer.nextMove();
 
-        if ((move < min || move > max)) {
+        if (move < min || move > max) {
             io.write(BETWEEN + min + AND + max);
             return getMoveBetween(min, max);
         } else if (!isFree(move)) {
-            io.write("The position isn't free");
+            io.write(POSITION_NOT_FREE);
             return getMoveBetween(min, max);
         }
 
