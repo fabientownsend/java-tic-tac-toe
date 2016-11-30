@@ -1,130 +1,79 @@
 package tictactoe;
 
-import org.junit.Before;
 import org.junit.Test;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.PrintWriter;
+import java.io.StringReader;
+import java.io.StringWriter;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
-public class BoardTest {
-    private Board board;
+public class MenuTest {
+    private StringWriter out;
+    private IO fakeCommandLine;
 
-    @Before
-    public void initialize() {
-        board = new Board();
+    @Test
+    public void displayMessageForBoardSize() {
+        initialisationFakeIO("1\n");
+        Menu menu = new Menu(fakeCommandLine);
+        menu.sizeBoard(0, 5);
+        assertTrue(out.toString().contains("Select board size: "));
     }
 
     @Test
-    public void crossPlayerWinRowOne() {
-        setBoardState("XXX------");
-
-        assertTrue(board.win(Marks.CROSS));
+    public void returnMinValueAsDefaultValueWhenInputEmpty() {
+        initialisationFakeIO("\n");
+        Menu menu = new Menu(fakeCommandLine);
+        assertEquals(menu.sizeBoard(0, 5), 0);
     }
 
     @Test
-    public void crossPlayerWinRowTwo() {
-        setBoardState("---XXX---");
-
-        assertTrue(board.win(Marks.CROSS));
+    public void displayMessageForTypeGame() {
+        initialisationFakeIO("1\n");
+        Menu menu = new Menu(fakeCommandLine);
+        menu.typeGame(0, 5);
+        assertTrue(out.toString().contains("What kind of game do you want to play?"));
     }
 
     @Test
-    public void crossPlayerWinRowThree() {
-        setBoardState("------XXX");
-
-        assertTrue(board.win(Marks.CROSS));
+    public void returnTheUserInput() {
+        initialisationFakeIO("1\n");
+        Menu menu = new Menu(fakeCommandLine);
+        assertEquals(menu.sizeBoard(0, 5), 1);
     }
 
     @Test
-    public void crossPlayerWinColumnOne() {
-        setBoardState("X--X--X--");
-
-        assertTrue(board.win(Marks.CROSS));
+    public void askUntilToGetIntegerValue() {
+        initialisationFakeIO("dsajfl;\n1\n");
+        Menu menu = new Menu(fakeCommandLine);
+        assertEquals(menu.sizeBoard(0, 5), 1);
+        assertTrue(out.toString().contains("The value must be an integer"));
     }
 
     @Test
-    public void crossPlayerWinColumnTwo() {
-        setBoardState("-X--X--X-");
-
-        assertTrue(board.win(Marks.CROSS));
+    public void askAgainWhenSizeTooBig() {
+        initialisationFakeIO("55\n1\n");
+        Menu menu = new Menu(fakeCommandLine);
+        menu.sizeBoard(0, 5);
+        assertTrue(out.toString().contains("Select value between: 0 and 5"));
     }
 
     @Test
-    public void crossPlayerWinColumnThree() {
-        setBoardState("--X--X--X");
-
-        assertTrue(board.win(Marks.CROSS));
+    public void askAgainWhenSizeTooSmall() {
+        initialisationFakeIO("-1234\n1\n");
+        Menu menu = new Menu(fakeCommandLine);
+        menu.sizeBoard(0, 5);
+        assertTrue(out.toString().contains("Select value between: 0 and 5"));
     }
 
-    @Test
-    public void noPlayerWin() {
-        setBoardState("XOX------");
 
-        assertFalse(board.win(Marks.CROSS));
-    }
+    private void initialisationFakeIO(String text) {
+        BufferedReader input = new BufferedReader(new StringReader(text));
+        out = new StringWriter();
+        PrintWriter output = new PrintWriter(out, true);
 
-    @Test
-    public void isNotATieWHenBoardNotFull() {
-        setBoardState("XOX------");
-
-        assertFalse(board.tie());
-    }
-
-    @Test
-    public void crossPlayerWinDiagonnalOne() {
-        setBoardState("X---X---X");
-
-        assertTrue(board.win(Marks.CROSS));
-    }
-
-    @Test
-    public void crossPlayerWinDiagonnalTwo() {
-        setBoardState("--X-X-X--");
-
-        assertTrue(board.win(Marks.CROSS));
-    }
-
-    @Test
-    public void itIsATie() {
-        setBoardState("XOXXOXOXO");
-
-        assertTrue(board.tie());
-    }
-
-    @Test
-    public void getFreePosition() {
-        setBoardState("XOXOXO---");
-        ArrayList<Integer> arr = new ArrayList<Integer>();
-        arr.add(6);
-        arr.add(7);
-        arr.add(8);
-        assertEquals(board.freePosition(), arr);
-    }
-
-    @Test
-    public void removeOneElement() {
-        setBoardState("XOXOXO---");
-        ArrayList<Integer> arr = new ArrayList<Integer>();
-        arr.add(6);
-        arr.add(7);
-        arr.add(8);
-        assertEquals(board.freePosition(), arr);
-
-        board.removeMark(1);
-        arr.add(0, 1);
-        assertEquals(board.freePosition(), arr);
-    }
-
-    private void setBoardState(String stringBoard) {
-        for (int i = 0; i < stringBoard.length(); i ++) {
-            if (stringBoard.charAt(i) == 'X') {
-                board.putMark(Marks.CROSS, i);
-            }
-            if (stringBoard.charAt(i) == 'O') {
-                board.putMark(Marks.ROUND, i);
-            }
-        }
+        fakeCommandLine = new FakeIO(input, output);
     }
 }
