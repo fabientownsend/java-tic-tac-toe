@@ -25,7 +25,7 @@ public class GamePlayTest {
     }
 
     @Test
-    public void computerCantBeatComputerOnThreeByThreeBoard() throws Exception {
+    public void computerCantBeatComputerOnThreeByThreeBoard() {
         initialisationFakeIO("4\n0\n3\n1\n5\nn");
         Board board = new Board(3);
         Player player_1 = new ComputerPlayer(Marks.CROSS, board);
@@ -46,7 +46,7 @@ public class GamePlayTest {
     }
 
     @Test
-    public void computerCantBeatComputerOnFourByFourBoard() throws Exception {
+    public void computerCantBeatComputerOnFourByFourBoard() {
         initialisationFakeIO("4\n0\n3\n1\n5\nn");
         Board board = new Board(4);
         Player player_1 = new ComputerPlayer(Marks.CROSS, board);
@@ -67,13 +67,13 @@ public class GamePlayTest {
     }
 
     @Test
-    public void displayThePlayerTurn() throws Exception {
+    public void displayThePlayerTurn() {
         game.play();
         assertTrue(out.toString().contains("CROSS turn"));
     }
 
     @Test
-    public void rotatePlayer() throws Exception {
+    public void rotatePlayer() {
         fakeBoard.setTie(false);
         fakeBoard.setWin(false);
         game.play();
@@ -82,7 +82,7 @@ public class GamePlayTest {
     }
 
     @Test
-    public void displayMessageWinner() throws Exception {
+    public void displayMessageWinner() {
         fakeBoard.setTie(false);
         fakeBoard.setWin(true);
         game.play();
@@ -90,7 +90,7 @@ public class GamePlayTest {
     }
 
     @Test
-    public void displayMessageItsATie() throws Exception {
+    public void displayMessageItsATie() {
         fakeBoard.setTie(true);
         fakeBoard.setWin(false);
         game.play();

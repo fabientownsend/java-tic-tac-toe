@@ -21,18 +21,18 @@ public class CommandLineTest {
     }
 
     @Test
-    public void displayTheInput() throws Exception {
+    public void displayTheInput() {
         cli.write("hello");
         assertEquals( "hello", out.toString());
     }
 
     @Test
-    public void readTheUserInput() throws Exception {
+    public void readTheUserInput() {
         assertEquals(cli.read(), "world");
     }
 
     @Test
-    public void handleIOException() throws Exception {
+    public void handleIOException() {
         BufferedReader ioExceptionThrower = new IOExceptionThrower();
         out = new StringWriter();
         PrintWriter output = new PrintWriter(out, true);
