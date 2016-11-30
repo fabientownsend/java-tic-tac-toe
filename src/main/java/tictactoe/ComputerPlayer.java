@@ -18,41 +18,47 @@ public class ComputerPlayer implements Player {
     }
 
     public final int nextMove() {
-        double startTime = System.nanoTime();
         int bestPosition = negativeInfinity;
         int bestMoveEvaluated = negativeInfinity;
         int alpha = negativeInfinity;
         int beta = positiveInfinity;
-        double duration;
+        int depth = 40;
 
         for (Integer position : board.freePosition()) {
-            double startMove = System.nanoTime();
-            int valueMove = evaluateMove(board, this.mark, alpha, beta, position, 9, startMove);
+            int valueMove = evaluateMove(board, this.mark, alpha, beta, position, depth, System.nanoTime());
 
             if (valueMove > bestMoveEvaluated) {
                 bestMoveEvaluated = valueMove;
                 bestPosition = position;
             }
 
-            if (bestMoveEvaluated == 1) {
-                return position;
-            }
-
-            duration = (System.nanoTime() - startTime) / 1000000000.0;
-            if (duration > 2) {
-                Random ran = new Random();
-                int index = ran.nextInt(board.freePosition().size());
-                bestPosition = board.freePosition().get(index);
+            if (perfectMoveFound(bestMoveEvaluated)) {
                 break;
             }
+
         }
 
-        double endTime = System.nanoTime();
-        duration = (endTime - startTime) / 1000000000.0;
-        System.out.println("Duration: " + duration);
-        return bestPosition;
+        if (!couldEvaluateMove(bestMoveEvaluated)) {
+            return randomMove();
+        } else {
+            return bestPosition;
+        }
     }
 
+    private boolean perfectMoveFound(int bestMoveEvaluated) {
+        return bestMoveEvaluated == 1;
+    }
+
+    private boolean couldEvaluateMove(int bestMoveEvaluated) {
+        return bestMoveEvaluated != -2;
+    }
+
+    private int randomMove() {
+        int index = new Random().nextInt(board.freePosition().size());
+        return board.freePosition().get(index);
+    }
+
+    private final double LIMIT_SECONDS_FOUND_MOVE = 0.1;
     private int alphaBetaPruning(Board board, Marks currentMark, int alpha, int beta, int depth, double startTime) {
         if (board.win(this.mark)) {
             return 1;
@@ -60,11 +66,15 @@ public class ComputerPlayer implements Player {
             return -1;
         } else if (board.tie()) {
             return 0;
-        } else if ((System.nanoTime() - startTime) / 1000000000.0 > 0.01) {
-            return  -1;
+        } else if (timeSpent(startTime) > LIMIT_SECONDS_FOUND_MOVE) {
+            return  -2;
         } else {
             return playAgain(board, currentMark, alpha, beta, depth, startTime);
         }
+    }
+
+    private double timeSpent(double startTime) {
+        return (System.nanoTime() - startTime) / 1000000000.0;
     }
 
     private int playAgain(Board board, Marks currentMark, int alpha, int beta, int depth, double startTime) {

@@ -1,11 +1,15 @@
 package tictactoe;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.PrintWriter;
+import java.io.StringReader;
+import java.io.StringWriter;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 public class GamePlayTest {
     private StringWriter out;
@@ -21,14 +25,45 @@ public class GamePlayTest {
     }
 
     @Test
-    public void computerVsComputer() throws Exception {
+    public void computerCantBeatComputerOnThreeByThreeBoard() throws Exception {
         initialisationFakeIO("4\n0\n3\n1\n5\nn");
-        Board board = new Board();
+        Board board = new Board(3);
         Player player_1 = new ComputerPlayer(Marks.CROSS, board);
         Player player_2 = new ComputerPlayer(Marks.ROUND, board);
         this.game = new GamePlay(fakeCommandLine, board, player_1, player_2);
         game.play();
         assertTrue(out.toString().contains("tie"));
+    }
+
+    @Test(timeout = 18000)
+    public void computerTake18secondsMaximumToFinishTheGame() {
+        initialisationFakeIO("");
+        Board board = new Board(3);
+        Player player_1 = new ComputerPlayer(Marks.CROSS, board);
+        Player player_2 = new ComputerPlayer(Marks.ROUND, board);
+        this.game = new GamePlay(fakeCommandLine, board, player_1, player_2);
+        game.play();
+    }
+
+    @Test
+    public void computerCantBeatComputerOnFourByFourBoard() throws Exception {
+        initialisationFakeIO("4\n0\n3\n1\n5\nn");
+        Board board = new Board(4);
+        Player player_1 = new ComputerPlayer(Marks.CROSS, board);
+        Player player_2 = new ComputerPlayer(Marks.ROUND, board);
+        this.game = new GamePlay(fakeCommandLine, board, player_1, player_2);
+        game.play();
+        assertTrue(out.toString().contains("tie"));
+    }
+
+    @Test(timeout = 24000)
+    public void computerTake24SecondsMaximumToFinishTheGame() {
+        initialisationFakeIO("");
+        Board board = new Board(4);
+        Player player_1 = new ComputerPlayer(Marks.CROSS, board);
+        Player player_2 = new ComputerPlayer(Marks.ROUND, board);
+        this.game = new GamePlay(fakeCommandLine, board, player_1, player_2);
+        game.play();
     }
 
     @Test
