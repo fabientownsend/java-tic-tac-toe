@@ -13,7 +13,7 @@ public class GamePlay {
     private final String BETWEEN = "Move should be between ";
     private final String AND = " and ";
     private final int MIN_BOARD = 0;
-    private final int MAX_BOARD = 8;
+    private int positionMax = 8;
 
     public GamePlay(IO io, IBoard board) {
         this.board = board;
@@ -31,6 +31,7 @@ public class GamePlay {
         this.playerOne = playerOne;
         this.playerTwo = playerTwo;
         this.currentPlayer = this.playerOne;
+        this.positionMax = board.getContent().length * board.getContent().length - 1;
     }
 
     public void play() {
@@ -46,7 +47,7 @@ public class GamePlay {
     }
 
     private void currentPlayerMove() {
-        board.putMark(currentPlayer.getMark(), getMoveBetween(MIN_BOARD, MAX_BOARD));
+        board.putMark(currentPlayer.getMark(), getMoveBetween(MIN_BOARD, positionMax));
     }
 
     private int getMoveBetween(int min, int max) {

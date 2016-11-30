@@ -9,7 +9,7 @@ public class Main {
         BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
         PrintWriter output = new PrintWriter(System.out, true);
         IO io = new CommandLine(input, output);
-        Board board = new Board();
+        Board board = new Board(4);
 
         Player playerOne = new CommandLinePlayer(io, Marks.CROSS);
         Player playerTwo = new ComputerPlayer(Marks.ROUND, board);
