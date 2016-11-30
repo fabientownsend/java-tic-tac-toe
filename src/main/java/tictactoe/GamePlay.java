@@ -53,12 +53,19 @@ public class GamePlay {
     private int getMoveBetween(int min, int max) {
         int move = currentPlayer.nextMove();
 
-        if (move < min || move > max) {
+        if ((move < min || move > max)) {
             io.write(BETWEEN + min + AND + max);
+            return getMoveBetween(min, max);
+        } else if (!isFree(move)) {
+            io.write("The position isn't free");
             return getMoveBetween(min, max);
         }
 
         return move;
+    }
+
+    private boolean isFree(int move) {
+        return this.board.freePosition().contains(move);
     }
 
     private void displayCurrentParty() {

@@ -1,5 +1,7 @@
 package tictactoe;
 
+import java.util.ArrayList;
+
 class FakeBoard implements IBoard {
     private boolean tie = true;
     private boolean win = true;
@@ -26,5 +28,12 @@ class FakeBoard implements IBoard {
 
     public void setWin(boolean status) {
         win = status;
+    }
+
+    public ArrayList<Integer> freePosition() {
+        ArrayList<Integer> arr = new ArrayList<Integer>();
+        arr.add(4);
+        arr.add(0);
+        return arr;
     }
 }
