@@ -10,26 +10,14 @@ public class Main {
         PrintWriter output = new PrintWriter(System.out, true);
         IO io = new CommandLine(input, output);
         Menu menu = new Menu(io);
-        int boardSize = menu.sizeBoard(3, 5);
-        int gameType = menu.typeGame(1, 3);
+        int boardSize = menu.sizeBoard();
+        GameTypes gameType = menu.typeGame();
 
         Board board = new Board(boardSize);
         PlayerFactory playerFactory = new PlayerFactory(io, board);
-        Player[] players = playerFactory.getPlayers(convert(gameType));
+        Player[] players = playerFactory.getPlayers(gameType);
 
         GamePlay game = new GamePlay(io, board, players[0], players[1]);
         game.play();
-    }
-
-    private static String convert(int gameType) {
-        if (gameType == 1) {
-            return "HUMANvsHUMAN";
-        } else if (gameType == 2) {
-            return "COMPUTERvsHUMAN";
-        } else if (gameType == 3) {
-            return "COMPUTERvsCOMPUTER";
-        } else {
-            return "HUMANvsHUMAN";
-        }
     }
 }

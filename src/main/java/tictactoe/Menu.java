@@ -2,41 +2,55 @@ package tictactoe;
 
 public class Menu {
     private IO io;
-    private int defaultValue = 0;
 
     public Menu(IO io) {
         this.io = io;
     }
 
-    public int sizeBoard(int sizeMin, int sizeMax) {
-        defaultValue = sizeMin;
+    private final int THREE_BY_THREE = 3;
+    private final int FIVE_BY_FIVE = 5;
+    public int sizeBoard() {
         io.write("Select board size: ");
 
-        return getValueBetween(sizeMin, sizeMax);
+        return getValueBetween(THREE_BY_THREE, FIVE_BY_FIVE);
     }
 
-    public int typeGame(int sizeMin, int sizeMax) {
-        defaultValue = sizeMin;
+    private final int HUMAN_VS_HUMAN = 1;
+    private final int COMPUTER_VS_COMPUTER = 3;
+    public GameTypes typeGame() {
         io.write("What kind of game do you want to play?\n" +
-                "- Human vs. Human\n" +
-                "- Human vs. Computer\n" +
-                "- Computer vs. Computer\n");
+                "1 - Human vs. Human\n" +
+                "2 - Human vs. Computer\n" +
+                "3 - Computer vs. Computer\n");
 
-        return getValueBetween(sizeMin, sizeMax);
+        return convertToGameType(getValueBetween(HUMAN_VS_HUMAN, COMPUTER_VS_COMPUTER));
+    }
+
+    private GameTypes convertToGameType(int value) {
+        if (value == 1) {
+            return GameTypes.HUMAN_VS_HUMAN;
+        } else if (value == 2) {
+            return GameTypes.HUMAN_VS_COMPUTER;
+        } else  if (value == 3) {
+            return GameTypes.COMPUTER_VS_COMPUTER;
+        } else {
+            return GameTypes.HUMAN_VS_HUMAN;
+        }
     }
 
     private int getValueBetween(int sizeMin, int sizeMax) {
-        int integerValue = getInteger();
+        int defaultValue = sizeMin;
+        int integerValue = getInteger(defaultValue);
 
         if (integerValue > sizeMax || integerValue < sizeMin) {
             io.write("Select value between: " + sizeMin + " and " + sizeMax);
-            return sizeBoard(sizeMin, sizeMax);
+            return sizeBoard();
         } else {
             return integerValue;
         }
     }
 
-    private int getInteger() {
+    private int getInteger(int defaultValue) {
         String value = io.read();
 
         if (value.equals("")) {
@@ -47,7 +61,7 @@ public class Menu {
             return Integer.parseInt(value);
         } catch (NumberFormatException e) {
             io.write("The value must be an integer");
-            return getInteger();
+            return getInteger(defaultValue);
         }
     }
 }
