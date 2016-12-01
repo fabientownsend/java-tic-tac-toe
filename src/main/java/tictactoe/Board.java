@@ -2,7 +2,7 @@ package tictactoe;
 
 import java.util.ArrayList;
 
-public class Board implements IBoard {
+public class Board {
     private Marks[][] board;
     private int size = 3;
 

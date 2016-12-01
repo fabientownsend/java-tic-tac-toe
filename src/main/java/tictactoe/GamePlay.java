@@ -2,7 +2,7 @@ package tictactoe;
 
 public class GamePlay {
     private BoardConverter boardConverter;
-    private IBoard board;
+    private Board board;
     private IO io;
     private Player playerOne;
     private Player playerTwo;
@@ -16,7 +16,7 @@ public class GamePlay {
     private final int MIN_BOARD = 0;
     private int positionMax = 8;
 
-    public GamePlay(IO io, IBoard board) {
+    public GamePlay(IO io, Board board) {
         this.board = board;
         this.boardConverter = new BoardConverter();
         this.io = io;
@@ -25,7 +25,7 @@ public class GamePlay {
         this.currentPlayer = this.playerOne;
     }
 
-    public GamePlay(IO io, IBoard board, Player playerOne, Player playerTwo) {
+    public GamePlay(IO io, Board board, Player playerOne, Player playerTwo) {
         this.board = board;
         this.boardConverter = new BoardConverter();
         this.io = io;
