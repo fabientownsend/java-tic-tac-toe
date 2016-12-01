@@ -16,43 +16,32 @@ public class ComputerPlayerTest {
     }
 
     @Test
-    public void blockOpponantRow() {
-        setBoardState("X--OO-X--");
+    public void blockOpponentRow() {
+        BoardHelper.update(board, "X--OO-X--");
         assertEquals(computer.nextMove(), 5);
     }
 
     @Test
-    public void blockOpponantColumn() {
-        setBoardState("OX-O-X---");
+    public void blockOpponentColumn() {
+        BoardHelper.update(board, "OX-O-X---");
         assertEquals(computer.nextMove(), 6);
     }
 
     @Test
-    public void blockOpponantDiagonal() {
-        setBoardState("OX--OX---");
+    public void blockOpponentDiagonal() {
+        BoardHelper.update(board, "OX--OX---");
         assertEquals(computer.nextMove(), 8);
     }
 
     @Test
     public void winRow() {
-        setBoardState("X-X-O---O");
+        BoardHelper.update(board, "X-X-O---O");
         assertEquals(computer.nextMove(), 1);
     }
 
     @Test
     public void winColumn() {
-        setBoardState("XO-XO--XO");
+        BoardHelper.update(board, "XO-XO--XO");
         assertEquals(computer.nextMove(), 6);
-    }
-
-    private void setBoardState(String stringBoard) {
-        for (int i = 0; i < stringBoard.length(); i ++) {
-            if (stringBoard.charAt(i) == 'X') {
-                board.putMark(Marks.CROSS, i);
-            }
-            if (stringBoard.charAt(i) == 'O') {
-                board.putMark(Marks.ROUND, i);
-            }
-        }
     }
 }

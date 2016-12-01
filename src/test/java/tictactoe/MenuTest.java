@@ -16,9 +16,9 @@ public class MenuTest {
 
     @Test
     public void displayMessageForBoardSize() {
-        initialisationFakeIO("1\n");
+        initialisationFakeIO("3\n");
         Menu menu = new Menu(fakeCommandLine);
-        menu.sizeBoard(0, 5);
+        menu.sizeBoard();
         assertTrue(out.toString().contains("Select board size: "));
     }
 
@@ -26,48 +26,47 @@ public class MenuTest {
     public void returnMinValueAsDefaultValueWhenInputEmpty() {
         initialisationFakeIO("\n");
         Menu menu = new Menu(fakeCommandLine);
-        assertEquals(menu.sizeBoard(0, 5), 0);
+        assertEquals(menu.sizeBoard(), 3);
     }
 
     @Test
     public void displayMessageForTypeGame() {
         initialisationFakeIO("1\n");
         Menu menu = new Menu(fakeCommandLine);
-        menu.typeGame(0, 5);
+        menu.typeGame();
         assertTrue(out.toString().contains("What kind of game do you want to play?"));
     }
 
     @Test
     public void returnTheUserInput() {
-        initialisationFakeIO("1\n");
+        initialisationFakeIO("3\n");
         Menu menu = new Menu(fakeCommandLine);
-        assertEquals(menu.sizeBoard(0, 5), 1);
+        assertEquals(menu.sizeBoard(), 3);
     }
 
     @Test
     public void askUntilToGetIntegerValue() {
-        initialisationFakeIO("dsajfl;\n1\n");
+        initialisationFakeIO("dsajfl;\n3\n");
         Menu menu = new Menu(fakeCommandLine);
-        assertEquals(menu.sizeBoard(0, 5), 1);
+        assertEquals(menu.sizeBoard(), 3);
         assertTrue(out.toString().contains("The value must be an integer"));
     }
 
     @Test
     public void askAgainWhenSizeTooBig() {
-        initialisationFakeIO("55\n1\n");
+        initialisationFakeIO("55\n3\n");
         Menu menu = new Menu(fakeCommandLine);
-        menu.sizeBoard(0, 5);
-        assertTrue(out.toString().contains("Select value between: 0 and 5"));
+        menu.sizeBoard();
+        assertTrue(out.toString().contains("Select value between: 3 and 5"));
     }
 
     @Test
     public void askAgainWhenSizeTooSmall() {
-        initialisationFakeIO("-1234\n1\n");
+        initialisationFakeIO("-1234\n3\n");
         Menu menu = new Menu(fakeCommandLine);
-        menu.sizeBoard(0, 5);
-        assertTrue(out.toString().contains("Select value between: 0 and 5"));
+        menu.sizeBoard();
+        assertTrue(out.toString().contains("Select value between: 3 and 5"));
     }
-
 
     private void initialisationFakeIO(String text) {
         BufferedReader input = new BufferedReader(new StringReader(text));

@@ -9,7 +9,7 @@ public class PlayerFactoryTest {
     @Test
     public void itCreateTwoCommandLinePlayers() {
         PlayerFactory playerFactory = new PlayerFactory(null, null);
-        Player[] players = playerFactory.getPlayers("HUMANvsHUMAN");
+        Player[] players = playerFactory.getPlayers(GameTypes.HUMAN_VS_HUMAN);
         assertTrue(players[0] instanceof CommandLinePlayer);
         assertEquals(players[0].getMark(), Marks.CROSS);
         assertTrue(players[1] instanceof CommandLinePlayer);
@@ -19,7 +19,7 @@ public class PlayerFactoryTest {
     @Test
     public void itCreateAComputerPlayerAndCommandLinePlayer() {
         PlayerFactory playerFactory = new PlayerFactory(null, null);
-        Player[] players = playerFactory.getPlayers("HUMANvsCOMPUTER");
+        Player[] players = playerFactory.getPlayers(GameTypes.HUMAN_VS_COMPUTER);
         assertTrue(players[0] instanceof CommandLinePlayer);
         assertEquals(players[0].getMark(), Marks.CROSS);
         assertTrue(players[1] instanceof ComputerPlayer);
@@ -29,7 +29,7 @@ public class PlayerFactoryTest {
     @Test
     public void itCreateAComputerPlayerAndComputerPlayer() {
         PlayerFactory playerFactory = new PlayerFactory(null, null);
-        Player[] players = playerFactory.getPlayers("COMPUTERvsCOMPUTER");
+        Player[] players = playerFactory.getPlayers(GameTypes.COMPUTER_VS_COMPUTER);
         assertTrue(players[0] instanceof ComputerPlayer);
         assertEquals(players[0].getMark(), Marks.CROSS);
         assertTrue(players[1] instanceof ComputerPlayer);

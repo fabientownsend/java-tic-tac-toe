@@ -13,14 +13,13 @@ import static org.junit.Assert.assertTrue;
 public class GamePlayTest {
     private StringWriter out;
     private IO fakeCommandLine;
-    private FakeBoard fakeBoard;
     private  GamePlay game;
+    private Board board;
 
     @Before
     public void initialize() {
         initialisationFakeIO("4\n0\n3\n1\n5\nn");
-        this.fakeBoard = new FakeBoard();
-        this.game = new GamePlay(fakeCommandLine, fakeBoard);
+        this.game = new GamePlay(fakeCommandLine, new Board(3));
     }
 
     @Test
@@ -66,34 +65,19 @@ public class GamePlayTest {
     }
 
     @Test
-    public void displayThePlayerTurn() {
-        game.play();
-        assertTrue(out.toString().contains("CROSS turn"));
-    }
-
-    @Test
     public void rotatePlayer() {
-        fakeBoard.setTie(false);
-        fakeBoard.setWin(false);
-        game.play();
-        assertTrue(out.toString().contains("ROUND turn"));
-        assertTrue(out.toString().contains("O won the party"));
-    }
-
-    @Test
-    public void displayMessageWinner() {
-        fakeBoard.setTie(false);
-        fakeBoard.setWin(true);
+        initialisationFakeIO("4\n0\n3\n1\n5\nn");
+        this.game = new GamePlay(fakeCommandLine, BoardHelper.createBoard("XXX------"));
         game.play();
         assertTrue(out.toString().contains("X won the party"));
     }
 
     @Test
-    public void displayMessageItsATie() {
-        fakeBoard.setTie(true);
-        fakeBoard.setWin(false);
+    public void displayMessageWinner() {
+        initialisationFakeIO("4\n0\n3\n1\n5\nn");
+        this.game = new GamePlay(fakeCommandLine, BoardHelper.createBoard("OOO------"));
         game.play();
-        assertTrue(out.toString().contains("it's a tie"));
+        assertTrue(out.toString().contains("O won the party"));
     }
 
     private void initialisationFakeIO(String text) {

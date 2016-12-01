@@ -9,12 +9,13 @@ public class PlayerFactory {
         this.io = io;
         this.board = board;
     }
-    public Player[] getPlayers(String gameType) {
-        if (gameType.equals("HUMANvsHUMAN")) {
+
+    public Player[] getPlayers(GameTypes gameType) {
+        if (gameType == GameTypes.HUMAN_VS_HUMAN) {
             return createHumanVsHuman();
-        } else if (gameType.equals("HUMANvsCOMPUTER")) {
+        } else if (gameType == GameTypes.HUMAN_VS_COMPUTER) {
             return createHumanVsComputer();
-        } else if (gameType.equals("COMPUTERvsCOMPUTER")) {
+        } else if (gameType == GameTypes.COMPUTER_VS_COMPUTER) {
             return createComputerVsComputer();
         } else {
             return createHumanVsHuman();
@@ -26,6 +27,7 @@ public class PlayerFactory {
         players[1] = new CommandLinePlayer(io, Marks.ROUND);
         return players;
     }
+
     private Player[] createHumanVsComputer() {
         players[0] = new CommandLinePlayer(io, Marks.CROSS);
         players[1] = new ComputerPlayer(Marks.ROUND, board);
