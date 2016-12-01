@@ -11,9 +11,7 @@ public class PlayerFactory {
     }
 
     public Player[] getPlayers(GameTypes gameType) {
-        if (gameType == GameTypes.HUMAN_VS_HUMAN) {
-            return createHumanVsHuman();
-        } else if (gameType == GameTypes.HUMAN_VS_COMPUTER) {
+        if (gameType == GameTypes.HUMAN_VS_COMPUTER) {
             return createHumanVsComputer();
         } else if (gameType == GameTypes.COMPUTER_VS_COMPUTER) {
             return createComputerVsComputer();
