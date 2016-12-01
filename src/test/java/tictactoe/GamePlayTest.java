@@ -23,6 +23,17 @@ public class GamePlayTest {
     }
 
     @Test
+    public void commandLinePlayerParty() {
+        initialisationFakeIO("1\n3\n2\n4\n0\n");
+        Board board = new Board(3);
+        Player player_1 = new CommandLinePlayer(fakeCommandLine, Marks.CROSS);
+        Player player_2 = new CommandLinePlayer(fakeCommandLine, Marks.ROUND);
+        this.game = new GamePlay(fakeCommandLine, board, player_1, player_2);
+        game.play();
+        assertTrue(out.toString().contains("X won the party"));
+    }
+
+    @Test
     public void computerCantBeatComputerOnThreeByThreeBoard() {
         initialisationFakeIO("4\n0\n3\n1\n5\nn");
         Board board = new Board(3);
