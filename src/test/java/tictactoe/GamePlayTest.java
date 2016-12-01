@@ -14,7 +14,6 @@ public class GamePlayTest {
     private StringWriter out;
     private IO fakeCommandLine;
     private  GamePlay game;
-    private Board board;
 
     @Before
     public void initialize() {
