@@ -23,14 +23,25 @@ public class GamePlayTest {
     }
 
     @Test
-    public void commandLinePlayerParty() {
-        initialisationFakeIO("1\n3\n2\n4\n0\n");
+    public void displayErrorMessageWhenMoveTooLow() {
+        initialisationFakeIO("-1\n1\n3\n2\n4\n0\n");
         Board board = new Board(3);
         Player player_1 = new CommandLinePlayer(fakeCommandLine, Marks.CROSS);
         Player player_2 = new CommandLinePlayer(fakeCommandLine, Marks.ROUND);
         this.game = new GamePlay(fakeCommandLine, board, player_1, player_2);
         game.play();
-        assertTrue(out.toString().contains("X won the party"));
+        assertTrue(out.toString().contains("Move should be between 0 and 8"));
+    }
+
+    @Test
+    public void displayErrorMessageWhenMoveTooHight() {
+        initialisationFakeIO("18\n1\n3\n2\n4\n0\n");
+        Board board = new Board(3);
+        Player player_1 = new CommandLinePlayer(fakeCommandLine, Marks.CROSS);
+        Player player_2 = new CommandLinePlayer(fakeCommandLine, Marks.ROUND);
+        this.game = new GamePlay(fakeCommandLine, board, player_1, player_2);
+        game.play();
+        assertTrue(out.toString().contains("Move should be between 0 and 8"));
     }
 
     @Test

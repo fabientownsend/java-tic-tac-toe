@@ -27,9 +27,7 @@ public class Menu {
     }
 
     private GameTypes convertToGameType(int value) {
-        if (value == 1) {
-            return GameTypes.HUMAN_VS_HUMAN;
-        } else if (value == 2) {
+        if (value == 2) {
             return GameTypes.HUMAN_VS_COMPUTER;
         } else  if (value == 3) {
             return GameTypes.COMPUTER_VS_COMPUTER;
