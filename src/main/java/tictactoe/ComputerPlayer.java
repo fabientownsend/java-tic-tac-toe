@@ -35,7 +35,6 @@ public class ComputerPlayer implements Player {
             if (perfectMoveFound(bestMoveEvaluated)) {
                 break;
             }
-
         }
 
         if (!couldEvaluateMove(bestMoveEvaluated)) {
@@ -46,11 +45,11 @@ public class ComputerPlayer implements Player {
     }
 
     private boolean perfectMoveFound(int bestMoveEvaluated) {
-        return bestMoveEvaluated == 1;
+        return bestMoveEvaluated == Result.WIN.value;
     }
 
     private boolean couldEvaluateMove(int bestMoveEvaluated) {
-        return bestMoveEvaluated != -2;
+        return bestMoveEvaluated != Result.TIMELIMIT.value;
     }
 
     private int randomMove() {
@@ -61,13 +60,13 @@ public class ComputerPlayer implements Player {
     private final double LIMIT_SECONDS_FOUND_MOVE = 0.1;
     private int alphaBetaPruning(Board board, Marks currentMark, int alpha, int beta, int depth, double startTime) {
         if (board.win(this.mark)) {
-            return 1;
+            return Result.WIN.value;
         } else if (board.win(oppositePlayer(this.mark))) {
-            return -1;
+            return Result.LOST.value;
         } else if (board.tie()) {
-            return 0;
+            return Result.TIE.value;
         } else if (timeSpent(startTime) > LIMIT_SECONDS_FOUND_MOVE) {
-            return  -2;
+            return  Result.TIMELIMIT.value;
         } else {
             return playAgain(board, currentMark, alpha, beta, depth, startTime);
         }
@@ -93,7 +92,7 @@ public class ComputerPlayer implements Player {
         int maxValue = negativeInfinity;
 
         if (--depth == 0) {
-            return 1;
+            return Result.WIN.value;
         }
         for (Integer position : board.freePosition()) {
             int valuePosition = evaluateMove(board, oppositePlayer(currentMark), alpha, beta, position, depth, startTime);
@@ -112,7 +111,7 @@ public class ComputerPlayer implements Player {
         int minValue = positiveInfinity;
 
         if (--depth == 0) {
-            return -1;
+            return Result.LOST.value;
         }
         for (Integer position : board.freePosition()) {
             int valuePosition = evaluateMove(board, oppositePlayer(currentMark), alpha, beta, position, depth, startTime);
@@ -142,5 +141,17 @@ public class ComputerPlayer implements Player {
             return Marks.CROSS;
         }
     }
-}
 
+    public enum Result {
+        TIMELIMIT(-2),
+        WIN(1),
+        LOST(-1),
+        TIE(0);
+
+        public final int value;
+
+        Result(final int value) {
+            this.value = value;
+        }
+    }
+}
