@@ -19,49 +19,49 @@ public class BoardTest {
     public void crossPlayerWinRowOne() {
         BoardHelper.update(board, "XXX------");
 
-        assertTrue(board.win(Marks.CROSS));
+        assertTrue(board.win(MarksEnum.CROSS));
     }
 
     @Test
     public void crossPlayerWinRowTwo() {
         BoardHelper.update(board, "---XXX---");
 
-        assertTrue(board.win(Marks.CROSS));
+        assertTrue(board.win(MarksEnum.CROSS));
     }
 
     @Test
     public void crossPlayerWinRowThree() {
         BoardHelper.update(board, "------XXX");
 
-        assertTrue(board.win(Marks.CROSS));
+        assertTrue(board.win(MarksEnum.CROSS));
     }
 
     @Test
     public void crossPlayerWinColumnOne() {
         BoardHelper.update(board, "X--X--X--");
 
-        assertTrue(board.win(Marks.CROSS));
+        assertTrue(board.win(MarksEnum.CROSS));
     }
 
     @Test
     public void crossPlayerWinColumnTwo() {
         BoardHelper.update(board, "-X--X--X-");
 
-        assertTrue(board.win(Marks.CROSS));
+        assertTrue(board.win(MarksEnum.CROSS));
     }
 
     @Test
     public void crossPlayerWinColumnThree() {
         BoardHelper.update(board, "--X--X--X");
 
-        assertTrue(board.win(Marks.CROSS));
+        assertTrue(board.win(MarksEnum.CROSS));
     }
 
     @Test
     public void noPlayerWin() {
         BoardHelper.update(board, "XOX------");
 
-        assertFalse(board.win(Marks.CROSS));
+        assertFalse(board.win(MarksEnum.CROSS));
     }
 
     @Test
@@ -75,14 +75,14 @@ public class BoardTest {
     public void crossPlayerWinDiagonnalOne() {
         BoardHelper.update(board, "X---X---X");
 
-        assertTrue(board.win(Marks.CROSS));
+        assertTrue(board.win(MarksEnum.CROSS));
     }
 
     @Test
     public void crossPlayerWinDiagonnalTwo() {
         BoardHelper.update(board, "--X-X-X--");
 
-        assertTrue(board.win(Marks.CROSS));
+        assertTrue(board.win(MarksEnum.CROSS));
     }
 
     @Test

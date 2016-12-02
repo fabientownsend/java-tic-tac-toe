@@ -20,8 +20,8 @@ public class GamePlay {
         this.board = board;
         this.boardConverter = new BoardConverter();
         this.io = io;
-        this.playerOne = new CommandLinePlayer(io, Marks.CROSS);
-        this.playerTwo = new CommandLinePlayer(io, Marks.ROUND);
+        this.playerOne = new CommandLinePlayer(io, MarksEnum.CROSS);
+        this.playerTwo = new CommandLinePlayer(io, MarksEnum.ROUND);
         this.currentPlayer = this.playerOne;
     }
 
@@ -94,7 +94,7 @@ public class GamePlay {
     }
 
     private String convertMarkToString() {
-        if (currentPlayer.getMark() == Marks.CROSS) {
+        if (currentPlayer.getMark() == MarksEnum.CROSS) {
             return "X";
         } else {
             return "O";

@@ -3,7 +3,7 @@ package tictactoe;
 import java.util.ArrayList;
 
 public class Board {
-    private Marks[][] board;
+    private MarksEnum[][] board;
     private int size = 3;
 
     public Board() {
@@ -11,11 +11,11 @@ public class Board {
     }
 
     public Board(int size) {
-        this.board = new Marks[size][size];
+        this.board = new MarksEnum[size][size];
         this.size = size;
     }
 
-    public void putMark(Marks mark, int position) {
+    public void putMark(MarksEnum mark, int position) {
         board[getRow(position)][getColumn(position)] = mark;
     }
 
@@ -31,12 +31,12 @@ public class Board {
         return position % size;
     }
 
-    public final Marks[][] getContent() {
+    public final MarksEnum[][] getContent() {
         return  board;
     }
 
     public boolean tie() {
-        return isFull() && !win(Marks.CROSS) && !win(Marks.ROUND);
+        return isFull() && !win(MarksEnum.CROSS) && !win(MarksEnum.ROUND);
     }
 
     public final ArrayList<Integer> freePosition() {
@@ -45,7 +45,7 @@ public class Board {
 
         for(int row = 0; row < size; row++){
             for(int column = 0; column < size; column++) {
-                if (board[row][column] != Marks.CROSS && board[row][column] != Marks.ROUND) {
+                if (board[row][column] != MarksEnum.CROSS && board[row][column] != MarksEnum.ROUND) {
                     positions.add(id);
                 }
                 id++;
@@ -56,9 +56,9 @@ public class Board {
     }
 
     private boolean isFull() {
-        for (Marks[] columns : board) {
-            for (Marks mark : columns) {
-                if (mark != Marks.CROSS && mark != Marks.ROUND) {
+        for (MarksEnum[] columns : board) {
+            for (MarksEnum mark : columns) {
+                if (mark != MarksEnum.CROSS && mark != MarksEnum.ROUND) {
                     return false;
                 }
             }
@@ -67,15 +67,15 @@ public class Board {
         return true;
     }
 
-    public boolean win(Marks mark) {
+    public boolean win(MarksEnum mark) {
         return winningDiagonals(mark) || winningRows(mark) || winningColumns(mark);
     }
 
-    private boolean winningDiagonals(Marks mark) {
+    private boolean winningDiagonals(MarksEnum mark) {
         return winningDiagonal(mark) || winningDiagonalBackward(mark);
     }
 
-    private boolean winningColumns(Marks mark) {
+    private boolean winningColumns(MarksEnum mark) {
         for (int i = 0; i < size; i ++) {
             if (winningColumn(i, mark)) {
                 return true;
@@ -85,7 +85,7 @@ public class Board {
         return false;
     }
 
-    private boolean winningRows(Marks mark) {
+    private boolean winningRows(MarksEnum mark) {
         for (int i = 0; i < size; i++) {
             if (winningRow(i, mark)) {
                 return true;
@@ -95,7 +95,7 @@ public class Board {
         return false;
     }
 
-    private boolean winningRow(int rowIndex, Marks mark) {
+    private boolean winningRow(int rowIndex, MarksEnum mark) {
         for(int i = 0; i < size; i++) {
             if (board[rowIndex][i] != mark) {
                 return false;
@@ -105,7 +105,7 @@ public class Board {
         return true;
     }
 
-    private boolean winningColumn(int columnIndex, Marks mark) {
+    private boolean winningColumn(int columnIndex, MarksEnum mark) {
         for(int i = 0; i < size; i++) {
             if (board[i][columnIndex] != mark) {
                 return false;
@@ -115,7 +115,7 @@ public class Board {
         return true;
     }
 
-    private boolean winningDiagonal(Marks mark) {
+    private boolean winningDiagonal(MarksEnum mark) {
         for (int i = 0; i < size; i++) {
             if (board[i][i] != mark) {
                 return false;
@@ -125,7 +125,7 @@ public class Board {
         return true;
     }
 
-    private boolean winningDiagonalBackward(Marks mark) {
+    private boolean winningDiagonalBackward(MarksEnum mark) {
         for (int i = 0; i < size; i++) {
             if (board[i][size - i - 1] != mark) {
                 return false;

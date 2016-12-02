@@ -1,6 +1,6 @@
 package tictactoe;
 
-public enum Marks {
+public enum MarksEnum {
     CROSS,
     ROUND
 }

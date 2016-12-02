@@ -1,18 +1,18 @@
 package tictactoe;
 
 public class BoardConverter {
-    private Marks[][] board;
+    private MarksEnum[][] board;
     private final String NEW_LINE = "\n";
     private final String LINE_SEPARATOR = "-";
 
-    public String toString(Marks[][] board) {
+    public String toString(MarksEnum[][] board) {
         this.board = board;
         StringBuilder str = new StringBuilder();
         int rowCounter = 0;
         int spotCounter = 0;
 
-        for (Marks[] rows : board) {
-            for (Marks mark : rows) {
+        for (MarksEnum[] rows : board) {
+            for (MarksEnum mark : rows) {
                 str.append(createSpot(spotCounter, mark));
                 spotCounter++;
             }
@@ -26,17 +26,17 @@ public class BoardConverter {
         return str.toString();
     }
 
-    private String createSpot(int spotNumber, Marks mark) {
+    private String createSpot(int spotNumber, MarksEnum mark) {
         String centeredMark = center(correctMark(mark, spotNumber), widthOfSpots());
         return centeredMark + elementRightSpot(spotNumber);
     }
 
     private final String CROSS = "X";
     private final String ROUND = "O";
-    private String correctMark(Marks mark, int idSpot) {
-        if (mark == Marks.CROSS) {
+    private String correctMark(MarksEnum mark, int idSpot) {
+        if (mark == MarksEnum.CROSS) {
             return CROSS;
-        } else if (mark == Marks.ROUND) {
+        } else if (mark == MarksEnum.ROUND) {
             return ROUND;
         } else {
             return String.valueOf(idSpot);
@@ -58,7 +58,7 @@ public class BoardConverter {
         return widthHighestSpotId;
     }
 
-    private int widthOf(Marks[][] board) {
+    private int widthOf(MarksEnum[][] board) {
         int rightElements = board.length - 1;
         return widthOfSpots() * board.length + rightElements;
     }

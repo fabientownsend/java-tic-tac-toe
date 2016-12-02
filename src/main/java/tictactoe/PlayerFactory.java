@@ -21,20 +21,20 @@ public class PlayerFactory {
     }
 
     private Player[] createHumanVsHuman() {
-        players[0] = new CommandLinePlayer(io, Marks.CROSS);
-        players[1] = new CommandLinePlayer(io, Marks.ROUND);
+        players[0] = new CommandLinePlayer(io, MarksEnum.CROSS);
+        players[1] = new CommandLinePlayer(io, MarksEnum.ROUND);
         return players;
     }
 
     private Player[] createHumanVsComputer() {
-        players[0] = new CommandLinePlayer(io, Marks.CROSS);
-        players[1] = new ComputerPlayer(Marks.ROUND, board);
+        players[0] = new CommandLinePlayer(io, MarksEnum.CROSS);
+        players[1] = new ComputerPlayer(MarksEnum.ROUND, board);
         return players;
     }
 
     private Player[] createComputerVsComputer() {
-        players[0] = new ComputerPlayer(Marks.CROSS, board);
-        players[1] = new ComputerPlayer(Marks.ROUND, board);
+        players[0] = new ComputerPlayer(MarksEnum.CROSS, board);
+        players[1] = new ComputerPlayer(MarksEnum.ROUND, board);
         return players;
     }
 }

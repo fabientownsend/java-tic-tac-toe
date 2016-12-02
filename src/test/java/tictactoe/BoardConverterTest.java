@@ -8,7 +8,7 @@ public class BoardConverterTest {
     @Test
     public void stringiphyAThreeByThreeBoard() {
         BoardConverter boardConverter = new BoardConverter();
-        Marks[][] board = new Marks[3][3];
+        MarksEnum[][] board = new MarksEnum[3][3];
         String boardString = " 0 | 1 | 2 \n"
                            + "-----------\n"
                            + " 3 | 4 | 5 \n"
@@ -21,8 +21,8 @@ public class BoardConverterTest {
     @Test
     public void boardStringWithAMark() {
         BoardConverter boardConverter = new BoardConverter();
-        Marks[][] board = new Marks[3][3];
-        board[1][1] = Marks.CROSS;
+        MarksEnum[][] board = new MarksEnum[3][3];
+        board[1][1] = MarksEnum.CROSS;
 
         String boardString = " 0 | 1 | 2 \n"
                            + "-----------\n"
@@ -36,7 +36,7 @@ public class BoardConverterTest {
     @Test
     public void stringiphyAFourByFourBoard() {
         BoardConverter boardConverter = new BoardConverter();
-        Marks[][] board = new Marks[4][4];
+        MarksEnum[][] board = new MarksEnum[4][4];
         String boardString = "  0 |  1 |  2 |  3 \n"
                            + "-------------------\n"
                            + "  4 |  5 |  6 |  7 \n"

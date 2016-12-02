@@ -25,8 +25,8 @@ public class GamePlayTest {
     public void displayErrorMessageWhenMoveTooLow() {
         initialisationFakeIO("-1\n1\n3\n2\n4\n0\n");
         Board board = new Board(3);
-        Player player_1 = new CommandLinePlayer(fakeCommandLine, Marks.CROSS);
-        Player player_2 = new CommandLinePlayer(fakeCommandLine, Marks.ROUND);
+        Player player_1 = new CommandLinePlayer(fakeCommandLine, MarksEnum.CROSS);
+        Player player_2 = new CommandLinePlayer(fakeCommandLine, MarksEnum.ROUND);
         this.game = new GamePlay(fakeCommandLine, board, player_1, player_2);
         game.play();
         assertTrue(out.toString().contains("Move should be between 0 and 8"));
@@ -36,8 +36,8 @@ public class GamePlayTest {
     public void displayErrorMessageWhenMoveTooHight() {
         initialisationFakeIO("18\n1\n3\n2\n4\n0\n");
         Board board = new Board(3);
-        Player player_1 = new CommandLinePlayer(fakeCommandLine, Marks.CROSS);
-        Player player_2 = new CommandLinePlayer(fakeCommandLine, Marks.ROUND);
+        Player player_1 = new CommandLinePlayer(fakeCommandLine, MarksEnum.CROSS);
+        Player player_2 = new CommandLinePlayer(fakeCommandLine, MarksEnum.ROUND);
         this.game = new GamePlay(fakeCommandLine, board, player_1, player_2);
         game.play();
         assertTrue(out.toString().contains("Move should be between 0 and 8"));
@@ -47,8 +47,8 @@ public class GamePlayTest {
     public void computerCantBeatComputerOnThreeByThreeBoard() {
         initialisationFakeIO("4\n0\n3\n1\n5\nn");
         Board board = new Board(3);
-        Player player_1 = new ComputerPlayer(Marks.CROSS, board);
-        Player player_2 = new ComputerPlayer(Marks.ROUND, board);
+        Player player_1 = new ComputerPlayer(MarksEnum.CROSS, board);
+        Player player_2 = new ComputerPlayer(MarksEnum.ROUND, board);
         this.game = new GamePlay(fakeCommandLine, board, player_1, player_2);
         game.play();
         assertTrue(out.toString().contains("tie"));
@@ -58,8 +58,8 @@ public class GamePlayTest {
     public void computerTake18secondsMaximumToFinishTheGame() {
         initialisationFakeIO("");
         Board board = new Board(3);
-        Player player_1 = new ComputerPlayer(Marks.CROSS, board);
-        Player player_2 = new ComputerPlayer(Marks.ROUND, board);
+        Player player_1 = new ComputerPlayer(MarksEnum.CROSS, board);
+        Player player_2 = new ComputerPlayer(MarksEnum.ROUND, board);
         this.game = new GamePlay(fakeCommandLine, board, player_1, player_2);
         game.play();
     }
@@ -68,8 +68,8 @@ public class GamePlayTest {
     public void computerCantBeatComputerOnFourByFourBoard() {
         initialisationFakeIO("4\n0\n3\n1\n5\nn");
         Board board = new Board(4);
-        Player player_1 = new ComputerPlayer(Marks.CROSS, board);
-        Player player_2 = new ComputerPlayer(Marks.ROUND, board);
+        Player player_1 = new ComputerPlayer(MarksEnum.CROSS, board);
+        Player player_2 = new ComputerPlayer(MarksEnum.ROUND, board);
         this.game = new GamePlay(fakeCommandLine, board, player_1, player_2);
         game.play();
         assertTrue(out.toString().contains("tie"));
@@ -79,8 +79,8 @@ public class GamePlayTest {
     public void computerTake24SecondsMaximumToFinishTheGame() {
         initialisationFakeIO("");
         Board board = new Board(4);
-        Player player_1 = new ComputerPlayer(Marks.CROSS, board);
-        Player player_2 = new ComputerPlayer(Marks.ROUND, board);
+        Player player_1 = new ComputerPlayer(MarksEnum.CROSS, board);
+        Player player_2 = new ComputerPlayer(MarksEnum.ROUND, board);
         this.game = new GamePlay(fakeCommandLine, board, player_1, player_2);
         game.play();
     }

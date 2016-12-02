@@ -12,7 +12,7 @@ public class ComputerPlayerTest {
     @Before
     public void initialize() {
         board = new Board();
-        computer = new ComputerPlayer(Marks.CROSS, board);
+        computer = new ComputerPlayer(MarksEnum.CROSS, board);
     }
 
     @Test

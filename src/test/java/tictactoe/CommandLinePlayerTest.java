@@ -19,26 +19,26 @@ public class CommandLinePlayerTest {
 
     @Before
     public void initialize() {
-        this.player = new CommandLinePlayer(fakeIO, Marks.CROSS);
+        this.player = new CommandLinePlayer(fakeIO, MarksEnum.CROSS);
     }
 
     @Test
     public void getTheMarksOfThePlayer() {
-        player = new CommandLinePlayer(fakeIO, Marks.CROSS);
-        assertEquals(player.getMark(), Marks.CROSS);
+        player = new CommandLinePlayer(fakeIO, MarksEnum.CROSS);
+        assertEquals(player.getMark(), MarksEnum.CROSS);
     }
 
     @Test
     public void getTheMoveOfThePlayer() {
         initialisationFakeIO("1\n");
-        player = new CommandLinePlayer(fakeIO, Marks.CROSS);
+        player = new CommandLinePlayer(fakeIO, MarksEnum.CROSS);
         assertEquals(player.nextMove(), 1);
     }
 
     @Test
     public void getAMessageWhenTheInputIsntAnInteger() {
         initialisationFakeIO("sd;fj\n1\n");
-        player = new CommandLinePlayer(fakeIO, Marks.CROSS);
+        player = new CommandLinePlayer(fakeIO, MarksEnum.CROSS);
         assertEquals(player.nextMove(), 1);
         assertTrue(out.toString().contains("It must be an integer"));
     }
