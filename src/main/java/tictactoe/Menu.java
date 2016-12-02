@@ -9,7 +9,7 @@ public class Menu {
 
     private final int THREE_BY_THREE = 3;
     private final int FIVE_BY_FIVE = 5;
-    public int sizeBoard() {
+    public int getBoardSize() {
         io.write("Select board size: ");
 
         return getValueBetween(THREE_BY_THREE, FIVE_BY_FIVE);
@@ -17,7 +17,7 @@ public class Menu {
 
     private final int HUMAN_VS_HUMAN = 1;
     private final int COMPUTER_VS_COMPUTER = 3;
-    public GameTypes typeGame() {
+    public GameTypes getGameType() {
         io.write("What kind of game do you want to play?\n" +
                 "1 - Human vs. Human\n" +
                 "2 - Human vs. Computer\n" +
@@ -42,7 +42,7 @@ public class Menu {
 
         if (integerValue > sizeMax || integerValue < sizeMin) {
             io.write("Select value between: " + sizeMin + " and " + sizeMax);
-            return sizeBoard();
+            return getBoardSize();
         } else {
             return integerValue;
         }

@@ -10,8 +10,8 @@ public class Main {
         PrintWriter output = new PrintWriter(System.out, true);
         IO io = new CommandLine(input, output);
         Menu menu = new Menu(io);
-        int boardSize = menu.sizeBoard();
-        GameTypes gameType = menu.typeGame();
+        int boardSize = menu.getBoardSize();
+        GameTypes gameType = menu.getGameType();
 
         Board board = new Board(boardSize);
         PlayerFactory playerFactory = new PlayerFactory(io, board);

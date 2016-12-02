@@ -18,65 +18,65 @@ public class MenuTest {
     @Test
     public void displayMessageForBoardSize() {
         initialisationMenuInput("3\n");
-        menu.sizeBoard();
+        menu.getBoardSize();
         assertTrue(out.toString().contains("Select board size: "));
     }
 
     @Test
     public void returnMinValueAsDefaultValueWhenInputEmpty() {
         initialisationMenuInput("\n");
-        assertEquals(menu.sizeBoard(), 3);
+        assertEquals(menu.getBoardSize(), 3);
     }
 
     @Test
     public void displayMessageForTypeGame() {
         initialisationMenuInput("1\n");
-        menu.typeGame();
+        menu.getGameType();
         assertTrue(out.toString().contains("What kind of game do you want to play?"));
     }
 
     @Test
     public void menuReturnHumanVsHumanGameType() {
         initialisationMenuInput("1\n");
-        assertEquals(menu.typeGame(), GameTypes.HUMAN_VS_HUMAN);
+        assertEquals(menu.getGameType(), GameTypes.HUMAN_VS_HUMAN);
     }
 
     @Test
     public void menuReturnHumanVsComputerGameType() {
         initialisationMenuInput("2\n");
-        assertEquals(menu.typeGame(), GameTypes.HUMAN_VS_COMPUTER);
+        assertEquals(menu.getGameType(), GameTypes.HUMAN_VS_COMPUTER);
     }
 
     @Test
     public void menuReturnComputerVsComputerGameType() {
         initialisationMenuInput("3\n");
-        assertEquals(menu.typeGame(), GameTypes.COMPUTER_VS_COMPUTER);
+        assertEquals(menu.getGameType(), GameTypes.COMPUTER_VS_COMPUTER);
     }
 
     @Test
     public void returnTheUserInput() {
         initialisationMenuInput("3\n");
-        assertEquals(menu.sizeBoard(), 3);
+        assertEquals(menu.getBoardSize(), 3);
     }
 
     @Test
     public void askUntilToGetIntegerValue() {
         initialisationMenuInput("text\n3\n");
-        assertEquals(menu.sizeBoard(), 3);
+        assertEquals(menu.getBoardSize(), 3);
         assertTrue(out.toString().contains("The value must be an integer"));
     }
 
     @Test
     public void askAgainWhenSizeTooBig() {
         initialisationMenuInput("55\n3\n");
-        menu.sizeBoard();
+        menu.getBoardSize();
         assertTrue(out.toString().contains("Select value between: 3 and 5"));
     }
 
     @Test
     public void askAgainWhenSizeTooSmall() {
         initialisationMenuInput("-1234\n3\n");
-        menu.sizeBoard();
+        menu.getBoardSize();
         assertTrue(out.toString().contains("Select value between: 3 and 5"));
     }
 
