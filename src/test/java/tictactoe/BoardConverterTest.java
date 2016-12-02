@@ -2,7 +2,7 @@ package tictactoe;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.assertj.core.api.Java6Assertions.assertThat;
 
 public class BoardConverterTest {
     @Test
@@ -15,7 +15,7 @@ public class BoardConverterTest {
                            + "-----------\n"
                            + " 6 | 7 | 8 \n";
 
-        assertEquals(boardString, boardConverter.toString(board));
+        assertThat(boardString).isEqualTo(boardConverter.toString(board));
     }
 
     @Test
@@ -30,7 +30,7 @@ public class BoardConverterTest {
                            + "-----------\n"
                            + " 6 | 7 | 8 \n";
 
-        assertEquals(boardString, boardConverter.toString(board));
+        assertThat(boardString).isEqualTo(boardConverter.toString(board));
     }
 
     @Test
@@ -45,6 +45,6 @@ public class BoardConverterTest {
                            + "-------------------\n"
                            + " 12 | 13 | 14 | 15 \n";
 
-        assertEquals(boardString, boardConverter.toString(board));
+        assertThat(boardString).isEqualTo(boardConverter.toString(board));
     }
 }

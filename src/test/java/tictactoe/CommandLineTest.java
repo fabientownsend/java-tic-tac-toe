@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import java.io.*;
 
-import static org.junit.Assert.assertEquals;
+import static org.assertj.core.api.Java6Assertions.assertThat;
 
 public class CommandLineTest {
     private CommandLine cli;
@@ -23,12 +23,12 @@ public class CommandLineTest {
     @Test
     public void displayTheInput() {
         cli.write("hello");
-        assertEquals( "hello", out.toString());
+        assertThat(out.toString()).isEqualTo("hello");
     }
 
     @Test
     public void readTheUserInput() {
-        assertEquals(cli.read(), "world");
+        assertThat(cli.read()).isEqualTo("world");
     }
 
     @Test
@@ -38,7 +38,7 @@ public class CommandLineTest {
         PrintWriter output = new PrintWriter(out, true);
         cli = new CommandLine(ioExceptionThrower, output);
 
-        assertEquals(cli.read(), "Error");
+        assertThat(cli.read()).isEqualTo("Error");
     }
 
     final class IOExceptionThrower extends BufferedReader {

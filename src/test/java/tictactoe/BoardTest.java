@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.*;
+import static org.assertj.core.api.Java6Assertions.assertThat;
 
 public class BoardTest {
     private Board board;
@@ -19,77 +19,77 @@ public class BoardTest {
     public void crossPlayerWinRowOne() {
         BoardHelper.update(board, "XXX------");
 
-        assertTrue(board.win(MarksEnum.CROSS));
+        assertThat(board.win(MarksEnum.CROSS)).isTrue();
     }
 
     @Test
     public void crossPlayerWinRowTwo() {
         BoardHelper.update(board, "---XXX---");
 
-        assertTrue(board.win(MarksEnum.CROSS));
+        assertThat(board.win(MarksEnum.CROSS)).isTrue();
     }
 
     @Test
     public void crossPlayerWinRowThree() {
         BoardHelper.update(board, "------XXX");
 
-        assertTrue(board.win(MarksEnum.CROSS));
+        assertThat(board.win(MarksEnum.CROSS)).isTrue();
     }
 
     @Test
     public void crossPlayerWinColumnOne() {
         BoardHelper.update(board, "X--X--X--");
 
-        assertTrue(board.win(MarksEnum.CROSS));
+        assertThat(board.win(MarksEnum.CROSS)).isTrue();
     }
 
     @Test
     public void crossPlayerWinColumnTwo() {
         BoardHelper.update(board, "-X--X--X-");
 
-        assertTrue(board.win(MarksEnum.CROSS));
+        assertThat(board.win(MarksEnum.CROSS)).isTrue();
     }
 
     @Test
     public void crossPlayerWinColumnThree() {
         BoardHelper.update(board, "--X--X--X");
 
-        assertTrue(board.win(MarksEnum.CROSS));
+        assertThat(board.win(MarksEnum.CROSS)).isTrue();
     }
 
     @Test
     public void noPlayerWin() {
         BoardHelper.update(board, "XOX------");
 
-        assertFalse(board.win(MarksEnum.CROSS));
+        assertThat(board.win(MarksEnum.CROSS)).isFalse();
     }
 
     @Test
     public void isNotATieWHenBoardNotFull() {
         BoardHelper.update(board, "XOX------");
 
-        assertFalse(board.tie());
+        assertThat(board.tie()).isFalse();
     }
 
     @Test
     public void crossPlayerWinDiagonnalOne() {
         BoardHelper.update(board, "X---X---X");
 
-        assertTrue(board.win(MarksEnum.CROSS));
+        assertThat(board.win(MarksEnum.CROSS)).isTrue();
     }
 
     @Test
     public void crossPlayerWinDiagonnalTwo() {
         BoardHelper.update(board, "--X-X-X--");
 
-        assertTrue(board.win(MarksEnum.CROSS));
+        assertThat(board.win(MarksEnum.CROSS)).isTrue();
     }
 
     @Test
     public void itIsATie() {
         BoardHelper.update(board, "XOXXOXOXO");
 
-        assertTrue(board.tie());
+        assertThat(board.tie()).isTrue();
     }
 
     @Test
@@ -99,7 +99,7 @@ public class BoardTest {
         arr.add(6);
         arr.add(7);
         arr.add(8);
-        assertEquals(board.freePosition(), arr);
+        assertThat(board.freePosition()).isEqualTo(arr);
     }
 
     @Test
@@ -109,10 +109,10 @@ public class BoardTest {
         arr.add(6);
         arr.add(7);
         arr.add(8);
-        assertEquals(board.freePosition(), arr);
+        assertThat(board.freePosition()).isEqualTo(arr);
 
         board.removeMark(1);
         arr.add(0, 1);
-        assertEquals(board.freePosition(), arr);
+        assertThat(board.freePosition()).isEqualTo(arr);
     }
 }

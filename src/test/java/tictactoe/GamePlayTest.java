@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 import java.io.StringReader;
 import java.io.StringWriter;
 
+import static org.assertj.core.api.Java6Assertions.assertThat;
 import static org.junit.Assert.assertTrue;
 
 public class GamePlayTest {
@@ -29,7 +30,8 @@ public class GamePlayTest {
         Player player_2 = new CommandLinePlayer(fakeCommandLine, MarksEnum.ROUND);
         this.game = new GamePlay(fakeCommandLine, board, player_1, player_2);
         game.play();
-        assertTrue(out.toString().contains("Move should be between 0 and 8"));
+
+        assertThat(out.toString()).contains("Move should be between 0 and 8");
     }
 
     @Test
@@ -40,7 +42,8 @@ public class GamePlayTest {
         Player player_2 = new CommandLinePlayer(fakeCommandLine, MarksEnum.ROUND);
         this.game = new GamePlay(fakeCommandLine, board, player_1, player_2);
         game.play();
-        assertTrue(out.toString().contains("Move should be between 0 and 8"));
+
+        assertThat(out.toString()).contains("Move should be between 0 and 8");
     }
 
     @Test
@@ -51,7 +54,8 @@ public class GamePlayTest {
         Player player_2 = new ComputerPlayer(MarksEnum.ROUND, board);
         this.game = new GamePlay(fakeCommandLine, board, player_1, player_2);
         game.play();
-        assertTrue(out.toString().contains("tie"));
+
+        assertThat(out.toString()).contains("tie");
     }
 
     @Test(timeout = 18000)
@@ -90,7 +94,8 @@ public class GamePlayTest {
         initialisationFakeIO("4\n0\n3\n1\n5\nn");
         this.game = new GamePlay(fakeCommandLine, BoardHelper.createBoard("XXX------"));
         game.play();
-        assertTrue(out.toString().contains("X won the party"));
+
+        assertThat(out.toString()).contains("X won the party");
     }
 
     @Test
@@ -98,7 +103,8 @@ public class GamePlayTest {
         initialisationFakeIO("4\n0\n3\n1\n5\nn");
         this.game = new GamePlay(fakeCommandLine, BoardHelper.createBoard("OOO------"));
         game.play();
-        assertTrue(out.toString().contains("O won the party"));
+
+        assertThat(out.toString()).contains("O won the party");
     }
 
     private void initialisationFakeIO(String text) {

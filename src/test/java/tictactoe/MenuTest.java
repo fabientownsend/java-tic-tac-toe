@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.io.StringReader;
 import java.io.StringWriter;
 
+import static org.assertj.core.api.Java6Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -56,28 +57,28 @@ public class MenuTest {
     @Test
     public void returnTheUserInput() {
         initialisationMenuInput("3\n");
-        assertEquals(menu.getBoardSize(), 3);
+        assertThat(menu.getBoardSize()).isEqualTo(3);
     }
 
     @Test
     public void askUntilToGetIntegerValue() {
         initialisationMenuInput("text\n3\n");
-        assertEquals(menu.getBoardSize(), 3);
-        assertTrue(out.toString().contains("The value must be an integer"));
+        menu.getBoardSize();
+        assertThat(out.toString()).contains("The value must be an integer");
     }
 
     @Test
     public void askAgainWhenSizeTooBig() {
         initialisationMenuInput("55\n3\n");
         menu.getBoardSize();
-        assertTrue(out.toString().contains("Select value between: 3 and 5"));
+        assertThat(out.toString()).contains("Select value between: 3 and 5");
     }
 
     @Test
     public void askAgainWhenSizeTooSmall() {
         initialisationMenuInput("-1234\n3\n");
         menu.getBoardSize();
-        assertTrue(out.toString().contains("Select value between: 3 and 5"));
+        assertThat(out.toString()).contains("Select value between: 3 and 5");
     }
 
     private void initialisationMenuInput(String text) {

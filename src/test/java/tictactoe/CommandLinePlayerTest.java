@@ -8,8 +8,7 @@ import java.io.PrintWriter;
 import java.io.StringReader;
 import java.io.StringWriter;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.assertj.core.api.Java6Assertions.assertThat;
 
 
 public class CommandLinePlayerTest {
@@ -25,22 +24,22 @@ public class CommandLinePlayerTest {
     @Test
     public void getTheMarksOfThePlayer() {
         player = new CommandLinePlayer(fakeIO, MarksEnum.CROSS);
-        assertEquals(player.getMark(), MarksEnum.CROSS);
+        assertThat(player.getMark()).isEqualTo(MarksEnum.CROSS);
     }
 
     @Test
     public void getTheMoveOfThePlayer() {
         initialisationFakeIO("1\n");
         player = new CommandLinePlayer(fakeIO, MarksEnum.CROSS);
-        assertEquals(player.nextMove(), 1);
+        assertThat(player.nextMove()).isEqualTo(1);
     }
 
     @Test
     public void getAMessageWhenTheInputIsntAnInteger() {
         initialisationFakeIO("sd;fj\n1\n");
         player = new CommandLinePlayer(fakeIO, MarksEnum.CROSS);
-        assertEquals(player.nextMove(), 1);
-        assertTrue(out.toString().contains("It must be an integer"));
+        assertThat(player.nextMove()).isEqualTo(1);
+        assertThat(out.toString()).contains("It must be an integer");
     }
 
     private void initialisationFakeIO(String text) {

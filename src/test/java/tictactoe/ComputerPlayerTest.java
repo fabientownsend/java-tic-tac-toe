@@ -3,7 +3,7 @@ package tictactoe;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.assertj.core.api.Java6Assertions.assertThat;
 
 public class ComputerPlayerTest {
     private Board board;
@@ -18,30 +18,30 @@ public class ComputerPlayerTest {
     @Test
     public void blockOpponentRow() {
         BoardHelper.update(board, "X--OO-X--");
-        assertEquals(computer.nextMove(), 5);
+        assertThat(computer.nextMove()).isEqualTo(5);
     }
 
     @Test
     public void blockOpponentColumn() {
         BoardHelper.update(board, "OX-O-X---");
-        assertEquals(computer.nextMove(), 6);
+        assertThat(computer.nextMove()).isEqualTo(6);
     }
 
     @Test
     public void blockOpponentDiagonal() {
         BoardHelper.update(board, "OX--OX---");
-        assertEquals(computer.nextMove(), 8);
+        assertThat(computer.nextMove()).isEqualTo(8);
     }
 
     @Test
     public void winRow() {
         BoardHelper.update(board, "X-X-O---O");
-        assertEquals(computer.nextMove(), 1);
+        assertThat(computer.nextMove()).isEqualTo(1);
     }
 
     @Test
     public void winColumn() {
         BoardHelper.update(board, "XO-XO--XO");
-        assertEquals(computer.nextMove(), 6);
+        assertThat(computer.nextMove()).isEqualTo(6);
     }
 }
