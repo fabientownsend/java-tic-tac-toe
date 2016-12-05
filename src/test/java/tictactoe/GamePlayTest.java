@@ -1,6 +1,5 @@
 package tictactoe;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import java.io.BufferedReader;
@@ -15,12 +14,6 @@ public class GamePlayTest {
     private StringWriter out;
     private IO fakeCommandLine;
     private  GamePlay game;
-
-    @Before
-    public void initialize() {
-        initialisationFakeIO("4\n0\n3\n1\n5\nn");
-        this.game = new GamePlay(fakeCommandLine, new Board(3));
-    }
 
     @Test
     public void displayErrorMessageWhenMoveTooLow() {
@@ -92,7 +85,10 @@ public class GamePlayTest {
     @Test
     public void rotatePlayer() {
         initialisationFakeIO("4\n0\n3\n1\n5\nn");
-        this.game = new GamePlay(fakeCommandLine, BoardHelper.createBoard("XXX------"));
+        Board board = BoardHelper.createBoard("XXX------");
+        Player player_1 = new ComputerPlayer(MarksEnum.CROSS, board);
+        Player player_2 = new ComputerPlayer(MarksEnum.ROUND, board);
+        this.game = new GamePlay(fakeCommandLine, board, player_1, player_2);
         game.play();
 
         assertThat(out.toString()).contains("X won the party");
@@ -101,7 +97,10 @@ public class GamePlayTest {
     @Test
     public void displayMessageWinner() {
         initialisationFakeIO("4\n0\n3\n1\n5\nn");
-        this.game = new GamePlay(fakeCommandLine, BoardHelper.createBoard("OOO------"));
+        Board board = BoardHelper.createBoard("OOO------");
+        Player player_1 = new ComputerPlayer(MarksEnum.CROSS, board);
+        Player player_2 = new ComputerPlayer(MarksEnum.ROUND, board);
+        this.game = new GamePlay(fakeCommandLine, board, player_1, player_2);
         game.play();
 
         assertThat(out.toString()).contains("O won the party");

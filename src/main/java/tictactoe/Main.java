@@ -9,15 +9,8 @@ public class Main {
         BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
         PrintWriter output = new PrintWriter(System.out, true);
         IO io = new CommandLine(input, output);
-        Menu menu = new Menu(io);
-        int boardSize = menu.getBoardSize();
-        GameTypes gameType = menu.getGameType();
 
-        Board board = new Board(boardSize);
-        PlayerFactory playerFactory = new PlayerFactory(io, board);
-        Player[] players = playerFactory.getPlayers(gameType);
-
-        GamePlay game = new GamePlay(io, board, players[0], players[1]);
-        game.play();
+        Game game = new Game(io);
+        game.start();
     }
 }
