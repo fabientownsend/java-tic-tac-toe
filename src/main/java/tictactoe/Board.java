@@ -40,7 +40,7 @@ public class Board {
     }
 
     public final ArrayList<Integer> freePosition() {
-        ArrayList<Integer> positions = new ArrayList<Integer>();
+        ArrayList<Integer> positions = new ArrayList<>();
         int id = 0;
 
         for(int row = 0; row < size; row++){
