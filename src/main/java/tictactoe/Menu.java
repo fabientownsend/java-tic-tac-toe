@@ -15,25 +15,24 @@ public class Menu {
         return getValueBetween(THREE_BY_THREE, FIVE_BY_FIVE);
     }
 
-    private final int HUMAN_VS_HUMAN = 1;
-    private final int COMPUTER_VS_COMPUTER = 3;
+    private final int FIRST_MENU = 1;
     public GameTypes getGameType() {
-        io.write("What kind of game do you want to play?\n" +
-                "1 - Human vs. Human\n" +
-                "2 - Human vs. Computer\n" +
-                "3 - Computer vs. Computer\n");
-
-        return convertToGameType(getValueBetween(HUMAN_VS_HUMAN, COMPUTER_VS_COMPUTER));
+        io.write(getMenuGamesTypes());
+        int indexGameTypeSelected = getValueBetween(FIRST_MENU, GameTypes.values().length);
+        return GameTypes.values()[indexGameTypeSelected];
     }
 
-    private GameTypes convertToGameType(int value) {
-        if (value == 2) {
-            return GameTypes.HUMAN_VS_COMPUTER;
-        } else  if (value == 3) {
-            return GameTypes.COMPUTER_VS_COMPUTER;
-        } else {
-            return GameTypes.HUMAN_VS_HUMAN;
+    private String getMenuGamesTypes() {
+        int idGameType = 0;
+        StringBuilder menuGamesTypes = new StringBuilder();
+        menuGamesTypes.append("What kind of game do you want to play?\n");
+
+        for (GameTypes gameType : GameTypes.values()) {
+            menuGamesTypes.append(idGameType + " - " + gameType.toString() + "\n");
+            idGameType++;
         }
+
+        return menuGamesTypes.toString();
     }
 
     private int getValueBetween(int sizeMin, int sizeMax) {

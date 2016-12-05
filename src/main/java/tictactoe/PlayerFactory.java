@@ -15,6 +15,12 @@ public class PlayerFactory {
             return createHumanVsComputer();
         } else if (gameType == GameTypes.COMPUTER_VS_COMPUTER) {
             return createComputerVsComputer();
+        } else if (gameType == GameTypes.RANDOM_VS_COMPUTER) {
+            return createRandomVsComputer();
+        } else if (gameType == GameTypes.RANDOM_VS_HUMAN) {
+            return createRandomVsHuman();
+        } else if (gameType == GameTypes.RANDOM_VS_RANDOM) {
+            return createRandomVsRandom();
         } else {
             return createHumanVsHuman();
         }
@@ -37,4 +43,23 @@ public class PlayerFactory {
         players[1] = new ComputerPlayer(MarksEnum.ROUND, board);
         return players;
     }
+
+    private Player[] createRandomVsComputer() {
+        players[0] = new RandomPlayer(MarksEnum.CROSS, board);
+        players[1] = new ComputerPlayer(MarksEnum.ROUND, board);
+        return players;
+    }
+
+    private Player[] createRandomVsHuman() {
+        players[0] = new RandomPlayer(MarksEnum.CROSS, board);
+        players[1] = new CommandLinePlayer(io, MarksEnum.ROUND);
+        return players;
+    }
+
+    private Player[] createRandomVsRandom() {
+        players[0] = new RandomPlayer(MarksEnum.CROSS, board);
+        players[1] = new RandomPlayer(MarksEnum.ROUND, board);
+        return players;
+    }
+
 }
