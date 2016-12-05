@@ -15,7 +15,7 @@ public class Menu {
         return getValueBetween(THREE_BY_THREE, FIVE_BY_FIVE);
     }
 
-    private final int FIRST_MENU = 1;
+    private final int FIRST_MENU = 0;
     public GameTypes getGameType() {
         io.write(getMenuGamesTypes());
         int indexGameTypeSelected = getValueBetween(FIRST_MENU, GameTypes.values().length);

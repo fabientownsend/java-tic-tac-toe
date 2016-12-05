@@ -39,19 +39,19 @@ public class MenuTest {
     @Test
     public void menuReturnHumanVsHumanGameType() {
         initialisationMenuInput("1\n");
-        assertEquals(menu.getGameType(), GameTypes.HUMAN_VS_HUMAN);
+        assertEquals(menu.getGameType(), GameTypes.HUMAN_VS_COMPUTER);
     }
 
     @Test
     public void menuReturnHumanVsComputerGameType() {
         initialisationMenuInput("2\n");
-        assertEquals(menu.getGameType(), GameTypes.HUMAN_VS_COMPUTER);
+        assertEquals(menu.getGameType(), GameTypes.COMPUTER_VS_COMPUTER);
     }
 
     @Test
     public void menuReturnComputerVsComputerGameType() {
         initialisationMenuInput("3\n");
-        assertEquals(menu.getGameType(), GameTypes.COMPUTER_VS_COMPUTER);
+        assertEquals(menu.getGameType(), GameTypes.RANDOM_VS_COMPUTER);
     }
 
     @Test
