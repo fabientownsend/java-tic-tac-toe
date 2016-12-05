@@ -48,4 +48,26 @@ public class PlayerFactoryTest {
         assertThat(players[1]).isInstanceOf(ComputerPlayer.class);
         assertThat(players[1].getMark()).isEqualTo(MarksEnum.ROUND);
     }
+
+    @Test
+    public void itCreateARandomPlayerAndRandomPlayer() {
+        PlayerFactory playerFactory = new PlayerFactory(null, null);
+        Player[] players = playerFactory.getPlayers(GameTypes.RANDOM_VS_RANDOM);
+
+        assertThat(players[0]).isInstanceOf(RandomPlayer.class);
+        assertThat(players[0].getMark()).isEqualTo(MarksEnum.CROSS);
+        assertThat(players[1]).isInstanceOf(RandomPlayer.class);
+        assertThat(players[1].getMark()).isEqualTo(MarksEnum.ROUND);
+    }
+
+    @Test
+    public void itCreateARandomPlayerAndHumanPlayer() {
+        PlayerFactory playerFactory = new PlayerFactory(null, null);
+        Player[] players = playerFactory.getPlayers(GameTypes.RANDOM_VS_HUMAN);
+
+        assertThat(players[0]).isInstanceOf(RandomPlayer.class);
+        assertThat(players[0].getMark()).isEqualTo(MarksEnum.CROSS);
+        assertThat(players[1]).isInstanceOf(CommandLinePlayer.class);
+        assertThat(players[1].getMark()).isEqualTo(MarksEnum.ROUND);
+    }
 }
