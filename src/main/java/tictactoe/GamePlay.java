@@ -57,7 +57,7 @@ public class GamePlay {
     }
 
     private boolean isFree(int move) {
-        return this.board.freePosition().contains(move);
+        return this.board.freePositions().contains(move);
     }
 
     private void displayCurrentParty() {

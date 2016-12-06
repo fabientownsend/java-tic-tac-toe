@@ -15,7 +15,7 @@ public class RandomPlayerTest {
         Board board = BoardHelper.createBoard("XOXXOX---");
         RandomPlayer randomPlayer = new RandomPlayer(MarksEnum.CROSS, board);
 
-        assertThat(randomPlayer.nextMove()).isIn(board.freePosition());
+        assertThat(randomPlayer.nextMove()).isIn(board.freePositions());
     }
 }
 

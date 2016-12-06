@@ -99,7 +99,7 @@ public class BoardTest {
         arr.add(6);
         arr.add(7);
         arr.add(8);
-        assertThat(board.freePosition()).isEqualTo(arr);
+        assertThat(board.freePositions()).isEqualTo(arr);
     }
 
     @Test
@@ -109,10 +109,10 @@ public class BoardTest {
         arr.add(6);
         arr.add(7);
         arr.add(8);
-        assertThat(board.freePosition()).isEqualTo(arr);
+        assertThat(board.freePositions()).isEqualTo(arr);
 
         board.removeMark(1);
         arr.add(0, 1);
-        assertThat(board.freePosition()).isEqualTo(arr);
+        assertThat(board.freePositions()).isEqualTo(arr);
     }
 }
