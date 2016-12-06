@@ -11,7 +11,7 @@ public class RandomPlayer implements Player {
         this.mark = mark;
     }
     public final int nextMove() {
-        int index = new Random().nextInt(board.freePositions().size());
+        int index = new Random().nextInt(board.getNumberOfFreePositions());
         return board.freePositions().get(index);
     }
 

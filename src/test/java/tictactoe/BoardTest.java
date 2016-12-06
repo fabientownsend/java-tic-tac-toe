@@ -115,4 +115,18 @@ public class BoardTest {
         arr.add(0, 1);
         assertThat(board.freePositions()).isEqualTo(arr);
     }
+
+    @Test
+    public void numberOfFreePositionIsEmpty() {
+        BoardHelper.update(board, "---------");
+
+        assertThat(board.getNumberOfFreePositions()).isEqualTo(9);
+    }
+
+    @Test
+    public void numberOfFreePositionWhenBoardIsFull() {
+        BoardHelper.update(board, "XOXOXOOXO");
+
+        assertThat(board.getNumberOfFreePositions()).isEqualTo(0);
+    }
 }

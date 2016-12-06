@@ -55,6 +55,10 @@ public class Board {
         return positions;
     }
 
+    public int getNumberOfFreePositions() {
+        return freePositions().size();
+    }
+
     private boolean isFull() {
         for (MarksEnum[] columns : board) {
             for (MarksEnum mark : columns) {
