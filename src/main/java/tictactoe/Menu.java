@@ -1,6 +1,9 @@
 package tictactoe;
 
 public class Menu {
+    private final String REPLAY_REQUEST = "Do you want to replay? yes/no";
+    private final String YES = "yes";
+    private final String NO = "no";
     private IO io;
 
     public Menu(IO io) {
@@ -19,6 +22,19 @@ public class Menu {
         io.write(getMenuGameTypes());
         int indexGameTypeSelected = getValueBetween(0, GameTypes.values().length);
         return GameTypes.values()[indexGameTypeSelected];
+    }
+
+    public boolean replay() {
+        io.write(REPLAY_REQUEST);
+        String answer = io.read();
+
+        if (answer.equals(YES)) {
+            return true;
+        } else if (answer.equals(NO)) {
+            return false;
+        } else {
+            return replay();
+        }
     }
 
     private String getMenuGameTypes() {

@@ -5,9 +5,6 @@ public class Game {
     private Menu menu;
     private Board board;
     private Player[] players;
-    private final String REPLAY_REQUEST = "Do you want to replay? yes/no";
-    private final String YES = "yes";
-    private final String NO = "no";
 
     public Game(IO io) {
         this.io = io;
@@ -20,7 +17,7 @@ public class Game {
             initialisationPlayers();
             GamePlay party = initialisationParty();
             party.play();
-        } while (replay());
+        } while (menu.replay());
     }
 
     private void initialisationBoard() {
@@ -38,16 +35,4 @@ public class Game {
         return new GamePlay(io, board, players[0], players[1]);
     }
 
-    private boolean replay() {
-        io.write(REPLAY_REQUEST);
-        String answer = io.read();
-
-        if (answer.equals(YES)) {
-            return true;
-        } else if (answer.equals(NO)) {
-            return false;
-        } else {
-            return replay();
-        }
-    }
 }
