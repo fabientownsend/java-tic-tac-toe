@@ -10,10 +10,10 @@ import java.io.StringWriter;
 import static org.assertj.core.api.Java6Assertions.assertThat;
 import static org.junit.Assert.assertTrue;
 
-public class GamePlayTest {
+public class PartyTest {
     private StringWriter out;
     private IO fakeCommandLine;
-    private  GamePlay game;
+    private Party game;
 
     @Test
     public void displayErrorMessageWhenMoveTooLow() {
@@ -21,7 +21,7 @@ public class GamePlayTest {
         Board board = new Board(3);
         Player player_1 = new CommandLinePlayer(fakeCommandLine, MarksEnum.CROSS);
         Player player_2 = new CommandLinePlayer(fakeCommandLine, MarksEnum.NOUGHT);
-        this.game = new GamePlay(fakeCommandLine, board, player_1, player_2);
+        this.game = new Party(fakeCommandLine, board, player_1, player_2);
         game.play();
 
         assertThat(out.toString()).contains("Move should be between 0 and 8");
@@ -33,7 +33,7 @@ public class GamePlayTest {
         Board board = new Board(3);
         Player player_1 = new CommandLinePlayer(fakeCommandLine, MarksEnum.CROSS);
         Player player_2 = new CommandLinePlayer(fakeCommandLine, MarksEnum.NOUGHT);
-        this.game = new GamePlay(fakeCommandLine, board, player_1, player_2);
+        this.game = new Party(fakeCommandLine, board, player_1, player_2);
         game.play();
 
         assertThat(out.toString()).contains("Move should be between 0 and 8");
@@ -45,7 +45,7 @@ public class GamePlayTest {
         Board board = new Board(3);
         Player player_1 = new CommandLinePlayer(fakeCommandLine, MarksEnum.CROSS);
         Player player_2 = new CommandLinePlayer(fakeCommandLine, MarksEnum.NOUGHT);
-        this.game = new GamePlay(fakeCommandLine, board, player_1, player_2);
+        this.game = new Party(fakeCommandLine, board, player_1, player_2);
         game.play();
 
         assertThat(out.toString()).contains("The position isn't free");
@@ -57,7 +57,7 @@ public class GamePlayTest {
         Board board = new Board(3);
         Player player_1 = new ComputerPlayer(MarksEnum.CROSS, board);
         Player player_2 = new ComputerPlayer(MarksEnum.NOUGHT, board);
-        this.game = new GamePlay(fakeCommandLine, board, player_1, player_2);
+        this.game = new Party(fakeCommandLine, board, player_1, player_2);
         game.play();
 
         assertThat(out.toString()).contains("tie");
@@ -69,7 +69,7 @@ public class GamePlayTest {
         Board board = new Board(3);
         Player player_1 = new ComputerPlayer(MarksEnum.CROSS, board);
         Player player_2 = new ComputerPlayer(MarksEnum.NOUGHT, board);
-        this.game = new GamePlay(fakeCommandLine, board, player_1, player_2);
+        this.game = new Party(fakeCommandLine, board, player_1, player_2);
         game.play();
     }
 
@@ -79,7 +79,7 @@ public class GamePlayTest {
         Board board = new Board(4);
         Player player_1 = new ComputerPlayer(MarksEnum.CROSS, board);
         Player player_2 = new ComputerPlayer(MarksEnum.NOUGHT, board);
-        this.game = new GamePlay(fakeCommandLine, board, player_1, player_2);
+        this.game = new Party(fakeCommandLine, board, player_1, player_2);
         game.play();
         assertTrue(out.toString().contains("tie"));
     }
@@ -90,7 +90,7 @@ public class GamePlayTest {
         Board board = new Board(4);
         Player player_1 = new ComputerPlayer(MarksEnum.CROSS, board);
         Player player_2 = new ComputerPlayer(MarksEnum.NOUGHT, board);
-        this.game = new GamePlay(fakeCommandLine, board, player_1, player_2);
+        this.game = new Party(fakeCommandLine, board, player_1, player_2);
         game.play();
     }
 
@@ -100,7 +100,7 @@ public class GamePlayTest {
         Board board = BoardHelper.createBoard("XXX------");
         Player player_1 = new ComputerPlayer(MarksEnum.CROSS, board);
         Player player_2 = new ComputerPlayer(MarksEnum.NOUGHT, board);
-        this.game = new GamePlay(fakeCommandLine, board, player_1, player_2);
+        this.game = new Party(fakeCommandLine, board, player_1, player_2);
         game.play();
 
         assertThat(out.toString()).contains("X won the party");
@@ -112,7 +112,7 @@ public class GamePlayTest {
         Board board = BoardHelper.createBoard("OOO------");
         Player player_1 = new ComputerPlayer(MarksEnum.CROSS, board);
         Player player_2 = new ComputerPlayer(MarksEnum.NOUGHT, board);
-        this.game = new GamePlay(fakeCommandLine, board, player_1, player_2);
+        this.game = new Party(fakeCommandLine, board, player_1, player_2);
         game.play();
 
         assertThat(out.toString()).contains("O won the party");
