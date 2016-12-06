@@ -1,5 +1,6 @@
 package tictactoe;
 
+import com.sun.jdi.connect.Connector;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -128,5 +129,19 @@ public class BoardTest {
         BoardHelper.update(board, "XOXOXOOXO");
 
         assertThat(board.getNumberOfFreePositions()).isEqualTo(0);
+    }
+
+    @Test
+    public void isFreePositionWhenEmpty() {
+        BoardHelper.update(board, "-XXXXXXXX");
+
+        assertThat(board.isVacantAt(0)).isTrue();
+    }
+
+    @Test
+    public void isNotFreePositionWhenUsed() {
+        BoardHelper.update(board, "XXXXXXXXX");
+
+        assertThat(board.isVacantAt(0)).isFalse();
     }
 }
