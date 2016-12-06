@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class PlayerFactoryTest {
     @Test
-    public void itCreateTwoCommandLinePlayers() {
+    public void itCreatesTwoCommandLinePlayers() {
         PlayerFactory playerFactory = new PlayerFactory(null, null);
         Player[] players = playerFactory.getPlayers(GameTypes.HUMAN_VS_HUMAN);
 
@@ -17,7 +17,7 @@ public class PlayerFactoryTest {
     }
 
     @Test
-    public void itCreateAComputerPlayerAndCommandLinePlayer() {
+    public void itCreatesAComputerPlayerAndCommandLinePlayer() {
         PlayerFactory playerFactory = new PlayerFactory(null, null);
         Player[] players = playerFactory.getPlayers(GameTypes.HUMAN_VS_COMPUTER);
 
@@ -28,7 +28,7 @@ public class PlayerFactoryTest {
     }
 
     @Test
-    public void itCreateAComputerPlayerAndComputerPlayer() {
+    public void itCreatesAComputerPlayerAndComputerPlayer() {
         PlayerFactory playerFactory = new PlayerFactory(null, null);
         Player[] players = playerFactory.getPlayers(GameTypes.COMPUTER_VS_COMPUTER);
 
@@ -39,7 +39,7 @@ public class PlayerFactoryTest {
     }
 
     @Test
-    public void itCreateARandomPlayerAndComputerPlayer() {
+    public void itCreatesARandomPlayerAndComputerPlayer() {
         PlayerFactory playerFactory = new PlayerFactory(null, null);
         Player[] players = playerFactory.getPlayers(GameTypes.RANDOM_VS_COMPUTER);
 
@@ -50,7 +50,7 @@ public class PlayerFactoryTest {
     }
 
     @Test
-    public void itCreateARandomPlayerAndRandomPlayer() {
+    public void itCreatesARandomPlayerAndRandomPlayer() {
         PlayerFactory playerFactory = new PlayerFactory(null, null);
         Player[] players = playerFactory.getPlayers(GameTypes.RANDOM_VS_RANDOM);
 
@@ -61,7 +61,7 @@ public class PlayerFactoryTest {
     }
 
     @Test
-    public void itCreateARandomPlayerAndHumanPlayer() {
+    public void itCreatesARandomPlayerAndHumanPlayer() {
         PlayerFactory playerFactory = new PlayerFactory(null, null);
         Player[] players = playerFactory.getPlayers(GameTypes.RANDOM_VS_HUMAN);
 
