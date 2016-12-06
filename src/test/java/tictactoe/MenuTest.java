@@ -33,7 +33,7 @@ public class MenuTest {
     public void displayMessageForTypeGame() {
         initialisationMenuInput("1\n");
         menu.getGameType();
-        assertTrue(out.toString().contains("What kind of game do you want to play?"));
+        assertTrue(out.toString().contains("What type of game do you want to play?"));
     }
 
     @Test

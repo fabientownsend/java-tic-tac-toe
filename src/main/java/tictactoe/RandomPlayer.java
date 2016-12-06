@@ -11,8 +11,8 @@ public class RandomPlayer implements Player {
         this.mark = mark;
     }
     public final int nextMove() {
-        int index = new Random().nextInt(board.freePosition().size());
-        return board.freePosition().get(index);
+        int index = new Random().nextInt(board.freePositions().size());
+        return board.freePositions().get(index);
     }
 
     public MarksEnum getMark() {

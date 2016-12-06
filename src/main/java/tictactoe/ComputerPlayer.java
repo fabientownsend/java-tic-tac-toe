@@ -24,7 +24,7 @@ public class ComputerPlayer implements Player {
         int beta = positiveInfinity;
         int depth = 40;
 
-        for (Integer position : board.freePosition()) {
+        for (Integer position : board.freePositions()) {
             int valueMove = evaluateMove(board, this.mark, alpha, beta, position, depth, System.nanoTime());
 
             if (valueMove > bestMoveEvaluated) {
@@ -53,8 +53,8 @@ public class ComputerPlayer implements Player {
     }
 
     private int randomMove() {
-        int index = new Random().nextInt(board.freePosition().size());
-        return board.freePosition().get(index);
+        int index = new Random().nextInt(board.freePositions().size());
+        return board.freePositions().get(index);
     }
 
     private final double LIMIT_SECONDS_FOUND_MOVE = 0.1;
@@ -94,7 +94,7 @@ public class ComputerPlayer implements Player {
         if (--depth == 0) {
             return Result.WIN.value;
         }
-        for (Integer position : board.freePosition()) {
+        for (Integer position : board.freePositions()) {
             int valuePosition = evaluateMove(board, oppositePlayer(currentMark), alpha, beta, position, depth, startTime);
             maxValue = Math.max(valuePosition, maxValue);
             alpha = Math.max(alpha, maxValue);
@@ -113,7 +113,7 @@ public class ComputerPlayer implements Player {
         if (--depth == 0) {
             return Result.LOST.value;
         }
-        for (Integer position : board.freePosition()) {
+        for (Integer position : board.freePositions()) {
             int valuePosition = evaluateMove(board, oppositePlayer(currentMark), alpha, beta, position, depth, startTime);
             minValue = Math.min(valuePosition, minValue);
             beta = Math.min(beta, minValue);

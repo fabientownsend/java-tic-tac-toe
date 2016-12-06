@@ -16,45 +16,48 @@ public class Menu {
     }
 
     public GameTypes getGameType() {
-        io.write(getMenuGamesTypes());
+        io.write(getMenuGameTypes());
         int indexGameTypeSelected = getValueBetween(0, GameTypes.values().length);
         return GameTypes.values()[indexGameTypeSelected];
     }
 
-    private String getMenuGamesTypes() {
-        int idGameType = 0;
-        StringBuilder menuGamesTypes = new StringBuilder();
-        menuGamesTypes.append("What kind of game do you want to play?\n");
-
-        for (GameTypes gameType : GameTypes.values()) {
-            menuGamesTypes.append(idGameType + " - " + gameType.toString() + "\n");
-            idGameType++;
-        }
-
-        return menuGamesTypes.toString();
+    private String getMenuGameTypes() {
+        return "What type of game do you want to play?\n" + gameTypesList();
     }
 
-    private int getValueBetween(int sizeMin, int sizeMax) {
-        int defaultValue = sizeMin;
-        int integerValue = getInteger(defaultValue);
+    private String gameTypesList() {
+        int indexGameType = 0;
+        StringBuilder listGameTypes = new StringBuilder();
 
-        if (integerValue > sizeMax || integerValue < sizeMin) {
-            io.write("Select value between: " + sizeMin + " and " + sizeMax);
-            return getBoardSize();
+        for (GameTypes gameType : GameTypes.values()) {
+            listGameTypes.append(indexGameType + " - " + gameType.toString() + "\n");
+            indexGameType++;
+        }
+
+        return listGameTypes.toString();
+    }
+
+    private int getValueBetween(int min, int max) {
+        int defaultValue = min;
+        int value = getInteger(defaultValue);
+
+        if (value >= min && value <= max) {
+            return value;
         } else {
-            return integerValue;
+            io.write("Select value between: " + min + " and " + max + "\n");
+            return getBoardSize();
         }
     }
 
     private int getInteger(int defaultValue) {
-        String value = io.read();
+        String userInput = io.read();
 
-        if (value.equals("")) {
+        if (userInput.equals("")) {
             return defaultValue;
         }
 
         try {
-            return Integer.parseInt(value);
+            return Integer.parseInt(userInput);
         } catch (NumberFormatException e) {
             io.write("The value must be an integer");
             return getInteger(defaultValue);

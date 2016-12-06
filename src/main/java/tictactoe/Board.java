@@ -31,7 +31,7 @@ public class Board {
         return position % size;
     }
 
-    public final MarksEnum[][] getContent() {
+    public MarksEnum[][] getContent() {
         return  board;
     }
 
@@ -39,7 +39,7 @@ public class Board {
         return isFull() && !win(MarksEnum.CROSS) && !win(MarksEnum.ROUND);
     }
 
-    public final ArrayList<Integer> freePosition() {
+    public ArrayList<Integer> freePositions() {
         ArrayList<Integer> positions = new ArrayList<>();
         int id = 0;
 
