@@ -8,7 +8,7 @@ public class BoardHelper {
                 board.putMark(MarksEnum.CROSS, i);
             }
             if (stringBoard.charAt(i) == 'O') {
-                board.putMark(MarksEnum.ROUND, i);
+                board.putMark(MarksEnum.NOUGHT, i);
             }
         }
         return board;
@@ -20,7 +20,7 @@ public class BoardHelper {
                 board.putMark(MarksEnum.CROSS, i);
             }
             if (stringBoard.charAt(i) == 'O') {
-                board.putMark(MarksEnum.ROUND, i);
+                board.putMark(MarksEnum.NOUGHT, i);
             }
         }
         return board;

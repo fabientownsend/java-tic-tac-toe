@@ -13,6 +13,8 @@ public class GamePlay {
     private final String BETWEEN = "Move should be between ";
     private final String AND = " and ";
     private final String POSITION_NOT_FREE = "The position isn't free";
+    private final String CROSS = "X";
+    private final String NOUGHT = "O";
     private final int MIN_BOARD = 0;
     private int positionMax = 8;
 
@@ -21,7 +23,7 @@ public class GamePlay {
         this.boardConverter = new BoardConverter();
         this.io = io;
         this.playerOne = new CommandLinePlayer(io, MarksEnum.CROSS);
-        this.playerTwo = new CommandLinePlayer(io, MarksEnum.ROUND);
+        this.playerTwo = new CommandLinePlayer(io, MarksEnum.NOUGHT);
         this.currentPlayer = this.playerOne;
     }
 
@@ -91,9 +93,9 @@ public class GamePlay {
 
     private String convertMarkToString() {
         if (currentPlayer.getMark() == MarksEnum.CROSS) {
-            return "X";
+            return CROSS;
         } else {
-            return "O";
+            return NOUGHT;
         }
     }
 

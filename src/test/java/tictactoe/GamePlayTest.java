@@ -27,7 +27,7 @@ public class GamePlayTest {
         initialisationFakeIO("-1\n1\n3\n2\n4\n0\n");
         Board board = new Board(3);
         Player player_1 = new CommandLinePlayer(fakeCommandLine, MarksEnum.CROSS);
-        Player player_2 = new CommandLinePlayer(fakeCommandLine, MarksEnum.ROUND);
+        Player player_2 = new CommandLinePlayer(fakeCommandLine, MarksEnum.NOUGHT);
         this.game = new GamePlay(fakeCommandLine, board, player_1, player_2);
         game.play();
 
@@ -39,7 +39,7 @@ public class GamePlayTest {
         initialisationFakeIO("18\n1\n3\n2\n4\n0\n");
         Board board = new Board(3);
         Player player_1 = new CommandLinePlayer(fakeCommandLine, MarksEnum.CROSS);
-        Player player_2 = new CommandLinePlayer(fakeCommandLine, MarksEnum.ROUND);
+        Player player_2 = new CommandLinePlayer(fakeCommandLine, MarksEnum.NOUGHT);
         this.game = new GamePlay(fakeCommandLine, board, player_1, player_2);
         game.play();
 
@@ -51,7 +51,7 @@ public class GamePlayTest {
         initialisationFakeIO("4\n0\n3\n1\n5\nn");
         Board board = new Board(3);
         Player player_1 = new ComputerPlayer(MarksEnum.CROSS, board);
-        Player player_2 = new ComputerPlayer(MarksEnum.ROUND, board);
+        Player player_2 = new ComputerPlayer(MarksEnum.NOUGHT, board);
         this.game = new GamePlay(fakeCommandLine, board, player_1, player_2);
         game.play();
 
@@ -63,7 +63,7 @@ public class GamePlayTest {
         initialisationFakeIO("");
         Board board = new Board(3);
         Player player_1 = new ComputerPlayer(MarksEnum.CROSS, board);
-        Player player_2 = new ComputerPlayer(MarksEnum.ROUND, board);
+        Player player_2 = new ComputerPlayer(MarksEnum.NOUGHT, board);
         this.game = new GamePlay(fakeCommandLine, board, player_1, player_2);
         game.play();
     }
@@ -73,7 +73,7 @@ public class GamePlayTest {
         initialisationFakeIO("4\n0\n3\n1\n5\nn");
         Board board = new Board(4);
         Player player_1 = new ComputerPlayer(MarksEnum.CROSS, board);
-        Player player_2 = new ComputerPlayer(MarksEnum.ROUND, board);
+        Player player_2 = new ComputerPlayer(MarksEnum.NOUGHT, board);
         this.game = new GamePlay(fakeCommandLine, board, player_1, player_2);
         game.play();
         assertTrue(out.toString().contains("tie"));
@@ -84,7 +84,7 @@ public class GamePlayTest {
         initialisationFakeIO("");
         Board board = new Board(4);
         Player player_1 = new ComputerPlayer(MarksEnum.CROSS, board);
-        Player player_2 = new ComputerPlayer(MarksEnum.ROUND, board);
+        Player player_2 = new ComputerPlayer(MarksEnum.NOUGHT, board);
         this.game = new GamePlay(fakeCommandLine, board, player_1, player_2);
         game.play();
     }
