@@ -1,6 +1,5 @@
 package tictactoe;
 
-import com.sun.jdi.connect.Connector;
 import org.junit.Before;
 import org.junit.Test;
 
