@@ -53,7 +53,7 @@ public class ComputerPlayer implements Player {
     }
 
     private int randomMove() {
-        int index = new Random().nextInt(board.freePositions().size());
+        int index = new Random().nextInt(board.getNumberOfFreePositions());
         return board.freePositions().get(index);
     }
 
