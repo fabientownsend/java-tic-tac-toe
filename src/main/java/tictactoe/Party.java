@@ -1,6 +1,6 @@
 package tictactoe;
 
-public class GamePlay {
+public class Party {
     private BoardConverter boardConverter;
     private Board board;
     private IO io;
@@ -18,7 +18,7 @@ public class GamePlay {
     private final int MIN_BOARD = 0;
     private int positionMax = 8;
 
-    public GamePlay(IO io, Board board, Player playerOne, Player playerTwo) {
+    public Party(IO io, Board board, Player playerOne, Player playerTwo) {
         this.board = board;
         this.boardConverter = new BoardConverter();
         this.io = io;
