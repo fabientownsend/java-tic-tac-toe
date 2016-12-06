@@ -32,7 +32,7 @@ public class Board {
     }
 
     public MarksEnum[][] getContent() {
-        return  board;
+        return  board.clone();
     }
 
     public boolean tie() {
