@@ -136,7 +136,7 @@ public class ComputerPlayer implements Player {
 
     private MarksEnum oppositePlayer(MarksEnum mark) {
         if (mark == MarksEnum.CROSS) {
-            return MarksEnum.ROUND;
+            return MarksEnum.NOUGHT;
         } else {
             return MarksEnum.CROSS;
         }

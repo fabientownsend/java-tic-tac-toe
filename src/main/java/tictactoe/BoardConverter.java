@@ -32,12 +32,12 @@ public class BoardConverter {
     }
 
     private final String CROSS = "X";
-    private final String ROUND = "O";
+    private final String NOUGHT = "O";
     private String correctMark(MarksEnum mark, int idSpot) {
         if (mark == MarksEnum.CROSS) {
             return CROSS;
-        } else if (mark == MarksEnum.ROUND) {
-            return ROUND;
+        } else if (mark == MarksEnum.NOUGHT) {
+            return NOUGHT;
         } else {
             return String.valueOf(idSpot);
         }

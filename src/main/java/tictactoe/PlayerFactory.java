@@ -28,37 +28,37 @@ public class PlayerFactory {
 
     private Player[] createHumanVsHuman() {
         players[0] = new CommandLinePlayer(io, MarksEnum.CROSS);
-        players[1] = new CommandLinePlayer(io, MarksEnum.ROUND);
+        players[1] = new CommandLinePlayer(io, MarksEnum.NOUGHT);
         return players;
     }
 
     private Player[] createHumanVsComputer() {
         players[0] = new CommandLinePlayer(io, MarksEnum.CROSS);
-        players[1] = new ComputerPlayer(MarksEnum.ROUND, board);
+        players[1] = new ComputerPlayer(MarksEnum.NOUGHT, board);
         return players;
     }
 
     private Player[] createComputerVsComputer() {
         players[0] = new ComputerPlayer(MarksEnum.CROSS, board);
-        players[1] = new ComputerPlayer(MarksEnum.ROUND, board);
+        players[1] = new ComputerPlayer(MarksEnum.NOUGHT, board);
         return players;
     }
 
     private Player[] createRandomVsComputer() {
         players[0] = new RandomPlayer(MarksEnum.CROSS, board);
-        players[1] = new ComputerPlayer(MarksEnum.ROUND, board);
+        players[1] = new ComputerPlayer(MarksEnum.NOUGHT, board);
         return players;
     }
 
     private Player[] createRandomVsHuman() {
         players[0] = new RandomPlayer(MarksEnum.CROSS, board);
-        players[1] = new CommandLinePlayer(io, MarksEnum.ROUND);
+        players[1] = new CommandLinePlayer(io, MarksEnum.NOUGHT);
         return players;
     }
 
     private Player[] createRandomVsRandom() {
         players[0] = new RandomPlayer(MarksEnum.CROSS, board);
-        players[1] = new RandomPlayer(MarksEnum.ROUND, board);
+        players[1] = new RandomPlayer(MarksEnum.NOUGHT, board);
         return players;
     }
 

@@ -36,7 +36,7 @@ public class Board {
     }
 
     public boolean tie() {
-        return isFull() && !win(MarksEnum.CROSS) && !win(MarksEnum.ROUND);
+        return isFull() && !win(MarksEnum.CROSS) && !win(MarksEnum.NOUGHT);
     }
 
     public ArrayList<Integer> freePositions() {
@@ -45,7 +45,7 @@ public class Board {
 
         for(int row = 0; row < size; row++){
             for(int column = 0; column < size; column++) {
-                if (board[row][column] != MarksEnum.CROSS && board[row][column] != MarksEnum.ROUND) {
+                if (board[row][column] != MarksEnum.CROSS && board[row][column] != MarksEnum.NOUGHT) {
                     positions.add(id);
                 }
                 id++;
@@ -61,13 +61,13 @@ public class Board {
 
     public boolean isVacantAt(int position) {
         return board[getRow(position)][getColumn(position)] != MarksEnum.CROSS
-        && board[getRow(position)][getColumn(position)] != MarksEnum.ROUND;
+        && board[getRow(position)][getColumn(position)] != MarksEnum.NOUGHT;
     }
 
     private boolean isFull() {
         for (MarksEnum[] columns : board) {
             for (MarksEnum mark : columns) {
-                if (mark != MarksEnum.CROSS && mark != MarksEnum.ROUND) {
+                if (mark != MarksEnum.CROSS && mark != MarksEnum.NOUGHT) {
                     return false;
                 }
             }
