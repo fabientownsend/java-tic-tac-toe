@@ -48,16 +48,12 @@ public class GamePlay {
         if (move < min || move > max) {
             io.write(BETWEEN + min + AND + max);
             return getMoveBetween(min, max);
-        } else if (!isFree(move)) {
+        } else if (!board.isVacantAt(move)) {
             io.write(POSITION_NOT_FREE);
             return getMoveBetween(min, max);
         }
 
         return move;
-    }
-
-    private boolean isFree(int move) {
-        return this.board.freePositions().contains(move);
     }
 
     private void displayCurrentParty() {

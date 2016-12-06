@@ -59,6 +59,11 @@ public class Board {
         return freePositions().size();
     }
 
+    public boolean isVacantAt(int position) {
+        return board[getRow(position)][getColumn(position)] != MarksEnum.CROSS
+        && board[getRow(position)][getColumn(position)] != MarksEnum.ROUND;
+    }
+
     private boolean isFull() {
         for (MarksEnum[] columns : board) {
             for (MarksEnum mark : columns) {
