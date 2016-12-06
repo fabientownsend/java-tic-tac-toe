@@ -40,6 +40,18 @@ public class GamePlayTest {
     }
 
     @Test
+    public void displayErrorMessageWhenSpotAlreadyUsed() {
+        initialisationFakeIO("1\n1\n3\n2\n4\n0\n");
+        Board board = new Board(3);
+        Player player_1 = new CommandLinePlayer(fakeCommandLine, MarksEnum.CROSS);
+        Player player_2 = new CommandLinePlayer(fakeCommandLine, MarksEnum.NOUGHT);
+        this.game = new GamePlay(fakeCommandLine, board, player_1, player_2);
+        game.play();
+
+        assertThat(out.toString()).contains("The position isn't free");
+    }
+
+    @Test
     public void computerCantBeatComputerOnThreeByThreeBoard() {
         initialisationFakeIO("4\n0\n3\n1\n5\nn");
         Board board = new Board(3);
