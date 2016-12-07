@@ -16,7 +16,7 @@ public class Party {
     private final String CROSS = "X";
     private final String NOUGHT = "O";
     private final int MIN_BOARD = 0;
-    private int positionMax = 8;
+    private int positionMax;
 
     public Party(IO io, Board board, Player playerOne, Player playerTwo) {
         this.board = board;
