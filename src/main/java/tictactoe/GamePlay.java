@@ -18,15 +18,6 @@ public class GamePlay {
     private final int MIN_BOARD = 0;
     private int positionMax = 8;
 
-    public GamePlay(IO io, Board board) {
-        this.board = board;
-        this.boardConverter = new BoardConverter();
-        this.io = io;
-        this.playerOne = new CommandLinePlayer(io, MarksEnum.CROSS);
-        this.playerTwo = new CommandLinePlayer(io, MarksEnum.NOUGHT);
-        this.currentPlayer = this.playerOne;
-    }
-
     public GamePlay(IO io, Board board, Player playerOne, Player playerTwo) {
         this.board = board;
         this.boardConverter = new BoardConverter();
