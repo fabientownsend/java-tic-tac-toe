@@ -6,9 +6,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class PartyCreatorTest {
     @Test
-    public void itCreatesAParty() {
+    public void itCreatesAParties() {
         PartyCreator partyCreator = new PartyCreator();
-        Party party = partyCreator.newParty(null, 3, GameTypes.COMPUTER_VS_COMPUTER);
-        assertThat(party).isInstanceOf(Party.class);
+        IO unusedIo = null;
+        Party party = partyCreator.newParty(unusedIo, 3, GameTypes.COMPUTER_VS_COMPUTER);
+        assertThat(party).isNotNull();
     }
 }
