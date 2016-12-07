@@ -81,6 +81,7 @@ public class PartyTest {
         Player player_2 = new ComputerPlayer(MarksEnum.NOUGHT, board);
         game = new Party(fakeCommandLine, board, player_1, player_2);
         game.play();
+
         assertTrue(out.toString().contains("tie"));
     }
 
