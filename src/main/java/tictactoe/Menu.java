@@ -26,7 +26,7 @@ public class Menu {
 
     public boolean replay() {
         io.write(REPLAY_REQUEST);
-        String answer = io.read();
+        String answer = io.read().toLowerCase();
 
         if (answer.equals(YES)) {
             return true;
