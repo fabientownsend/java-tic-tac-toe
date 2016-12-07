@@ -21,11 +21,7 @@ public class PartyTest {
         Board board = new Board(3);
         Player player_1 = new CommandLinePlayer(fakeCommandLine, MarksEnum.CROSS);
         Player player_2 = new CommandLinePlayer(fakeCommandLine, MarksEnum.NOUGHT);
-<<<<<<< 3d63cc42b370248dca50c02b8fbc2923bcc3f0dd:src/test/java/tictactoe/PartyTest.java
-        this.game = new Party(fakeCommandLine, board, player_1, player_2);
-=======
-        this.game = new GamePlay(fakeCommandLine, board, player_1, player_2);
->>>>>>> change round for nought:src/test/java/tictactoe/GamePlayTest.java
+        game = new Party(fakeCommandLine, board, player_1, player_2);
         game.play();
 
         assertThat(out.toString()).contains("Move should be between 0 and 8");
@@ -37,11 +33,7 @@ public class PartyTest {
         Board board = new Board(3);
         Player player_1 = new CommandLinePlayer(fakeCommandLine, MarksEnum.CROSS);
         Player player_2 = new CommandLinePlayer(fakeCommandLine, MarksEnum.NOUGHT);
-<<<<<<< 3d63cc42b370248dca50c02b8fbc2923bcc3f0dd:src/test/java/tictactoe/PartyTest.java
-        this.game = new Party(fakeCommandLine, board, player_1, player_2);
-=======
-        this.game = new GamePlay(fakeCommandLine, board, player_1, player_2);
->>>>>>> change round for nought:src/test/java/tictactoe/GamePlayTest.java
+        game = new Party(fakeCommandLine, board, player_1, player_2);
         game.play();
 
         assertThat(out.toString()).contains("Move should be between 0 and 8");
@@ -53,7 +45,7 @@ public class PartyTest {
         Board board = new Board(3);
         Player player_1 = new CommandLinePlayer(fakeCommandLine, MarksEnum.CROSS);
         Player player_2 = new CommandLinePlayer(fakeCommandLine, MarksEnum.NOUGHT);
-        this.game = new Party(fakeCommandLine, board, player_1, player_2);
+        game = new Party(fakeCommandLine, board, player_1, player_2);
         game.play();
 
         assertThat(out.toString()).contains("The position isn't free");
@@ -65,11 +57,7 @@ public class PartyTest {
         Board board = new Board(3);
         Player player_1 = new ComputerPlayer(MarksEnum.CROSS, board);
         Player player_2 = new ComputerPlayer(MarksEnum.NOUGHT, board);
-<<<<<<< 3d63cc42b370248dca50c02b8fbc2923bcc3f0dd:src/test/java/tictactoe/PartyTest.java
-        this.game = new Party(fakeCommandLine, board, player_1, player_2);
-=======
-        this.game = new GamePlay(fakeCommandLine, board, player_1, player_2);
->>>>>>> change round for nought:src/test/java/tictactoe/GamePlayTest.java
+        game = new Party(fakeCommandLine, board, player_1, player_2);
         game.play();
 
         assertThat(out.toString()).contains("tie");
@@ -81,11 +69,7 @@ public class PartyTest {
         Board board = new Board(3);
         Player player_1 = new ComputerPlayer(MarksEnum.CROSS, board);
         Player player_2 = new ComputerPlayer(MarksEnum.NOUGHT, board);
-<<<<<<< 3d63cc42b370248dca50c02b8fbc2923bcc3f0dd:src/test/java/tictactoe/PartyTest.java
-        this.game = new Party(fakeCommandLine, board, player_1, player_2);
-=======
-        this.game = new GamePlay(fakeCommandLine, board, player_1, player_2);
->>>>>>> change round for nought:src/test/java/tictactoe/GamePlayTest.java
+        game = new Party(fakeCommandLine, board, player_1, player_2);
         game.play();
     }
 
@@ -95,7 +79,7 @@ public class PartyTest {
         Board board = new Board(4);
         Player player_1 = new ComputerPlayer(MarksEnum.CROSS, board);
         Player player_2 = new ComputerPlayer(MarksEnum.NOUGHT, board);
-        this.game = new Party(fakeCommandLine, board, player_1, player_2);
+        game = new Party(fakeCommandLine, board, player_1, player_2);
         game.play();
         assertTrue(out.toString().contains("tie"));
     }
@@ -106,7 +90,7 @@ public class PartyTest {
         Board board = new Board(4);
         Player player_1 = new ComputerPlayer(MarksEnum.CROSS, board);
         Player player_2 = new ComputerPlayer(MarksEnum.NOUGHT, board);
-        this.game = new Party(fakeCommandLine, board, player_1, player_2);
+        game = new Party(fakeCommandLine, board, player_1, player_2);
         game.play();
     }
 
@@ -116,7 +100,7 @@ public class PartyTest {
         Board board = BoardHelper.createBoard("XXX------");
         Player player_1 = new ComputerPlayer(MarksEnum.CROSS, board);
         Player player_2 = new ComputerPlayer(MarksEnum.NOUGHT, board);
-        this.game = new Party(fakeCommandLine, board, player_1, player_2);
+        game = new Party(fakeCommandLine, board, player_1, player_2);
         game.play();
 
         assertThat(out.toString()).contains("X won the party");
@@ -128,7 +112,7 @@ public class PartyTest {
         Board board = BoardHelper.createBoard("OOO------");
         Player player_1 = new ComputerPlayer(MarksEnum.CROSS, board);
         Player player_2 = new ComputerPlayer(MarksEnum.NOUGHT, board);
-        this.game = new Party(fakeCommandLine, board, player_1, player_2);
+        game = new Party(fakeCommandLine, board, player_1, player_2);
         game.play();
 
         assertThat(out.toString()).contains("O won the party");
