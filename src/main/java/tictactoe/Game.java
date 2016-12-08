@@ -9,6 +9,11 @@ public class Game {
         this.menu = new Menu(io);
     }
 
+    public Game(IO io, PartyCreator partyCreator) {
+        this.io = io;
+        this.menu = new Menu(io);
+    }
+
     public void start() {
         do {
             int boardSize = menu.getBoardSize();

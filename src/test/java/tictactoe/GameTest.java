@@ -7,7 +7,7 @@ import java.io.PrintWriter;
 import java.io.StringReader;
 import java.io.StringWriter;
 
-import static org.assertj.core.api.Java6Assertions.*;
+import static org.assertj.core.api.Java6Assertions.assertThat;
 
 public class GameTest {
     private StringWriter out;
@@ -16,25 +16,31 @@ public class GameTest {
     @Test
     public void runOneParty() {
         initialisationFakeIO("3\n2\nno\n");
-        Game game = new Game(fakeCommandLine);
+        PartyCreator partyCreatorSpy = new PartyCreator();
+        Game game = new Game(fakeCommandLine, partyCreatorSpy);
         game.start();
-        assertThat(out.toString()).contains("Do you want to replay? yes/no");
+
+        assertThat(partyCreatorSpy.getTotalPartyPlayed()).isEqualTo(1);
     }
 
     @Test
-    public void askTwiceWhenReplayAnswerWrong() {
+    public void askToReplayUntilValidAnswer() {
         initialisationFakeIO("3\n2\nrandomText\nno\n");
-        Game game = new Game(fakeCommandLine);
+        PartyCreator pc = new PartyCreator();
+        Game game = new Game(fakeCommandLine, pc);
         game.start();
-        assertThat(out.toString()).contains("Do you want to replay? yes/no");
+
+        assertThat(pc.getTotalPartyPlayed()).isEqualTo(1);
     }
 
     @Test
     public void runTwoParty() {
         initialisationFakeIO("3\n2\nyes\n3\n2\nno\n");
-        Game game = new Game(fakeCommandLine);
+        PartyCreator pc = new PartyCreator();
+        Game game = new Game(fakeCommandLine, pc);
         game.start();
-        assertThat(out.toString()).contains("Do you want to replay? yes/no");
+
+        assertThat(pc.getTotalPartyPlayed()).isEqualTo(2);
     }
 
     private void initialisationFakeIO(String text) {
