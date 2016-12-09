@@ -3,10 +3,10 @@ package tictactoe;
 import java.util.Random;
 
 public class RandomPlayer implements Player {
-    private MarksEnum mark;
+    private Marks mark;
     private Board board;
 
-    public RandomPlayer(MarksEnum mark, Board board) {
+    public RandomPlayer(Marks mark, Board board) {
         this.board = board;
         this.mark = mark;
     }
@@ -15,7 +15,7 @@ public class RandomPlayer implements Player {
         return board.freePositions().get(index);
     }
 
-    public MarksEnum getMark() {
+    public Marks getMark() {
         return mark;
     }
 }

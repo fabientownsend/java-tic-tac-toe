@@ -2,10 +2,10 @@ package tictactoe;
 
 public class CommandLinePlayer implements Player {
     private IO io;
-    private final MarksEnum mark;
+    private final Marks mark;
     private final String MUST_BE_INTEGER = "It must be an integer";
 
-    public CommandLinePlayer(IO io, MarksEnum mark) {
+    public CommandLinePlayer(IO io, Marks mark) {
         this.io = io;
         this.mark = mark;
     }
@@ -19,7 +19,7 @@ public class CommandLinePlayer implements Player {
         }
     }
 
-    public MarksEnum getMark() {
+    public Marks getMark() {
         return mark;
     }
 }

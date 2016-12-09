@@ -3,7 +3,7 @@ package tictactoe;
 import java.util.ArrayList;
 
 public class Board {
-    private MarksEnum[][] board;
+    private Marks[][] board;
     private int size = 3;
 
     public Board() {
@@ -11,11 +11,11 @@ public class Board {
     }
 
     public Board(int size) {
-        this.board = new MarksEnum[size][size];
+        this.board = new Marks[size][size];
         this.size = size;
     }
 
-    public void putMark(MarksEnum mark, int position) {
+    public void putMark(Marks mark, int position) {
         board[getRow(position)][getColumn(position)] = mark;
     }
 
@@ -31,12 +31,12 @@ public class Board {
         return position % size;
     }
 
-    public MarksEnum[][] getContent() {
+    public Marks[][] getContent() {
         return  board.clone();
     }
 
     public boolean tie() {
-        return isFull() && !win(MarksEnum.CROSS) && !win(MarksEnum.NOUGHT);
+        return isFull() && !win(Marks.CROSS) && !win(Marks.NOUGHT);
     }
 
     public ArrayList<Integer> freePositions() {
@@ -45,7 +45,7 @@ public class Board {
 
         for(int row = 0; row < size; row++){
             for(int column = 0; column < size; column++) {
-                if (board[row][column] != MarksEnum.CROSS && board[row][column] != MarksEnum.NOUGHT) {
+                if (board[row][column] != Marks.CROSS && board[row][column] != Marks.NOUGHT) {
                     positions.add(id);
                 }
                 id++;
@@ -60,14 +60,14 @@ public class Board {
     }
 
     public boolean isVacantAt(int position) {
-        return board[getRow(position)][getColumn(position)] != MarksEnum.CROSS
-        && board[getRow(position)][getColumn(position)] != MarksEnum.NOUGHT;
+        return board[getRow(position)][getColumn(position)] != Marks.CROSS
+        && board[getRow(position)][getColumn(position)] != Marks.NOUGHT;
     }
 
     private boolean isFull() {
-        for (MarksEnum[] columns : board) {
-            for (MarksEnum mark : columns) {
-                if (mark != MarksEnum.CROSS && mark != MarksEnum.NOUGHT) {
+        for (Marks[] columns : board) {
+            for (Marks mark : columns) {
+                if (mark != Marks.CROSS && mark != Marks.NOUGHT) {
                     return false;
                 }
             }
@@ -76,15 +76,15 @@ public class Board {
         return true;
     }
 
-    public boolean win(MarksEnum mark) {
+    public boolean win(Marks mark) {
         return winningDiagonals(mark) || winningRows(mark) || winningColumns(mark);
     }
 
-    private boolean winningDiagonals(MarksEnum mark) {
+    private boolean winningDiagonals(Marks mark) {
         return winningDiagonal(mark) || winningDiagonalBackward(mark);
     }
 
-    private boolean winningColumns(MarksEnum mark) {
+    private boolean winningColumns(Marks mark) {
         for (int i = 0; i < size; i ++) {
             if (winningColumn(i, mark)) {
                 return true;
@@ -94,7 +94,7 @@ public class Board {
         return false;
     }
 
-    private boolean winningRows(MarksEnum mark) {
+    private boolean winningRows(Marks mark) {
         for (int i = 0; i < size; i++) {
             if (winningRow(i, mark)) {
                 return true;
@@ -104,7 +104,7 @@ public class Board {
         return false;
     }
 
-    private boolean winningRow(int rowIndex, MarksEnum mark) {
+    private boolean winningRow(int rowIndex, Marks mark) {
         for(int i = 0; i < size; i++) {
             if (board[rowIndex][i] != mark) {
                 return false;
@@ -114,7 +114,7 @@ public class Board {
         return true;
     }
 
-    private boolean winningColumn(int columnIndex, MarksEnum mark) {
+    private boolean winningColumn(int columnIndex, Marks mark) {
         for(int i = 0; i < size; i++) {
             if (board[i][columnIndex] != mark) {
                 return false;
@@ -124,7 +124,7 @@ public class Board {
         return true;
     }
 
-    private boolean winningDiagonal(MarksEnum mark) {
+    private boolean winningDiagonal(Marks mark) {
         for (int i = 0; i < size; i++) {
             if (board[i][i] != mark) {
                 return false;
@@ -134,7 +134,7 @@ public class Board {
         return true;
     }
 
-    private boolean winningDiagonalBackward(MarksEnum mark) {
+    private boolean winningDiagonalBackward(Marks mark) {
         for (int i = 0; i < size; i++) {
             if (board[i][size - i - 1] != mark) {
                 return false;

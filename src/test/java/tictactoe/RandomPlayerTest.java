@@ -13,7 +13,7 @@ public class RandomPlayerTest {
     @Repeat(times = 100)
     public void getARandomMoveFromMoveAvailable2() {
         Board board = BoardHelper.createBoard("XOXXOX---");
-        RandomPlayer randomPlayer = new RandomPlayer(MarksEnum.CROSS, board);
+        RandomPlayer randomPlayer = new RandomPlayer(Marks.CROSS, board);
 
         assertThat(randomPlayer.nextMove()).isIn(board.freePositions());
     }

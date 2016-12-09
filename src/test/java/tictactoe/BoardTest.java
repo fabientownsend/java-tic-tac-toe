@@ -19,49 +19,49 @@ public class BoardTest {
     public void crossPlayerWinRowOne() {
         BoardHelper.update(board, "XXX------");
 
-        assertThat(board.win(MarksEnum.CROSS)).isTrue();
+        assertThat(board.win(Marks.CROSS)).isTrue();
     }
 
     @Test
     public void crossPlayerWinRowTwo() {
         BoardHelper.update(board, "---XXX---");
 
-        assertThat(board.win(MarksEnum.CROSS)).isTrue();
+        assertThat(board.win(Marks.CROSS)).isTrue();
     }
 
     @Test
     public void crossPlayerWinRowThree() {
         BoardHelper.update(board, "------XXX");
 
-        assertThat(board.win(MarksEnum.CROSS)).isTrue();
+        assertThat(board.win(Marks.CROSS)).isTrue();
     }
 
     @Test
     public void crossPlayerWinColumnOne() {
         BoardHelper.update(board, "X--X--X--");
 
-        assertThat(board.win(MarksEnum.CROSS)).isTrue();
+        assertThat(board.win(Marks.CROSS)).isTrue();
     }
 
     @Test
     public void crossPlayerWinColumnTwo() {
         BoardHelper.update(board, "-X--X--X-");
 
-        assertThat(board.win(MarksEnum.CROSS)).isTrue();
+        assertThat(board.win(Marks.CROSS)).isTrue();
     }
 
     @Test
     public void crossPlayerWinColumnThree() {
         BoardHelper.update(board, "--X--X--X");
 
-        assertThat(board.win(MarksEnum.CROSS)).isTrue();
+        assertThat(board.win(Marks.CROSS)).isTrue();
     }
 
     @Test
     public void noPlayerWin() {
         BoardHelper.update(board, "XOX------");
 
-        assertThat(board.win(MarksEnum.CROSS)).isFalse();
+        assertThat(board.win(Marks.CROSS)).isFalse();
     }
 
     @Test
@@ -75,14 +75,14 @@ public class BoardTest {
     public void crossPlayerWinDiagonnalOne() {
         BoardHelper.update(board, "X---X---X");
 
-        assertThat(board.win(MarksEnum.CROSS)).isTrue();
+        assertThat(board.win(Marks.CROSS)).isTrue();
     }
 
     @Test
     public void crossPlayerWinDiagonnalTwo() {
         BoardHelper.update(board, "--X-X-X--");
 
-        assertThat(board.win(MarksEnum.CROSS)).isTrue();
+        assertThat(board.win(Marks.CROSS)).isTrue();
     }
 
     @Test

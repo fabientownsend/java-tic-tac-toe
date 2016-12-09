@@ -3,17 +3,17 @@ package tictactoe;
 import java.util.Random;
 
 public class ComputerPlayer implements Player {
-    private final MarksEnum mark;
+    private final Marks mark;
     private Board board;
     private int positiveInfinity = 100;
     private int negativeInfinity = -100;
 
-    public ComputerPlayer(MarksEnum mark, Board board) {
+    public ComputerPlayer(Marks mark, Board board) {
         this.mark = mark;
         this.board = board;
     }
 
-    public final MarksEnum getMark() {
+    public final Marks getMark() {
         return this.mark;
     }
 
@@ -58,7 +58,7 @@ public class ComputerPlayer implements Player {
     }
 
     private final double LIMIT_SECONDS_FOUND_MOVE = 0.1;
-    private int alphaBetaPruning(Board board, MarksEnum currentMark, int alpha, int beta, int depth, double startTime) {
+    private int alphaBetaPruning(Board board, Marks currentMark, int alpha, int beta, int depth, double startTime) {
         if (board.win(this.mark)) {
             return Result.WIN.value;
         } else if (board.win(oppositePlayer(this.mark))) {
@@ -76,7 +76,7 @@ public class ComputerPlayer implements Player {
         return (System.nanoTime() - startTime) / 1000000000.0;
     }
 
-    private int playAgain(Board board, MarksEnum currentMark, int alpha, int beta, int depth, double startTime) {
+    private int playAgain(Board board, Marks currentMark, int alpha, int beta, int depth, double startTime) {
         if (minimizingPlayerTurn(currentMark)) {
             return minimizingPlayer(board, currentMark, alpha, beta, depth, startTime);
         } else {
@@ -84,11 +84,11 @@ public class ComputerPlayer implements Player {
         }
     }
 
-    private boolean minimizingPlayerTurn(MarksEnum currentMark) {
+    private boolean minimizingPlayerTurn(Marks currentMark) {
         return currentMark == this.mark;
     }
 
-    private int maximizingPlayer(Board board, MarksEnum currentMark, int alpha, int beta, int depth, double startTime) {
+    private int maximizingPlayer(Board board, Marks currentMark, int alpha, int beta, int depth, double startTime) {
         int maxValue = negativeInfinity;
 
         if (--depth == 0) {
@@ -107,7 +107,7 @@ public class ComputerPlayer implements Player {
         return maxValue;
     }
 
-    private int minimizingPlayer(Board board, MarksEnum currentMark, int alpha, int beta, int depth, double startTime) {
+    private int minimizingPlayer(Board board, Marks currentMark, int alpha, int beta, int depth, double startTime) {
         int minValue = positiveInfinity;
 
         if (--depth == 0) {
@@ -126,7 +126,7 @@ public class ComputerPlayer implements Player {
         return minValue;
     }
 
-    private int evaluateMove(Board board, MarksEnum mark, int alpha, int beta, Integer position, int depth, double startTime) {
+    private int evaluateMove(Board board, Marks mark, int alpha, int beta, Integer position, int depth, double startTime) {
         board.putMark(mark, position);
         int valuePosition = alphaBetaPruning(board, mark, alpha, beta, depth, startTime);
         board.removeMark(position);
@@ -134,11 +134,11 @@ public class ComputerPlayer implements Player {
         return valuePosition;
     }
 
-    private MarksEnum oppositePlayer(MarksEnum mark) {
-        if (mark == MarksEnum.CROSS) {
-            return MarksEnum.NOUGHT;
+    private Marks oppositePlayer(Marks mark) {
+        if (mark == Marks.CROSS) {
+            return Marks.NOUGHT;
         } else {
-            return MarksEnum.CROSS;
+            return Marks.CROSS;
         }
     }
 

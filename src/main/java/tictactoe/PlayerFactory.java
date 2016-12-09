@@ -27,38 +27,38 @@ public class PlayerFactory {
     }
 
     private Player[] createHumanVsHuman() {
-        players[0] = new CommandLinePlayer(io, MarksEnum.CROSS);
-        players[1] = new CommandLinePlayer(io, MarksEnum.NOUGHT);
+        players[0] = new CommandLinePlayer(io, Marks.CROSS);
+        players[1] = new CommandLinePlayer(io, Marks.NOUGHT);
         return players;
     }
 
     private Player[] createHumanVsComputer() {
-        players[0] = new CommandLinePlayer(io, MarksEnum.CROSS);
-        players[1] = new ComputerPlayer(MarksEnum.NOUGHT, board);
+        players[0] = new CommandLinePlayer(io, Marks.CROSS);
+        players[1] = new ComputerPlayer(Marks.NOUGHT, board);
         return players;
     }
 
     private Player[] createComputerVsComputer() {
-        players[0] = new ComputerPlayer(MarksEnum.CROSS, board);
-        players[1] = new ComputerPlayer(MarksEnum.NOUGHT, board);
+        players[0] = new ComputerPlayer(Marks.CROSS, board);
+        players[1] = new ComputerPlayer(Marks.NOUGHT, board);
         return players;
     }
 
     private Player[] createRandomVsComputer() {
-        players[0] = new RandomPlayer(MarksEnum.CROSS, board);
-        players[1] = new ComputerPlayer(MarksEnum.NOUGHT, board);
+        players[0] = new RandomPlayer(Marks.CROSS, board);
+        players[1] = new ComputerPlayer(Marks.NOUGHT, board);
         return players;
     }
 
     private Player[] createRandomVsHuman() {
-        players[0] = new RandomPlayer(MarksEnum.CROSS, board);
-        players[1] = new CommandLinePlayer(io, MarksEnum.NOUGHT);
+        players[0] = new RandomPlayer(Marks.CROSS, board);
+        players[1] = new CommandLinePlayer(io, Marks.NOUGHT);
         return players;
     }
 
     private Player[] createRandomVsRandom() {
-        players[0] = new RandomPlayer(MarksEnum.CROSS, board);
-        players[1] = new RandomPlayer(MarksEnum.NOUGHT, board);
+        players[0] = new RandomPlayer(Marks.CROSS, board);
+        players[1] = new RandomPlayer(Marks.NOUGHT, board);
         return players;
     }
 

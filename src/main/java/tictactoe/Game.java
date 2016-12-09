@@ -10,8 +10,7 @@ public class Game {
     }
 
     public Game(IO io, PartyCreator partyCreator) {
-        this.io = io;
-        this.menu = new Menu(io);
+        this(io);
     }
 
     public void start() {

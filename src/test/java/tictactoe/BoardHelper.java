@@ -5,10 +5,10 @@ public class BoardHelper {
         Board board = new Board(3);
         for (int i = 0; i < stringBoard.length(); i ++) {
             if (stringBoard.charAt(i) == 'X') {
-                board.putMark(MarksEnum.CROSS, i);
+                board.putMark(Marks.CROSS, i);
             }
             if (stringBoard.charAt(i) == 'O') {
-                board.putMark(MarksEnum.NOUGHT, i);
+                board.putMark(Marks.NOUGHT, i);
             }
         }
         return board;
@@ -17,10 +17,10 @@ public class BoardHelper {
     public static Board update(Board board, String stringBoard) {
         for (int i = 0; i < stringBoard.length(); i ++) {
             if (stringBoard.charAt(i) == 'X') {
-                board.putMark(MarksEnum.CROSS, i);
+                board.putMark(Marks.CROSS, i);
             }
             if (stringBoard.charAt(i) == 'O') {
-                board.putMark(MarksEnum.NOUGHT, i);
+                board.putMark(Marks.NOUGHT, i);
             }
         }
         return board;

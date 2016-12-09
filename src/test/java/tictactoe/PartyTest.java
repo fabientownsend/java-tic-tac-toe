@@ -36,8 +36,8 @@ public class PartyTest {
 
     private Party createGameWithTwoHumanPlayer(IoMock mock) {
         Board board = new Board(3);
-        Player player_1 = new CommandLinePlayer(mock.getIoMocked(), MarksEnum.CROSS);
-        Player player_2 = new CommandLinePlayer(mock.getIoMocked(), MarksEnum.NOUGHT);
+        Player player_1 = new CommandLinePlayer(mock.getIoMocked(), Marks.CROSS);
+        Player player_2 = new CommandLinePlayer(mock.getIoMocked(), Marks.NOUGHT);
         return new Party(mock.getIoMocked(), board, player_1, player_2);
     }
 
@@ -76,8 +76,8 @@ public class PartyTest {
     private Party createGameWithTwoComputerPlayers(IoMock ioMock, int boardSize) {
         ioMock.createIoMock("");
         Board board = new Board(boardSize);
-        Player player_1 = new ComputerPlayer(MarksEnum.CROSS, board);
-        Player player_2 = new ComputerPlayer(MarksEnum.NOUGHT, board);
+        Player player_1 = new ComputerPlayer(Marks.CROSS, board);
+        Player player_2 = new ComputerPlayer(Marks.NOUGHT, board);
         return new Party(ioMock.getIoMocked(), board, player_1, player_2);
     }
 
@@ -101,8 +101,8 @@ public class PartyTest {
 
     private Party createGameWithTwoComputerPlayers(IoMock ioMock, String stringBoard) {
         Board board = BoardHelper.createBoard(stringBoard);
-        Player player_1 = new ComputerPlayer(MarksEnum.CROSS, board);
-        Player player_2 = new ComputerPlayer(MarksEnum.NOUGHT, board);
+        Player player_1 = new ComputerPlayer(Marks.CROSS, board);
+        Player player_2 = new ComputerPlayer(Marks.NOUGHT, board);
         return new Party(ioMock.getIoMocked(), board, player_1, player_2);
     }
 }

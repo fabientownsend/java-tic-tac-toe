@@ -43,14 +43,14 @@ public class Menu {
 
     private String gameTypesList() {
         int indexGameType = 0;
-        StringBuilder listGameTypes = new StringBuilder();
+        String listGameTypes = "";
 
         for (GameTypes gameType : GameTypes.values()) {
-            listGameTypes.append(indexGameType + " - " + gameType.toString() + "\n");
+            listGameTypes += (indexGameType + " - " + gameType.toString() + "\n");
             indexGameType++;
         }
 
-        return listGameTypes.toString();
+        return listGameTypes;
     }
 
     private int getValueBetween(int min, int max) {

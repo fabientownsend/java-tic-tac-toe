@@ -83,7 +83,7 @@ public class Party {
     }
 
     private String convertMarkToString() {
-        if (currentPlayer.getMark() == MarksEnum.CROSS) {
+        if (currentPlayer.getMark() == Marks.CROSS) {
             return CROSS;
         } else {
             return NOUGHT;
