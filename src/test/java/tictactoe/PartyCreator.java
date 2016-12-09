@@ -2,6 +2,7 @@ package tictactoe;
 
 public class PartyCreator {
     private static int totalPartyPlayed = 0;
+
     public PartyCreator() {
         totalPartyPlayed = 0;
     }
