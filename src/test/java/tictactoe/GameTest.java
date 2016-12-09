@@ -8,7 +8,7 @@ public class GameTest {
     @Test
     public void runOneParty() {
         IoMock ioMock = new IoMock("3\n2\nno\n");
-        PartyCreator partyCreatorSpy = new PartyCreator();
+        PartyCreatorPsy partyCreatorSpy = new PartyCreatorPsy();
         Game game = new Game(ioMock.getIoMocked(), partyCreatorSpy);
         game.start();
 
@@ -18,7 +18,7 @@ public class GameTest {
     @Test
     public void askToReplayUntilValidAnswer() {
         IoMock ioMock = new IoMock("3\n2\nrandomText\nno\n");
-        PartyCreator partyCreatorSpy = new PartyCreator();
+        PartyCreatorPsy partyCreatorSpy = new PartyCreatorPsy();
         Game game = new Game(ioMock.getIoMocked(), partyCreatorSpy);
         game.start();
 
@@ -28,7 +28,7 @@ public class GameTest {
     @Test
     public void runTwoParty() {
         IoMock ioMock = new IoMock("3\n2\nyes\n3\n2\nno\n");
-        PartyCreator partyCreatorSpy = new PartyCreator();
+        PartyCreatorPsy partyCreatorSpy = new PartyCreatorPsy();
         Game game = new Game(ioMock.getIoMocked(), partyCreatorSpy);
         game.start();
 

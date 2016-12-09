@@ -1,13 +1,13 @@
 package tictactoe;
 
-public class PartyCreator {
-    private static int totalPartyPlayed = 0;
+public class PartyCreatorPsy extends PartyCreator {
+    private int totalPartyPlayed = 0;
 
-    public PartyCreator() {
+    public PartyCreatorPsy() {
         totalPartyPlayed = 0;
     }
 
-    public static Party newParty(IO io, int sizeBoard, GameTypes gameType) {
+    public Party newParty(IO io, int sizeBoard, GameTypes gameType) {
         Board board = new Board(sizeBoard);
         totalPartyPlayed++;
 

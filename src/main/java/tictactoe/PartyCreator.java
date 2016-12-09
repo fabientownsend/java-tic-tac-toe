@@ -1,7 +1,7 @@
 package tictactoe;
 
 public class PartyCreator {
-    public static Party newParty(IO io, int sizeBoard, GameTypes gameType) {
+    public Party newParty(IO io, int sizeBoard, GameTypes gameType) {
         Board board = new Board(sizeBoard);
 
         PlayerFactory playerFactory = new PlayerFactory(io, board);

@@ -9,8 +9,9 @@ public class Main {
         BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
         PrintWriter output = new PrintWriter(System.out, true);
         IO io = new CommandLine(input, output);
+        PartyCreator partyCreator = new PartyCreator();
 
-        Game game = new Game(io);
+        Game game = new Game(io, partyCreator);
         game.start();
     }
 }
