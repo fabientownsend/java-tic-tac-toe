@@ -1,7 +1,7 @@
 package tictactoe;
 
 public class Menu {
-    private final String REPLAY_REQUEST = "Do you want to replay? yes/no";
+    private final String REPLAY_REQUEST = "Do you want to replay? yes/no\n";
     private final String YES = "yes";
     private final String NO = "no";
     private IO io;
