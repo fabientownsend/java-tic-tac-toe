@@ -59,9 +59,9 @@ public class Party {
     }
 
     private void displayCurrentParty() {
-        String currentBoard = boardConverter.toString(board.getContent());
         String currentPlayerTurn = currentPlayer.getMark() + TURN;
-        io.write(currentBoard + currentPlayerTurn);
+        io.displayBoard(board.getContent());
+        io.write(currentPlayerTurn);
     }
 
     private boolean isGameOver() {
@@ -70,8 +70,8 @@ public class Party {
 
     private void displayResult() {
         String result = getResultMessage();
-        String currentBoard = boardConverter.toString(board.getContent());
-        io.write(result + currentBoard);
+        io.displayBoard(board.getContent());
+        io.write(result);
     }
 
     private String getResultMessage() {

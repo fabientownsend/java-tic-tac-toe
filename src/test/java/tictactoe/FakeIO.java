@@ -24,4 +24,8 @@ class FakeIO implements IO {
     public void write(String input) {
         output.printf(input);
     }
+
+    public void displayBoard(Marks[][] board) {
+
+    }
 }

@@ -8,6 +8,7 @@ public class CommandLine implements IO {
     private BufferedReader input;
     private PrintWriter output;
     private final String ERROR = "Error";
+    private BoardConverter boardConverter;
 
     public CommandLine(BufferedReader input, PrintWriter output) {
         this.input = input;
@@ -18,6 +19,11 @@ public class CommandLine implements IO {
         output.printf(input);
     }
 
+    public void displayBoard(Marks[][] board) {
+        this.boardConverter = new BoardConverter();
+        write(boardConverter.toString(board));
+    }
+
     public String read() {
         try {
             return input.readLine();
@@ -25,4 +31,5 @@ public class CommandLine implements IO {
             return ERROR;
         }
     }
+
 }
