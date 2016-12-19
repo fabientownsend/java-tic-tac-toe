@@ -1,4 +1,9 @@
-package tictactoe;
+package cli;
+
+import tictactoe.CommandLine;
+import tictactoe.Game;
+import tictactoe.IO;
+import tictactoe.PartyCreator;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
