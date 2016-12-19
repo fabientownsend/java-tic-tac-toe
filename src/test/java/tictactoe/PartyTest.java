@@ -36,8 +36,8 @@ public class PartyTest {
 
     private Party createGameWithTwoHumanPlayer(IoMock mock) {
         Board board = new Board(3);
-        Player player_1 = new CommandLinePlayer(mock.getIoMocked(), Marks.CROSS);
-        Player player_2 = new CommandLinePlayer(mock.getIoMocked(), Marks.NOUGHT);
+        Player player_1 = new HumanPlayer(mock.getIoMocked(), Marks.CROSS);
+        Player player_2 = new HumanPlayer(mock.getIoMocked(), Marks.NOUGHT);
         return new Party(mock.getIoMocked(), board, player_1, player_2);
     }
 

@@ -1,4 +1,6 @@
-package tictactoe;
+package cli;
+
+import tictactoe.*;
 
 public class Game {
     private IO io;
@@ -16,7 +18,7 @@ public class Game {
             int boardSize = menu.getBoardSize();
             GameTypes gameType = menu.getGameType();
 
-            partyCreator.newParty(io, boardSize, gameType).play();
+            partyCreator.newParty(io, new Board(boardSize), gameType).play();
         } while (menu.replay());
     }
 }

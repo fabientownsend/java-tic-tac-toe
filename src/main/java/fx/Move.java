@@ -4,7 +4,6 @@ import java.util.Observable;
 
 public class Move extends Observable {
     private int move = -1;
-    private boolean notStarted = true;
 
     public int getLastMove() {
         clearChanged();

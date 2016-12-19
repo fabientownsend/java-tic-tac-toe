@@ -1,4 +1,6 @@
-package tictactoe;
+package cli;
+
+import tictactoe.Marks;
 
 public class BoardConverter {
     private Marks[][] board;

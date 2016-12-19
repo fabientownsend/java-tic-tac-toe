@@ -1,7 +1,6 @@
 package tictactoe;
 
 public class Party {
-    private BoardConverter boardConverter;
     private Board board;
     private IO io;
     private Player playerOne;
@@ -20,7 +19,6 @@ public class Party {
 
     public Party(IO io, Board board, Player playerOne, Player playerTwo) {
         this.board = board;
-        this.boardConverter = new BoardConverter();
         this.io = io;
         this.playerOne = playerOne;
         this.playerTwo = playerTwo;
@@ -31,7 +29,7 @@ public class Party {
     public void play() {
         displayCurrentParty();
 
-        if (!currentPlayer.isReady() || isGameOver()) {
+        if (!currentPlayer.isReady()) {
             return;
         }
 

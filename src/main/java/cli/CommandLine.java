@@ -1,4 +1,7 @@
-package tictactoe;
+package cli;
+
+import tictactoe.IO;
+import tictactoe.Marks;
 
 import java.io.BufferedReader;
 import java.io.IOException;

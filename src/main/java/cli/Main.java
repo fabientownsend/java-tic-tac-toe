@@ -1,7 +1,5 @@
 package cli;
 
-import tictactoe.CommandLine;
-import tictactoe.Game;
 import tictactoe.IO;
 import tictactoe.PartyCreator;
 

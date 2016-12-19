@@ -7,9 +7,9 @@ public class CountingPartyCreator extends PartyCreator {
         totalPartyPlayed = 0;
     }
 
-    public Party newParty(IO io, int sizeBoard, GameTypes gameType) {
+    public Party newParty(IO io, Board board, GameTypes gameType) {
         totalPartyPlayed++;
-        return super.newParty(io, sizeBoard, gameType);
+        return super.newParty(io, board, gameType);
     }
 
     public int getTotalPartyPlayed() {

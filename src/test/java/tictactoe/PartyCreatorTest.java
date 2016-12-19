@@ -9,7 +9,7 @@ public class PartyCreatorTest {
     public void itCreatesAParties() {
         PartyCreator partyCreator = new PartyCreator();
         IO unusedIo = null;
-        Party party = partyCreator.newParty(unusedIo, 3, GameTypes.COMPUTER_VS_COMPUTER);
+        Party party = partyCreator.newParty(unusedIo, new Board(3), GameTypes.COMPUTER_VS_COMPUTER);
         assertThat(party).isNotNull();
     }
 }

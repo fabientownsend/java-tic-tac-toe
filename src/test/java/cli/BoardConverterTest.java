@@ -1,6 +1,8 @@
-package tictactoe;
+package cli;
 
+import cli.BoardConverter;
 import org.junit.Test;
+import tictactoe.Marks;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
 
