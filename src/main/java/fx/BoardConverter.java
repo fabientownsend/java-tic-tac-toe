@@ -1,7 +1,6 @@
 package fx;
 
 import javafx.scene.Group;
-import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import tictactoe.Marks;
 
@@ -15,8 +14,6 @@ public class BoardConverter {
         Group marks = new Group();
 
         boardPane.setPrefSize(board.length * TILE_SIZE, board.length * TILE_SIZE);
-        Button button = new Button();
-        // button.setOnAction(event -> Main.party.play());
         boardPane.getChildren().addAll(tiles, marks);
 
         int idTile = 0;
@@ -28,7 +25,7 @@ public class BoardConverter {
 
                 Marks mark = board[x][y];
                 if (mark != null) {
-                    createMarkPane(board[x][y], marks, y, x);
+                    createMarkPane(board[x][y], marks, x, y);
                 }
             }
         }
