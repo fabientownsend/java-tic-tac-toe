@@ -7,12 +7,13 @@ apply plugin: 'java'
 
 jar {
   manifest {
-    attributes 'Main-Class': 'tictactoe/Main'
+    attributes 'Main-Class': 'cli/Main'
   }
 }
 
 repositories {
   mavenCentral()
+  mavenLocal()
 }
 
 dependencies {
