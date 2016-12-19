@@ -9,6 +9,11 @@ public class CommandLinePlayer implements Player {
         this.io = io;
         this.mark = mark;
     }
+
+    public boolean isReady() {
+        return io.isReady();
+    }
+
     public final int nextMove() {
         try {
             String playerMove = io.read();

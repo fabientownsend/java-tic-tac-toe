@@ -13,6 +13,10 @@ class FakeIO implements IO {
         this.output = output;
     }
 
+    public boolean isReady() {
+        return true;
+    }
+
     public String read() {
         try {
             return input.readLine();

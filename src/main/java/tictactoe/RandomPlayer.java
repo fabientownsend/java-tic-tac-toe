@@ -10,6 +10,11 @@ public class RandomPlayer implements Player {
         this.board = board;
         this.mark = mark;
     }
+
+    public boolean isReady() {
+        return true;
+    }
+
     public final int nextMove() {
         int index = new Random().nextInt(board.getNumberOfFreePositions());
         return board.freePositions().get(index);

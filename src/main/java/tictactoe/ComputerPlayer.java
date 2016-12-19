@@ -17,6 +17,10 @@ public class ComputerPlayer implements Player {
         return this.mark;
     }
 
+    public boolean isReady() {
+        return true;
+    }
+
     public final int nextMove() {
         int bestPosition = negativeInfinity;
         int bestMoveEvaluated = negativeInfinity;

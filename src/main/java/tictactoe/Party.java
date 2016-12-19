@@ -30,6 +30,11 @@ public class Party {
 
     public void play() {
         displayCurrentParty();
+
+        if (!currentPlayer.isReady() || isGameOver()) {
+            return;
+        }
+
         currentPlayerMove();
 
         if (isGameOver()) {

@@ -9,6 +9,7 @@ public class CommandLine implements IO {
     private PrintWriter output;
     private final String ERROR = "Error";
     private BoardConverter boardConverter;
+    private boolean isReady = false;
 
     public CommandLine(BufferedReader input, PrintWriter output) {
         this.input = input;
@@ -24,8 +25,13 @@ public class CommandLine implements IO {
         write(boardConverter.toString(board));
     }
 
+    public boolean isReady() {
+        return isReady;
+    }
+
     public String read() {
         try {
+            isReady = true;
             return input.readLine();
         } catch (IOException e) {
             return ERROR;
