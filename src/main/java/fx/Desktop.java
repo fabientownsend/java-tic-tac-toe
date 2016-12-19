@@ -16,6 +16,7 @@ public class Desktop implements IO {
     private LinkedList<String> hardCodedPlayersPositionsSelected;
     private Move move;
     private Scene scene;
+    public static boolean isReady = false;
 
     public Desktop(Stage primaryStage, Marks[][] board) {
         this.primaryStage = primaryStage;
@@ -36,7 +37,12 @@ public class Desktop implements IO {
         // Not implemented yet
     }
 
+    public boolean isReady() {
+        return isReady;
+    }
+
     public String read() {
+        isReady = false;
         if (move.hasChanged()) {
             return Integer.toString(move.getLastMove());
         } else {

@@ -20,7 +20,7 @@ public class Main extends Application {
 
     private Party createParty(Board board, Desktop io) {
         PlayerFactory playerFactory = new PlayerFactory(io, board);
-        Player[] players = playerFactory.getPlayers(GameTypes.HUMAN_VS_HUMAN);
+        Player[] players = playerFactory.getPlayers(GameTypes.HUMAN_VS_COMPUTER);
         return new Party(io, board, players[0], players[1]);
     }
 }
