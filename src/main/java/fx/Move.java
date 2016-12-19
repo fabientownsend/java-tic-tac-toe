@@ -15,7 +15,6 @@ public class Move extends Observable {
             move = newMove;
             setChanged();
             System.out.println("Update the value with: " + move);
-            Desktop.isReady = true;
             Main.party.play();
         } else {
             System.out.println("Didn't update the value with: " + move);

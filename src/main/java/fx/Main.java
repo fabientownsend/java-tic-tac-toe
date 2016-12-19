@@ -2,6 +2,7 @@ package fx;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+
 import tictactoe.Board;
 import tictactoe.GameTypes;
 import tictactoe.Party;

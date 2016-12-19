@@ -40,5 +40,4 @@ public class CommandLine implements IO {
             return ERROR;
         }
     }
-
 }
