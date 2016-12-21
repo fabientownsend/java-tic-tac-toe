@@ -24,7 +24,7 @@ public class DesktopTest extends ApplicationTest {
         Player desktopPlayer2 = new DesktopPlayer(move, Marks.NOUGHT);
 
         PartyV2 party = new PartyV2(board, desktopPlayer, desktopPlayer2);
-        Desktop io = new Desktop(stage, move, party, board);
+        Desktop io = new Desktop(move, party, board);
         Scene scene = io.getCurrentScene();
         stage.setScene(scene);
         stage.show();

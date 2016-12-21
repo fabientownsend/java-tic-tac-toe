@@ -7,11 +7,11 @@ import javafx.scene.shape.Rectangle;
 
 import tictactoe.Marks;
 
-public class MarkBuilder extends StackPane {
+public class MarkFactory extends StackPane {
     private final int WIDTH_SHAPE = 5;
     private final int tileSize;
 
-    public MarkBuilder(int x, int y, int tileSize) {
+    public MarkFactory(int x, int y, int tileSize) {
         this.setWidth(tileSize);
         this.setHeight(tileSize);
         this.tileSize = tileSize;
