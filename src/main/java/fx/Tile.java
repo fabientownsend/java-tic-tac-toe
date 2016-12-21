@@ -2,18 +2,13 @@ package fx;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import tictactoe.PartyV2;
 
 public class Tile extends Rectangle {
-    private Move move;
     private final int idTile;
-    private PartyV2 party;
-    private Desktop desktop;
+    private GameEvent gameEvent;
 
-    public Tile(int x, int y, int width, int idTile, Move move, PartyV2 party, Desktop desktop) {
-        this.desktop = desktop;
-        this.party = party;
-        this.move = move;
+    public Tile(int x, int y, int width, int idTile, GameEvent gameEvent) {
+        this.gameEvent = gameEvent;
         this.idTile = idTile;
         this.setWidth(width);
         this.setHeight(width);
@@ -28,8 +23,6 @@ public class Tile extends Rectangle {
     }
 
     private void updateMove() {
-        move.setNewMove(idTile);
-        party.play();
-        desktop.refreshWindows();
+        gameEvent.updateSituation(idTile);
     }
 }

@@ -13,19 +13,20 @@ import tictactoe.PartyV2;
 public class Desktop extends VBox {
     private Stage primaryStage;
     private BoardConverter boardConverter;
-    private Move move;
     private Scene scene;
     private Label label;
     private BorderPane boarderPane;
-    private PartyV2 party;
     private Board board;
+    private GameEvent gameEvent;
+    private PartyV2 party;
 
     public Desktop(Stage primaryStage, Move move, PartyV2 party, Board board) {
+        this.gameEvent = new GameEvent(move, party, this);
         this.board = board;
         this.party = party;
+
         this.primaryStage = primaryStage;
-        this.boardConverter = new BoardConverter();
-        this.move = move;
+        this.boardConverter = new BoardConverter(gameEvent);
 
         label = new Label();
         label.setText("Welcome to Tic-Tac-Toe");
@@ -38,7 +39,7 @@ public class Desktop extends VBox {
     }
 
     public void refreshWindows() {
-        Pane convertedBoard = boardConverter.makeBoard(board.getContent(), move, party, this);
+        Pane convertedBoard = boardConverter.makeBoard(board.getContent());
 
         updateMessage();
         boarderPane = new BorderPane();
