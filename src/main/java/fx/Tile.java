@@ -14,6 +14,7 @@ public class Tile extends Rectangle {
         this.setHeight(width);
         relocate(x * width, y * width);
         setFill(Color.WHITE);
+        setId("id_tile_" + idTile);
 
         setStroke(Color.BLACK);
         setStrokeWidth(5);

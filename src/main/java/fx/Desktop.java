@@ -1,35 +1,40 @@
 package fx;
 
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
 import tictactoe.IO;
 import tictactoe.Marks;
 
-public class Desktop implements IO {
+public class Desktop extends VBox implements IO {
     private Stage primaryStage;
     private BoardConverter boardConverter;
-    private final String TITLE = "Tic-Tac-Toe";
     private Move move;
     private Scene scene;
     private boolean isReady = false;
+    private Pane convertedBoard;
+    private Label label;
+    private BorderPane boarderPane;
 
-    public Desktop(Stage primaryStage, Marks[][] board) {
+    public Desktop(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.boardConverter = new BoardConverter();
         this.move = new Move();
 
-        Pane root = boardConverter.createBoard(board, move);
-        scene = new Scene(root);
-        primaryStage.setTitle(TITLE);
-        primaryStage.setScene(scene);
-        primaryStage.sizeToScene();
-        primaryStage.show();
+        label = new Label();
+        label.setText("Welcome to Tic-Tac-Toe");
+        label.setId("my_label");
+    }
+
+    public Scene getCurrentScene() {
+        return scene;
     }
 
     public void write(String textToDisplay) {
-        // Not implemented yet
+        label.setText(textToDisplay);
     }
 
     public boolean isReady() {
@@ -47,9 +52,17 @@ public class Desktop implements IO {
     }
 
     public void displayBoard(Marks[][] board) {
-        Pane root = boardConverter.createBoard(board, move);
-        scene = new Scene(root);
-        primaryStage.setTitle(TITLE);
+        refreshWindows(board);
+    }
+
+    private void refreshWindows(Marks[][] board) {
+        convertedBoard = boardConverter.createBoard(board, move);
+
+        boarderPane = new BorderPane();
+        boarderPane.setTop(label);
+        boarderPane.setCenter(convertedBoard);
+
+        scene = new Scene(boarderPane);
         primaryStage.setScene(scene);
         primaryStage.sizeToScene();
         primaryStage.show();

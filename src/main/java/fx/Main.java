@@ -10,6 +10,7 @@ import tictactoe.PartyCreator;
 
 public class Main extends Application {
     public static Party party;
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -17,7 +18,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         Board board = new Board();
-        Desktop io = new Desktop(primaryStage, board.getContent());
-        party = new PartyCreator().newParty(io, board, GameTypes.HUMAN_VS_COMPUTER);
+        Desktop io = new Desktop(primaryStage);
+        party = new PartyCreator().newParty(io, board, GameTypes.HUMAN_VS_HUMAN);
+        party.play();
     }
 }
