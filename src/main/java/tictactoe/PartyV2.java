@@ -14,32 +14,25 @@ public class PartyV2 {
     }
 
     public void play() {
-        if (!currentPlayer.isReady()) {
+        if (!currentPlayer.isReady() || isGameOver()) {
             return;
         }
 
-        currentPlayerMove();
+        playNextMove();
 
         if (!isGameOver()) {
-            switchPlayer();
-            play();
+            keepPlaying();
         }
     }
 
-    private void currentPlayerMove() {
-        board.putMark(currentPlayer.getMark(), currentPlayer.nextMove());
+    private void playNextMove() {
+        int move = currentPlayer.nextMove();
+        board.putMark(currentPlayer.getMark(), move);
     }
 
-    public boolean isTie() {
-        return board.tie();
-    }
-
-    public boolean currentPlayerWon() {
-        board.win(currentPlayer.getMark());
-    }
-
-    private boolean isGameOver() {
-        return board.tie() || board.win(currentPlayer.getMark());
+    private void keepPlaying() {
+        switchPlayer();
+        play();
     }
 
     private void switchPlayer() {
@@ -48,5 +41,21 @@ public class PartyV2 {
         } else {
             currentPlayer = playerOne;
         }
+    }
+
+    public Marks getCurrentPlayerMark() {
+        return currentPlayer.getMark();
+    }
+
+    private boolean isGameOver() {
+        return isTie() || currentPlayerWon();
+    }
+
+    public boolean isTie() {
+        return board.tie();
+    }
+
+    public boolean currentPlayerWon() {
+        return board.win(currentPlayer.getMark());
     }
 }
