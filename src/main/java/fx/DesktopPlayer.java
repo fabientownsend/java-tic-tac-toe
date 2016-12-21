@@ -3,9 +3,7 @@ package fx;
 import tictactoe.Marks;
 import tictactoe.Player;
 
-import java.util.Observable;
-
-public class DesktopPlayer extends Observable implements Player {
+public class DesktopPlayer implements Player {
     private Move move;
     private final Marks mark;
 

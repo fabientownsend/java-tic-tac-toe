@@ -14,9 +14,6 @@ public class Move extends Observable {
         if (move != newMove) {
             move = newMove;
             setChanged();
-            System.out.println("Update the value with: " + move);
-        } else {
-            System.out.println("Didn't update the value with: " + move);
         }
     }
 }

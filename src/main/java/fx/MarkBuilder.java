@@ -7,18 +7,18 @@ import javafx.scene.shape.Rectangle;
 
 import tictactoe.Marks;
 
-public class MarkPane extends StackPane {
+public class MarkBuilder extends StackPane {
     private final int WIDTH_SHAPE = 5;
     private final int tileSize;
 
-    public MarkPane(int x, int y, int tileSize) {
+    public MarkBuilder(int x, int y, int tileSize) {
         this.setWidth(tileSize);
         this.setHeight(tileSize);
         this.tileSize = tileSize;
         relocate(x * tileSize, y * tileSize);
     }
 
-    public  void create(Marks mark) {
+    public  void make(Marks mark) {
         if (mark == Marks.CROSS) {
             getChildren().addAll(createBean(45), createBean(-45));
         } else {

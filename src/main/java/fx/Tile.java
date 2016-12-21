@@ -31,6 +31,5 @@ public class Tile extends Rectangle {
         move.setNewMove(idTile);
         party.play();
         desktop.refreshWindows();
-        System.out.println(idTile);
     }
 }
