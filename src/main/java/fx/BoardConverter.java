@@ -4,11 +4,12 @@ import javafx.scene.Group;
 import javafx.scene.layout.Pane;
 
 import tictactoe.Marks;
+import tictactoe.PartyV2;
 
 public class BoardConverter {
     private final int TILE_SIZE = 100;
 
-    public Pane createBoard(Marks[][] board, Move mov) {
+    public Pane createBoard(Marks[][] board, Move mov, PartyV2 party, Desktop desktop) {
         Move move = mov;
         Pane boardPane = new Pane();
         Group tiles = new Group();
@@ -20,7 +21,7 @@ public class BoardConverter {
         int idTile = 0;
         for (int y  = 0; y < board.length; y++) {
             for (int x = 0; x < board.length; x++) {
-                Tile tile = new Tile(x, y, TILE_SIZE, idTile, move);
+                Tile tile = new Tile(x, y, TILE_SIZE, idTile, move, party, desktop);
                 idTile++;
                 createTile(tiles, tile);
 
