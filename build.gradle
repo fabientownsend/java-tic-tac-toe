@@ -14,11 +14,14 @@ jar {
 repositories {
   mavenCentral()
   mavenLocal()
+  jcenter()
 }
 
 dependencies {
   testCompile 'junit:junit:4.11'
   testCompile 'org.assertj:assertj-core:3.6.1'
+  testCompile "org.testfx:testfx-core:4.0.+"
+  testCompile "org.testfx:testfx-junit:4.0.+"
 }
 
 jacocoTestReport {
