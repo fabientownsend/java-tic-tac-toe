@@ -15,7 +15,7 @@ public class Tile extends Rectangle {
         setStroke(Color.BLACK);
         setStrokeWidth(5);
 
-        setOnMouseClicked(e -> gameEvent.updateSituation(idTile));
+        setOnMouseClicked(e -> gameEvent.updateWindow(idTile));
     }
 }
 

@@ -1,5 +1,6 @@
 package fx;
 
+import javafx.scene.Node;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -20,10 +21,14 @@ public class MarkFactory extends StackPane {
 
     public  void make(Marks mark) {
         if (mark == Marks.CROSS) {
-            getChildren().addAll(createBean(45), createBean(-45));
+            getChildren().addAll(makeCross());
         } else {
-            getChildren().add(createCircleStroke());
+            getChildren().add(makeNought());
         }
+    }
+
+    private Node[] makeCross() {
+        return new Node[]{createBean(45), createBean(-45)};
     }
 
     private Rectangle createBean(int angle) {
@@ -36,14 +41,14 @@ public class MarkFactory extends StackPane {
         return beam;
     }
 
-    private Circle createCircleStroke() {
+    private Circle makeNought() {
         Circle circle = new Circle();
         circle.setRadius(tileSize / 4);
         circle.setFill(Color.TRANSPARENT);
         circle.setStroke(Color.BLACK);
         circle.setStrokeWidth(WIDTH_SHAPE);
-        circle.setTranslateX(tileSize /4);
-        circle.setTranslateY(tileSize /4);
+        circle.setTranslateX(tileSize / 4);
+        circle.setTranslateY(tileSize / 4);
         return circle;
     }
 }

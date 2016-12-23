@@ -1,4 +1,3 @@
-
 package fx;
 
 import javafx.scene.Scene;
@@ -6,9 +5,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
+
 import tictactoe.Board;
-import tictactoe.PartyV2;
+import tictactoe.Party;
 
 public class Desktop extends VBox {
     private BoardConverter boardConverter;
@@ -17,9 +16,9 @@ public class Desktop extends VBox {
     private BorderPane boarderPane;
     private Board board;
     private GameEvent gameEvent;
-    private PartyV2 party;
+    private Party party;
 
-    public Desktop(Move move, PartyV2 party, Board board) {
+    public Desktop(Move move, Party party, Board board) {
         this.gameEvent = new GameEvent(move, party, this);
         this.board = board;
         this.party = party;

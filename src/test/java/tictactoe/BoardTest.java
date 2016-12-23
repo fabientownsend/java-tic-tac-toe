@@ -143,4 +143,14 @@ public class BoardTest {
 
         assertThat(board.isVacantAt(0)).isFalse();
     }
+
+    @Test
+    public void positionMax3x3Board() {
+        assertThat(new Board().getPositionMax()).isEqualTo(8);
+    }
+
+    @Test
+    public void positionMax4x4Board() {
+        assertThat(new Board(4).getPositionMax()).isEqualTo(15);
+    }
 }

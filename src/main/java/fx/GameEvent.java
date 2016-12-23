@@ -1,19 +1,19 @@
 package fx;
 
-import tictactoe.PartyV2;
+import tictactoe.Party;
 
 public class GameEvent {
     private Move move;
-    private PartyV2 party;
+    private Party party;
     private Desktop desktop;
 
-    public GameEvent(Move move, PartyV2 party, Desktop desktop) {
+    public GameEvent(Move move, Party party, Desktop desktop) {
         this.move = move;
         this.party = party;
         this.desktop = desktop;
     }
 
-    public void updateSituation(int idTile) {
+    public void updateWindow(int idTile) {
         move.setNewMove(idTile);
         party.play();
         desktop.refreshWindows();

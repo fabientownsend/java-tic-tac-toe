@@ -5,6 +5,6 @@ public class PartyCreator {
         PlayerFactory playerFactory = new PlayerFactory(io, board);
         Player[] players = playerFactory.getPlayers(gameType);
 
-        return new Party(io, board, players[0], players[1]);
+        return new Party(board, players[0], players[1]);
     }
 }

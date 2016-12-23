@@ -15,6 +15,10 @@ public class Board {
         this.size = size;
     }
 
+    public int getPositionMax() {
+        return size * size - 1;
+    }
+
     public void putMark(Marks mark, int position) {
         board[getRow(position)][getColumn(position)] = mark;
     }

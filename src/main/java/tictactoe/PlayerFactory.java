@@ -27,13 +27,13 @@ public class PlayerFactory {
     }
 
     private Player[] createHumanVsHuman() {
-        players[0] = new HumanPlayer(io, Marks.CROSS);
-        players[1] = new HumanPlayer(io, Marks.NOUGHT);
+        players[0] = new HumanPlayer(io, Marks.CROSS, board);
+        players[1] = new HumanPlayer(io, Marks.NOUGHT, board);
         return players;
     }
 
     private Player[] createHumanVsComputer() {
-        players[0] = new HumanPlayer(io, Marks.CROSS);
+        players[0] = new HumanPlayer(io, Marks.CROSS, board);
         players[1] = new ComputerPlayer(Marks.NOUGHT, board);
         return players;
     }
@@ -52,7 +52,7 @@ public class PlayerFactory {
 
     private Player[] createRandomVsHuman() {
         players[0] = new RandomPlayer(Marks.CROSS, board);
-        players[1] = new HumanPlayer(io, Marks.NOUGHT);
+        players[1] = new HumanPlayer(io, Marks.NOUGHT, board);
         return players;
     }
 
