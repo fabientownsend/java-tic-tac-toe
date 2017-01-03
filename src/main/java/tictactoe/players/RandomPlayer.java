@@ -1,4 +1,7 @@
-package tictactoe;
+package tictactoe.players;
+
+import tictactoe.Board;
+import tictactoe.Marks;
 
 import java.util.Random;
 

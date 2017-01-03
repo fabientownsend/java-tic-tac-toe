@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 import tictactoe.Board;
 import tictactoe.Marks;
 import tictactoe.Party;
-import tictactoe.Player;
+import tictactoe.players.Player;
 
 public class Main extends Application {
     public static void main(String[] args) {
@@ -14,7 +14,7 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage stage) {
         Board board = new Board();
         Move move = new Move();
         Player desktopPlayer = new DesktopPlayer(move, Marks.CROSS);
@@ -22,8 +22,8 @@ public class Main extends Application {
         Party party = new Party(board, desktopPlayer, desktopPlayer2);
 
         Desktop desktop = new Desktop(move, party, board);
-        primaryStage.setScene(desktop.getCurrentScene());
-        primaryStage.sizeToScene();
-        primaryStage.show();
+        stage.setScene(desktop.getCurrentScene());
+        stage.sizeToScene();
+        stage.show();
     }
 }

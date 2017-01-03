@@ -1,7 +1,8 @@
 package tictactoe;
 
-import org.junit.Ignore;
 import org.junit.Test;
+import tictactoe.players.ComputerPlayer;
+import tictactoe.players.Player;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
 

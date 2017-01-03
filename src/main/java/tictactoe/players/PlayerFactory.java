@@ -1,4 +1,9 @@
-package tictactoe;
+package tictactoe.players;
+
+import tictactoe.Board;
+import tictactoe.GameTypes;
+import tictactoe.IO;
+import tictactoe.Marks;
 
 public class PlayerFactory {
     private IO io;

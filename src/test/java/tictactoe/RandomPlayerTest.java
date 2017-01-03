@@ -2,6 +2,7 @@ package tictactoe;
 
 import org.junit.Rule;
 import org.junit.Test;
+import tictactoe.players.RandomPlayer;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
 

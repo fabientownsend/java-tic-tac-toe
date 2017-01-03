@@ -1,19 +1,22 @@
 package fx;
 
-import java.util.Observable;
-
-public class Move extends Observable {
+public class Move {
     private int move = -1;
+    private boolean hasChanged;
 
     public int getLastMove() {
-        clearChanged();
+        hasChanged = false;
         return move;
     }
 
     public void setNewMove(int newMove) {
         if (move != newMove) {
             move = newMove;
-            setChanged();
+            hasChanged = true;
         }
+    }
+
+    public boolean hasChanged() {
+        return hasChanged;
     }
 }

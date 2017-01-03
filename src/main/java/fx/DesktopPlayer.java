@@ -1,7 +1,7 @@
 package fx;
 
 import tictactoe.Marks;
-import tictactoe.Player;
+import tictactoe.players.Player;
 
 public class DesktopPlayer implements Player {
     private Move move;

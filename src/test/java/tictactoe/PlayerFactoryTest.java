@@ -1,6 +1,7 @@
 package tictactoe;
 
 import org.junit.Test;
+import tictactoe.players.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

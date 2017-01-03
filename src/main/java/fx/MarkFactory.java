@@ -12,14 +12,11 @@ public class MarkFactory extends StackPane {
     private final int WIDTH_SHAPE = 5;
     private final int tileSize;
 
-    public MarkFactory(int x, int y, int tileSize) {
+    public MarkFactory(int x, int y, int tileSize, Marks mark) {
         this.setWidth(tileSize);
         this.setHeight(tileSize);
         this.tileSize = tileSize;
         relocate(x * tileSize, y * tileSize);
-    }
-
-    public  void make(Marks mark) {
         if (mark == Marks.CROSS) {
             getChildren().addAll(makeCross());
         } else {

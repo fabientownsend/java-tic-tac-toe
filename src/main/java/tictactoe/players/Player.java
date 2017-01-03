@@ -1,4 +1,6 @@
-package tictactoe;
+package tictactoe.players;
+
+import tictactoe.Marks;
 
 public interface Player {
     int nextMove();

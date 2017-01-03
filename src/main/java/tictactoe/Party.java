@@ -1,5 +1,7 @@
 package tictactoe;
 
+import tictactoe.players.Player;
+
 public class Party {
     private Board board;
     private Player playerOne;

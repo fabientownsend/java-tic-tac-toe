@@ -38,8 +38,7 @@ public class BoardConverter {
     }
 
     private void makeMark(Marks mark, Group marksGroup, int y, int x) {
-        MarkFactory markPane = new MarkFactory(x, y, TILE_SIZE);
-        markPane.make(mark);
+        MarkFactory markPane = new MarkFactory(x, y, TILE_SIZE, mark);
         marksGroup.getChildren().add(markPane);
     }
 

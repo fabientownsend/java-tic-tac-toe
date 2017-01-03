@@ -2,6 +2,7 @@ package tictactoe;
 
 import org.junit.Before;
 import org.junit.Test;
+import tictactoe.players.ComputerPlayer;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
 
