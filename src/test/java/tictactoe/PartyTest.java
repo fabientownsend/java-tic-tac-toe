@@ -4,8 +4,6 @@ import org.junit.Test;
 import tictactoe.players.ComputerPlayer;
 import tictactoe.players.Player;
 
-import static org.assertj.core.api.Java6Assertions.assertThat;
-
 public class PartyTest {
     private Party party;
 
@@ -26,13 +24,6 @@ public class PartyTest {
     private Party createGameWithTwoComputerPlayers(IoMock ioMock, int boardSize) {
         ioMock.createIoMock("");
         Board board = new Board(boardSize);
-        Player player_1 = new ComputerPlayer(Marks.CROSS, board);
-        Player player_2 = new ComputerPlayer(Marks.NOUGHT, board);
-        return new Party(board, player_1, player_2);
-    }
-
-    private Party createGameWithTwoComputerPlayers(IoMock ioMock, String stringBoard) {
-        Board board = BoardHelper.createBoard(stringBoard);
         Player player_1 = new ComputerPlayer(Marks.CROSS, board);
         Player player_2 = new ComputerPlayer(Marks.NOUGHT, board);
         return new Party(board, player_1, player_2);

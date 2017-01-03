@@ -15,6 +15,10 @@ public class Board {
         this.size = size;
     }
 
+    public void reset() {
+        this.board = new Marks[size][size];
+    }
+
     public int getPositionMax() {
         return size * size - 1;
     }

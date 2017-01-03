@@ -145,6 +145,14 @@ public class BoardTest {
     }
 
     @Test
+    public void resetTheBoard() {
+        BoardHelper.update(board, "XXXXXXXXX");
+        board.reset();
+
+        assertThat(board.isVacantAt(0)).isTrue();
+    }
+
+    @Test
     public void positionMax3x3Board() {
         assertThat(new Board().getPositionMax()).isEqualTo(8);
     }

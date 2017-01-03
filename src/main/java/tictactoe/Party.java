@@ -15,6 +15,11 @@ public class Party {
         this.currentPlayer = this.playerOne;
     }
 
+    public void reset() {
+        board.reset();
+        currentPlayer = playerOne;
+    }
+
     public void play() {
         if (!currentPlayer.isReady() || isGameOver()) {
             return;
