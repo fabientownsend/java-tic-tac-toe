@@ -1,13 +1,15 @@
 package fx;
 
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-
 import tictactoe.Board;
+import tictactoe.Marks;
 import tictactoe.Party;
+import tictactoe.players.Player;
 
 public class Desktop extends VBox {
     private BoardConverter boardConverter;
@@ -17,20 +19,34 @@ public class Desktop extends VBox {
     private Board board;
     private GameEvent gameEvent;
     private Party party;
+    private Button reset;
 
-    public Desktop(Move move, Party party, Board board) {
+    public Desktop() {
+        this.board = new Board();
+        Move move = new Move();
+        Player desktopPlayer = new DesktopPlayer(move, Marks.CROSS);
+        Player desktopPlayer2 = new DesktopPlayer(move, Marks.NOUGHT);
+        this.party = new Party(board, desktopPlayer, desktopPlayer2);
+
         this.gameEvent = new GameEvent(move, party, this);
-        this.board = board;
-        this.party = party;
 
         this.boardConverter = new BoardConverter(gameEvent);
 
         boarderPane = new BorderPane();
         scene = new Scene(boarderPane);
 
+        reset = new Button("Replay");
+        reset.setId("reset");
+        reset.setOnMouseClicked(e -> resetParty());
+
         label = new Label();
         label.setText("Welcome to Tic-Tac-Toe");
         label.setId("my_label");
+        refreshWindows();
+    }
+
+    private void resetParty() {
+        party.reset();
         refreshWindows();
     }
 
@@ -39,13 +55,26 @@ public class Desktop extends VBox {
     }
 
     public void refreshWindows() {
-        Pane convertedBoard = boardConverter.makeBoard(board.getContent());
-        updateMessage();
-        boarderPane.setTop(label);
-        boarderPane.setCenter(convertedBoard);
+        boarderPane.setTop(updateMessage());
+        boarderPane.setCenter(convertBoard());
+        boarderPane.setBottom(resetButton());
     }
 
-    private void updateMessage() {
+    private Pane convertBoard() {
+        return boardConverter.makeBoard(board.getContent());
+    }
+
+    private Button resetButton() {
+        if (party.isTie() || party.currentPlayerWon()) {
+            reset.setVisible(true);
+        } else {
+            reset.setVisible(false);
+        }
+
+        return reset;
+    }
+
+    private Label updateMessage() {
         if (party.isTie()) {
             label.setText("It's a tie");
         } else if (party.currentPlayerWon()) {
@@ -53,5 +82,7 @@ public class Desktop extends VBox {
         } else {
             label.setText(party.getCurrentPlayerMark() + " turn");
         }
+
+        return label;
     }
 }

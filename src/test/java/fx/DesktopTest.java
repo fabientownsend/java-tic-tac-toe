@@ -6,6 +6,8 @@ import org.testfx.api.FxRobot;
 import org.testfx.framework.junit.ApplicationTest;
 
 import static org.testfx.api.FxAssert.verifyThat;
+import static org.testfx.matcher.base.NodeMatchers.isInvisible;
+import static org.testfx.matcher.base.NodeMatchers.isVisible;
 import static org.testfx.matcher.control.LabeledMatchers.hasText;
 
 public class DesktopTest extends ApplicationTest {
@@ -21,47 +23,73 @@ public class DesktopTest extends ApplicationTest {
     }
 
     @Test
+    public void resetButtonIsInvisibleWhenGameNotOver() {
+        verifyThat("#reset", isInvisible());
+    }
+
+    @Test
     public void displayTheNextPlayerTurn() {
-        clickOn("#id_tile_0").clickOn();
+        clickOnTile(0);
         verifyThat("#my_label", hasText("NOUGHT turn"));
     }
 
     @Test
     public void makeCrossWin() {
-        clickOn("#id_tile_0").clickOn();
-        clickOn("#id_tile_1").clickOn();
-        clickOn("#id_tile_3").clickOn();
-        clickOn("#id_tile_2").clickOn();
-        clickOn("#id_tile_6").clickOn();
+        clickOnTile(0);
+        clickOnTile(1);
+        clickOnTile(3);
+        clickOnTile(2);
+        clickOnTile(6);
         verifyThat("#my_label", hasText("CROSS win the party"));
     }
 
     @Test
-    public void makeRoundWin() {
-        clickOn(0);
-        clickOn(1);
-        clickOn(2);
-        clickOn(4);
-        clickOn(8);
-        clickOn(7);
-        verifyThat("#my_label", hasText("NOUGHT win the party"));
+    public void resetButtonIsVisibleWhenGameOver() {
+        clickOnTile(0);
+        clickOnTile(1);
+        clickOnTile(3);
+        clickOnTile(2);
+        clickOnTile(6);
+        verifyThat("#reset", isVisible());
     }
 
-    private FxRobot clickOn(int i) {
-        return clickOn("#id_tile_" + i).clickOn();
+    @Test
+    public void gameIsReset() {
+        clickOnTile(0);
+        clickOnTile(1);
+        clickOnTile(3);
+        clickOnTile(2);
+        clickOnTile(6);
+        clickOn("#reset").clickOn();
+        verifyThat("#my_label", hasText("CROSS turn"));
+    }
+
+    @Test
+    public void makeRoundWin() {
+        clickOnTile(0);
+        clickOnTile(1);
+        clickOnTile(2);
+        clickOnTile(4);
+        clickOnTile(8);
+        clickOnTile(7);
+        verifyThat("#my_label", hasText("NOUGHT win the party"));
     }
 
     @Test
     public void itsATie() {
-        clickOn("#id_tile_0").clickOn();
-        clickOn("#id_tile_1").clickOn();
-        clickOn("#id_tile_2").clickOn();
-        clickOn("#id_tile_4").clickOn();
-        clickOn("#id_tile_3").clickOn();
-        clickOn("#id_tile_5").clickOn();
-        clickOn("#id_tile_7").clickOn();
-        clickOn("#id_tile_6").clickOn();
-        clickOn("#id_tile_8").clickOn();
+        clickOnTile(0);
+        clickOnTile(1);
+        clickOnTile(2);
+        clickOnTile(4);
+        clickOnTile(3);
+        clickOnTile(5);
+        clickOnTile(7);
+        clickOnTile(6);
+        clickOnTile(8);
         verifyThat("#my_label", hasText("It's a tie"));
+    }
+
+    private FxRobot clickOnTile(int i) {
+        return clickOn("#id_tile_" + i).clickOn();
     }
 }
