@@ -7,7 +7,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 import tictactoe.Board;
+import tictactoe.Marks;
 import tictactoe.Party;
+import tictactoe.players.Player;
 
 public class Desktop extends VBox {
     private BoardConverter boardConverter;
@@ -18,10 +20,14 @@ public class Desktop extends VBox {
     private GameEvent gameEvent;
     private Party party;
 
-    public Desktop(Move move, Party party, Board board) {
+    public Desktop() {
+        this.board = new Board();
+        Move move = new Move();
+        Player desktopPlayer = new DesktopPlayer(move, Marks.CROSS);
+        Player desktopPlayer2 = new DesktopPlayer(move, Marks.NOUGHT);
+        this.party = new Party(board, desktopPlayer, desktopPlayer2);
+
         this.gameEvent = new GameEvent(move, party, this);
-        this.board = board;
-        this.party = party;
 
         this.boardConverter = new BoardConverter(gameEvent);
 
