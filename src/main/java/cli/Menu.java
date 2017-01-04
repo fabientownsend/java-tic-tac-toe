@@ -1,4 +1,6 @@
-package tictactoe;
+package cli;
+
+import tictactoe.GameTypes;
 
 public class Menu {
     private final String REPLAY_REQUEST = "Do you want to replay? yes/no\n";

@@ -1,8 +1,9 @@
-package tictactoe;
+package cli;
 
 import org.junit.Before;
 import org.junit.Test;
-import tictactoe.players.HumanPlayer;
+import tictactoe.Board;
+import tictactoe.Marks;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
 

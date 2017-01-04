@@ -1,4 +1,4 @@
-package tictactoe;
+package cli;
 
 import java.io.BufferedReader;
 import java.io.PrintWriter;

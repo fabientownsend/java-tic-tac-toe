@@ -1,9 +1,11 @@
-package tictactoe.players;
+package cli;
 
 import tictactoe.Board;
 import tictactoe.GameTypes;
-import tictactoe.IO;
 import tictactoe.Marks;
+import tictactoe.players.ComputerPlayer;
+import tictactoe.players.Player;
+import tictactoe.players.RandomPlayer;
 
 public class PlayerFactory {
     private IO io;
@@ -66,5 +68,4 @@ public class PlayerFactory {
         players[1] = new RandomPlayer(Marks.NOUGHT, board);
         return players;
     }
-
 }

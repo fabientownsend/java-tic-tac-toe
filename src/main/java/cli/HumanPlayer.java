@@ -1,8 +1,8 @@
-package tictactoe.players;
+package cli;
 
 import tictactoe.Board;
-import tictactoe.IO;
 import tictactoe.Marks;
+import tictactoe.players.Player;
 
 public class HumanPlayer implements Player {
     private IO io;

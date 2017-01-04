@@ -1,6 +1,8 @@
-package tictactoe;
+package cli;
 
+import org.junit.Assert;
 import org.junit.Test;
+import tictactoe.GameTypes;
 
 import java.io.BufferedReader;
 import java.io.PrintWriter;
@@ -39,7 +41,7 @@ public class MenuTest {
     @Test
     public void menuReturnHumanVsHumanGameType() {
         initialisationMenuInput("1\n");
-        assertEquals(menu.getGameType(), GameTypes.HUMAN_VS_COMPUTER);
+        Assert.assertEquals(menu.getGameType(), GameTypes.HUMAN_VS_COMPUTER);
     }
 
     @Test
