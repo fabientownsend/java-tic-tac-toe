@@ -1,7 +1,9 @@
-package tictactoe;
+package cli;
 
+import tictactoe.Board;
+import tictactoe.GameTypes;
+import tictactoe.Party;
 import tictactoe.players.Player;
-import tictactoe.players.PlayerFactory;
 
 public class PartyCreator {
     public Party newParty(IO io, Board board, GameTypes gameType) {

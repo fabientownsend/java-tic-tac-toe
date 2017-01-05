@@ -1,5 +1,6 @@
 package tictactoe;
 
+import cli.IoMock;
 import org.junit.Test;
 import tictactoe.players.ComputerPlayer;
 import tictactoe.players.Player;

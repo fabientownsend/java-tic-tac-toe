@@ -1,6 +1,7 @@
 package cli;
 
 import tictactoe.*;
+import tictactoe.Marks;
 
 public class Game {
     private IO io;

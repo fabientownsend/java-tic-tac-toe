@@ -1,5 +1,6 @@
 package fx;
 
+import fx.Scenes.Menu;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -10,7 +11,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) {
-        Desktop desktop = new Desktop();
+        Menu desktop = new Menu(stage);
         stage.setScene(desktop.getCurrentScene());
         stage.sizeToScene();
         stage.show();

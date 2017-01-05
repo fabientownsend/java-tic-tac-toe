@@ -10,7 +10,7 @@ import static org.testfx.matcher.base.NodeMatchers.isInvisible;
 import static org.testfx.matcher.base.NodeMatchers.isVisible;
 import static org.testfx.matcher.control.LabeledMatchers.hasText;
 
-public class DesktopTest extends ApplicationTest {
+public class MainTest extends ApplicationTest {
     @Override
     public void start(Stage stage) throws Exception {
         Main main = new Main();
@@ -19,22 +19,26 @@ public class DesktopTest extends ApplicationTest {
 
     @Test
     public void initializationOfTheGame() {
+        clickOn("#submit").clickOn();
         verifyThat("#my_label", hasText("CROSS turn"));
     }
 
     @Test
     public void resetButtonIsInvisibleWhenGameNotOver() {
+        clickOn("#submit").clickOn();
         verifyThat("#reset", isInvisible());
     }
 
     @Test
     public void displayTheNextPlayerTurn() {
+        clickOn("#submit").clickOn();
         clickOnTile(0);
         verifyThat("#my_label", hasText("NOUGHT turn"));
     }
 
     @Test
     public void makeCrossWin() {
+        clickOn("#submit").clickOn();
         clickOnTile(0);
         clickOnTile(1);
         clickOnTile(3);
@@ -45,6 +49,7 @@ public class DesktopTest extends ApplicationTest {
 
     @Test
     public void resetButtonIsVisibleWhenGameOver() {
+        clickOn("#submit").clickOn();
         clickOnTile(0);
         clickOnTile(1);
         clickOnTile(3);
@@ -55,6 +60,7 @@ public class DesktopTest extends ApplicationTest {
 
     @Test
     public void gameIsReset() {
+        clickOn("#submit").clickOn();
         clickOnTile(0);
         clickOnTile(1);
         clickOnTile(3);
@@ -66,6 +72,7 @@ public class DesktopTest extends ApplicationTest {
 
     @Test
     public void makeRoundWin() {
+        clickOn("#submit").clickOn();
         clickOnTile(0);
         clickOnTile(1);
         clickOnTile(2);
@@ -77,6 +84,7 @@ public class DesktopTest extends ApplicationTest {
 
     @Test
     public void itsATie() {
+        clickOn("#submit").clickOn();
         clickOnTile(0);
         clickOnTile(1);
         clickOnTile(2);

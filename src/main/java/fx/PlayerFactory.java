@@ -1,17 +1,19 @@
-package tictactoe.players;
+package fx;
 
 import tictactoe.Board;
 import tictactoe.GameTypes;
-import tictactoe.IO;
 import tictactoe.Marks;
+import tictactoe.players.ComputerPlayer;
+import tictactoe.players.Player;
+import tictactoe.players.RandomPlayer;
 
 public class PlayerFactory {
-    private IO io;
+    private Move move;
     private Board board;
     private Player[] players = new Player[2];
 
-    public PlayerFactory(IO io, Board board) {
-        this.io = io;
+    public PlayerFactory(Move move, Board board) {
+        this.move = move;
         this.board = board;
     }
 
@@ -32,13 +34,13 @@ public class PlayerFactory {
     }
 
     private Player[] createHumanVsHuman() {
-        players[0] = new HumanPlayer(io, Marks.CROSS, board);
-        players[1] = new HumanPlayer(io, Marks.NOUGHT, board);
+        players[0] = new DesktopPlayer(move, Marks.CROSS);
+        players[1] = new DesktopPlayer(move, Marks.NOUGHT);
         return players;
     }
 
     private Player[] createHumanVsComputer() {
-        players[0] = new HumanPlayer(io, Marks.CROSS, board);
+        players[0] = new DesktopPlayer(move, Marks.CROSS);
         players[1] = new ComputerPlayer(Marks.NOUGHT, board);
         return players;
     }
@@ -56,8 +58,8 @@ public class PlayerFactory {
     }
 
     private Player[] createRandomVsHuman() {
-        players[0] = new RandomPlayer(Marks.CROSS, board);
-        players[1] = new HumanPlayer(io, Marks.NOUGHT, board);
+        players[0] = new DesktopPlayer(move, Marks.CROSS);
+        players[1] = new RandomPlayer(Marks.NOUGHT, board);
         return players;
     }
 
@@ -66,5 +68,4 @@ public class PlayerFactory {
         players[1] = new RandomPlayer(Marks.NOUGHT, board);
         return players;
     }
-
 }

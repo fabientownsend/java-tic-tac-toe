@@ -1,6 +1,5 @@
 package cli;
 
-import cli.BoardConverter;
 import org.junit.Test;
 import tictactoe.Marks;
 

@@ -1,9 +1,6 @@
 package cli;
 
-import cli.Game;
 import org.junit.Test;
-import tictactoe.CountingPartyCreator;
-import tictactoe.IoMock;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
 

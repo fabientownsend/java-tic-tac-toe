@@ -1,4 +1,8 @@
-package tictactoe;
+package cli;
+
+import tictactoe.Board;
+import tictactoe.GameTypes;
+import tictactoe.Party;
 
 public class CountingPartyCreator extends PartyCreator {
     private int totalPartyPlayed = 0;
