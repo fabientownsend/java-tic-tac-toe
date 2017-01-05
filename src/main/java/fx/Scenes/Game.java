@@ -1,40 +1,44 @@
-package fx;
+package fx.Scenes;
 
+import fx.BoardConverter;
+import fx.GameEvent;
+import fx.Move;
+import fx.PlayerFactory;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import tictactoe.Board;
-import tictactoe.Marks;
+import tictactoe.GameTypes;
 import tictactoe.Party;
 import tictactoe.players.Player;
 
-public class Desktop extends VBox {
-    private BoardConverter boardConverter;
-    private Scene scene;
-    private Label label;
-    private BorderPane boarderPane;
+public class Game {
     private Board board;
-    private GameEvent gameEvent;
     private Party party;
     private Button reset;
+    private Label label;
+    private Move move;
+    private GameEvent gameEvent;
+    private BoardConverter boardConverter;
+    private BorderPane boarderPane;
 
-    public Desktop() {
-        this.board = new Board();
-        Move move = new Move();
-        Player desktopPlayer = new DesktopPlayer(move, Marks.CROSS);
-        Player desktopPlayer2 = new DesktopPlayer(move, Marks.NOUGHT);
-        this.party = new Party(board, desktopPlayer, desktopPlayer2);
+    public Game(int boardSize, GameTypes gameType) {
+        this.move = new Move();
+        this.board = new Board(boardSize);
+        this.party = createParty(move, board, gameType);
+    }
 
-        this.gameEvent = new GameEvent(move, party, this);
+    private Party createParty(Move move, Board board, GameTypes gameTypes) {
+        PlayerFactory playerFactory = new PlayerFactory(move, board);
+        Player[] players = playerFactory.getPlayers(gameTypes);
+        party = new Party(board, players[0], players[1]);
+        party.play();
+        return party;
+    }
 
-        this.boardConverter = new BoardConverter(gameEvent);
-
-        boarderPane = new BorderPane();
-        scene = new Scene(boarderPane);
-
+    public Scene createGameScene() {
         reset = new Button("Replay");
         reset.setId("reset");
         reset.setOnMouseClicked(e -> resetParty());
@@ -42,16 +46,16 @@ public class Desktop extends VBox {
         label = new Label();
         label.setText("Welcome to Tic-Tac-Toe");
         label.setId("my_label");
+        this.gameEvent = new GameEvent(move, party, this);
+        this.boardConverter = new BoardConverter(gameEvent);
+        this.boarderPane = new BorderPane();
         refreshWindows();
+        return new Scene(boarderPane);
     }
 
     private void resetParty() {
         party.reset();
         refreshWindows();
-    }
-
-    public Scene getCurrentScene() {
-        return scene;
     }
 
     public void refreshWindows() {

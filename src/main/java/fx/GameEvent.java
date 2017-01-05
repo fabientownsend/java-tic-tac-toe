@@ -1,13 +1,14 @@
 package fx;
 
+import fx.Scenes.Game;
 import tictactoe.Party;
 
 public class GameEvent {
     private Move move;
     private Party party;
-    private Desktop desktop;
+    private Game desktop;
 
-    public GameEvent(Move move, Party party, Desktop desktop) {
+    public GameEvent(Move move, Party party, Game desktop) {
         this.move = move;
         this.party = party;
         this.desktop = desktop;
